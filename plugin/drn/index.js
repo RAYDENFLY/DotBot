@@ -9,8 +9,7 @@ exports.run = async(client, message, input) => {
 exports.plugin = {
     name: "drn",
     type: "plugin",
-    version: "1.0",
-    description: "example plugin"
+    version: "1.0"
 }
 exports.config = {
     developer: true
