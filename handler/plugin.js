@@ -1,13 +1,7 @@
 const Discord = require("discord.js"),
     fs = require("fs");
-
-    let jsoning = require("jsoning");
-    let db = new jsoning("plugin-package.json");
-
-const path = require('../plugin-package.json'); 
 module.exports = async client => {
-    let has2 = await db.has("installed")
-    let create = await db.set("installed", { base: "index.js" })
+
     client.plugin = new Discord.Collection();
     client.pluginmanager = new Discord.Collection();
 
@@ -33,9 +27,6 @@ module.exports = async client => {
 
                 files.forEach(file => {
                     let prop = require(`../plugin/${category}/`);
-                    if(has2) {
-                        create
-                    }
 
                     if (!file.endsWith("index.js")) return;
 

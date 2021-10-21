@@ -26,11 +26,11 @@ module.exports = async(client, message) => {
             .setTimestamp()
         return message.channel.send({ embeds: [blacklist] })
     }
-
+    
     function plugin(name, input) {
         let plugin = client.plugin.get(name)
-        plugin.run(client, message, input);
-        return plugin.plugin
+        
+        return plugin.run(client, message, input);
     }
 
     if (message.attachments.size > 0) {
