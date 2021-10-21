@@ -6,7 +6,7 @@ let dbs = new jsoning("database/global.json");
 let db = new jsoning("database/report.json");
 
 
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
     const prefix = await dbs.get("prefix")
     const reason = args.slice(0).join(" ")
     const owner = client.users.cache.get(client.config.bot.owner);

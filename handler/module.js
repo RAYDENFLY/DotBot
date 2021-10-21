@@ -51,7 +51,7 @@ module.exports = client => {
                     if (prop.slash === false) return;
                     client.slash.set(prop.help.name, prop)
                     commandss.push(prop.slash.data.toJSON());
-                    (async() => {
+                    (async () => {
                         try {
                             console.log(`Started refreshing application (/) commands ${prop.help.name}`);
                             await rest.put(

@@ -2,7 +2,7 @@ const Discord = require("discord.js"),
     cooldowns = new Discord.Collection();
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
-module.exports = async(client, message) => {
+module.exports = async (client, message) => {
     if (message.author.bot || message.author === client.user) return;
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;
@@ -26,10 +26,10 @@ module.exports = async(client, message) => {
             .setTimestamp()
         return message.channel.send({ embeds: [blacklist] })
     }
-    
+
     function plugin(name, input) {
         let plugin = client.plugin.get(name)
-        
+
         return plugin.run(client, message, input);
     }
 
@@ -110,7 +110,8 @@ module.exports = async(client, message) => {
         if (!commandFile) return;
         commandFile.run(client, message, args, runs, plugin);
     } catch (error) {
-        message.channel.send("There was an error while executing this command!")
+        console.log(error.message);
+        message.channel.send(`There was an error while executing this command! ${error.message}`)
         console.log(error.message);
 
     } finally {
