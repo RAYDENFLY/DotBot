@@ -22,7 +22,7 @@ const config = require('./config/configs.json');
 const token = require('./config/token.json');
 const COre = require('./handler/ClientBuilder.js');
 const recent = new Set();
-const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
 
 require('./handler/module.js')(client);
 require('./handler/Event.js')(client);

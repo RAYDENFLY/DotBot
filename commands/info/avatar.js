@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 exports.run = (client, message, args) => {
-  let member = message.mentions.users.first() || message.guild.members.cache.get(args[0])
+  let name = client.users.cache.find(u => u.username === args[0])
+  let member = message.mentions.users.first() || message.guild.members.cache.get(args[0]) || client.users.cache.find(u => u.username === args[0])
     || message.author;
   let avatar = member.displayAvatarURL({ size: 1024, dynamic: true })
 
