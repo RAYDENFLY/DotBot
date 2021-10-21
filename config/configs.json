@@ -4,10 +4,7 @@
     "kernel-version": "v3.0",
     "bot": {
         "name": "DotBot",
-        "owner": [
-            "754192220843802664",
-            "696588067481321553"
-        ],
+        "owner": "754192220843802664",
         "owner-name": "DemuraAI",
         "prefix": "d!"
     }
