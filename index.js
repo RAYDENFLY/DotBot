@@ -8,8 +8,8 @@ const port = 3000;
 const io = require('@pm2/io')
 io.init({
     transactions: true,
-    http: true 
- })
+    http: true
+})
 
 app.get('/', (req, res) => res.send('CYBER ON'));
 
@@ -27,7 +27,6 @@ const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 require('./handler/module.js')(client);
 require('./handler/Event.js')(client);
 require('./handler/cunter.js')(client);
-require('./handler/slash')(client)
 require('./handler/plugin')(client)
 
 client.package = require('./package.json');

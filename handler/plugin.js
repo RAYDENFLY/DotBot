@@ -15,15 +15,15 @@ module.exports = async client => {
             moduleConf.cmds = [];
             if (!moduleConf) return;
             client.pluginmanager.set(category, moduleConf);
-            
+
 
             fs.readdir(`./plugin/${category}`, (err, files) => {
                 console.log(
-                    `Found total ${files.length - 1} files(s) plugin from ${category}.`
+                    `Found total ${files.length - 1} files(s) from plugin ${category}.`
                 );
                 if (err) console.log(err);
 
-                
+
 
                 files.forEach(file => {
                     let prop = require(`../plugin/${category}/`);
