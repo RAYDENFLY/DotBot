@@ -38,7 +38,7 @@ exports.run = async(client, message, args) => {
                 .setColor("GREEN")
                 .setDescription("Update complete\n```" + stdout + "```")
                 .setTimestamp()
-            if (stdout === "Already up to date.") {
+            if (stdout === "Already up to date") {
                 await i.update({ embeds: [already], components: [] })
                 client.reload()
             } else {
