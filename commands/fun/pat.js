@@ -2,7 +2,7 @@ const Discord = require('discord.js'); //npm i discord.js
 const superagent = require('superagent'); //npm i superagent
 
 exports.run = async (client, message, argsls) => { //lets started your commands script
-  if (!message.mentions.users.first()) return message.reply("you almost mention someone to pat them"); //if no one is mentions , lets reply as
+  if (!message.mentions.users.first() || message.guild.cache.get(args[0])) return message.reply("you almost mention someone to pat them"); //if no one is mentions , lets reply as
   if (message.mentions.users.first().id === "754192220843802664") return message.channel.send('Lol You can pat my developer '); //lets make a some a some funny reply |you can set a random emoji|
   const { body } = await superagent
     .get("https://nekos.life/api/pat"); //lets see wut we went
