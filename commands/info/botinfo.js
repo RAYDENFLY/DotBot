@@ -45,7 +45,7 @@ exports.run = async(client, message) => {
                 //.addComponents(
                 //    new MessageButton()
                  //   .setLabel('Source Code')
-                 //   .setURL('https://github.com/DemuraAIdev/DrmPR')
+                 //   .setURL('https://github.com/DemuraAIdev/DotBot')
                 //    .setStyle('LINK')
                 //)
 

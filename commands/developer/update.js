@@ -31,7 +31,7 @@ exports.run = async(client, message, args) => {
     const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
     collector.on('collect', async i => {
         if (i.customId === 'offyes') {
-            let stdouts = execSync('git remote set-url origin https://github.com/DemuraAIdev/DrmPR.git && git pull')
+            let stdouts = execSync('git remote set-url origin https://github.com/DemuraAIdev/DotBot.git && git pull')
             let stdout = stdouts.toString()
             const update = new Discord.MessageEmbed()
                 .setFooter("DotBot")
