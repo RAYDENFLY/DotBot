@@ -14,9 +14,11 @@ config/token.json
 
 #database
 database/msend.json
+database/global.json
 database/report.json
 database/blacklist.json
 database/guild.json
+
 
 ecosystem.config.js
 
