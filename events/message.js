@@ -3,9 +3,13 @@ const Discord = require("discord.js"),
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 module.exports = async (client, message) => {
+    let prefix;
     if (message.author.bot || message.author === client.user) return;
-    let globalprefix = await db.get("prefix")
-    let prefix = globalprefix || client.config.bot.prefix;
+    if (await db.has("prefix")) {
+        prefix = await db.get("prefix")
+    } else {
+        prefix = client.config.bot.prefix;
+    }
     var server = message.guild.id;
     require("../addons/master")(client, message)
 

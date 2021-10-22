@@ -55,7 +55,7 @@ module.exports = client => {
                         try {
                             console.log(`Started refreshing application (/) commands ${prop.help.name}`);
                             await rest.put(
-                                Routes.applicationGuildCommands("898186273355874324", "897850095335268412"), { body: commandss },
+                                Routes.applicationGuildCommands("898186273355874324", "901040545265225768"), { body: commandss },
                             );
                             console.log(`Successfully reloaded application (/) commands. ${prop.help.name}`);
                         } catch (error) {
@@ -67,4 +67,5 @@ module.exports = client => {
             });
         });
     });
+
 };
