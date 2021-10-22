@@ -23,10 +23,10 @@ const token = require('./config/token.json');
 const COre = require('./handler/ClientBuilder.js');
 const recent = new Set();
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
-const path3 = "./global.json"
+const path3 = "./database/global.json"
 const fs = require('fs'); // fs is the built-in Node.js file system module.
 if (!fs.existsSync(path3)) {
-    fs.appendFile('./global.json', '{"status": "test","prefix":"d!","log":"Change Global Prefix to d!"}', function (err) {
+    fs.appendFile('./database/global.json', '{"status": "test","prefix":"d!","log":"Change Global Prefix to d!"}', function (err) {
         if (err) throw err;
         console.log('Saved!');
         process.exit()
