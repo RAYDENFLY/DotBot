@@ -3,6 +3,7 @@ const { Collection, Client, MessageActionRow, MessageButton } = require("discord
     fs = require("fs");
 var { getLastCommit } = require('git-last-commit');
 let jsoning = require("jsoning");
+const utilpath = require("./Util")
 module.exports = class system extends Client {
     constructor(options) {
         super(options)
@@ -12,6 +13,7 @@ module.exports = class system extends Client {
         this.warna = require('../config/color.json');
         this.commands = new Collection();
         this.cooldowns = new Collection();
+        this.util = new utilpath
         this.aliases = new Collection();
         this.config = require('../config/configs.json');
         this.recent = new Set();
@@ -26,11 +28,11 @@ module.exports = class system extends Client {
         })
     }
     platfrom() {
-        let osname =  process.platform
-        if(osname === "win32") return "Windows"
-        if(osname === "darwin") return "MacOS"
-        if(osname === "linux") return "GNU/Linux"
-        if(osname === "Android" || "android") return "Android"
+        let osname = process.platform
+        if (osname === "win32") return "Windows"
+        if (osname === "darwin") return "MacOS"
+        if (osname === "linux") return "GNU/Linux"
+        if (osname === "Android" || "android") return "Android"
     }
     commitsubject() {
         return new Promise((res, rej) => {
