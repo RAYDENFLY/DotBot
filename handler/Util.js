@@ -22,6 +22,13 @@ class Util {
             }
             return `${seconds} seconds`;
         };
+        this.chunk = function chunk(array, chunkSize) {
+            let temp = [];
+            for (let i = 0; i < array.length; i += chunkSize) {
+                temp.push(array.slice(i, i + chunkSize));
+            }
+            return temp;
+        };
     }
 }
 

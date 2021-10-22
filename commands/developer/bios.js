@@ -1,23 +1,27 @@
+const Discord = require("discord.js")
+let jsoning = require("jsoning");
+let db = new jsoning("database/global.json");
 exports.run = async (client, message, args, runs, plugin) => {
     const Bios = new Discord.MessageEmbed()
         .setFooter(`BIOS`)
         .setTimestamp()
         .setColor('RED')
-        .setDescription("**BIOS ACTIVATED**")
+        .setDescription("**BIOS MODE ACTIVATED**")
     message.channel.send({ embeds: [Bios] })
+    db.set("bios", "true")
 }
 
 exports.help = {
-    name: "eval",
-    description: "Evaluate some code.",
-    usage: "eval <code>",
-    example: "eval client.commands"
+    name: "bios",
+    description: "BIOS mENU.",
+    usage: "bios ",
+    example: "bios"
 }
 
 exports.slash = false
 
 exports.conf = {
-    aliases: ["e"],
+    aliases: ["biosmenu"],
     permissions: [""],
     needperms: [""],
     developer: true

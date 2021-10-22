@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
     if (!query) return message.reply('insert a request first!');
 
     if (query.startsWith('https')) query = query.match(/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/)[1];
-    let data = await axios.get(`https://katowo.glitch.me/api/info/${query}`); data = data.data;
+    let data = await axios.get(`https://youtube.demuraaidev.repl.co/api/info/${query}`); data = data.data;
 
 
     let embed = new Discord.MessageEmbed()
@@ -25,14 +25,14 @@ exports.run = async (client, message, args) => {
 
     let tempRes = { default: [], audioOnly: [], videoOnly: [] };
     for (i = 0; i < data.video.length; i++) {
-      tempRes.default[i] = `[${i + 1}. ${data.video[i].qualityLabel}](https://katowo.glitch.me/api/download/${query}/default/${data.video[i].qualityLabel})`;
+      tempRes.default[i] = `[${i + 1}. ${data.video[i].qualityLabel}](https://youtube.demuraaidev.repl.co/api/download/${query}/default/${data.video[i].qualityLabel})`;
     }
 
     for (i = 0; i < data.videoOnly.length; i++) {
-      tempRes.videoOnly[i] = `[${i + 1}. ${data.videoOnly[i].qualityLabel}](https://katowo.glitch.me/api/download/${query}/videoOnly/${data.videoOnly[i].qualityLabel})`;
+      tempRes.videoOnly[i] = `[${i + 1}. ${data.videoOnly[i].qualityLabel}](https://youtube.demuraaidev.repl.co/api/download/${query}/videoOnly/${data.videoOnly[i].qualityLabel})`;
     };
 
-    tempRes.audioOnly[0] = `[${1}. ${data.audioOnly.shift().audioQuality}](https://katowo.glitch.me/api/download/${query}/audioOnly/default)`;
+    tempRes.audioOnly[0] = `[${1}. ${data.audioOnly.shift().audioQuality}](https://youtube.demuraaidev.repl.co/api/download/${query}/audioOnly/default)`;
 
     let embede = new Discord.MessageEmbed()
       .setColor('RANDOM')

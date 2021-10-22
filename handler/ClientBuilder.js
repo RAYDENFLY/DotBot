@@ -1,6 +1,7 @@
 const { Collection, Client, MessageActionRow, MessageButton } = require("discord.js"),
     Discord = require("discord.js"),
     fs = require("fs");
+const Kusonime = require('../util/kusonime');
 var { getLastCommit } = require('git-last-commit');
 let jsoning = require("jsoning");
 const utilpath = require("./Util")
@@ -18,6 +19,7 @@ module.exports = class system extends Client {
         this.config = require('../config/configs.json');
         this.recent = new Set();
         this.db = new jsoning("database/global.json");
+        this.kusonime = new Kusonime(this);
     }
     commitshorthash() {
         return new Promise((res, rej) => {
