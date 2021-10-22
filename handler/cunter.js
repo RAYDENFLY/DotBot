@@ -19,13 +19,6 @@ module.exports = async (client) => {
             process.exit()
         });
     }
-    if (!fs.existsSync(path3)) {
-        fs.appendFile('./database/global.json', '{ "status": "test", "prefix": "d!", "log": "Change Global Prefix to d!" }', function (err) {
-            if (err) throw err;
-            console.log('Saved!');
-            process.exit()
-        });
-    }
     const guilds = require('../database/msend.json'); // This path may vary.
     client.on('message', message => {
         // If the author is NOT a bot...

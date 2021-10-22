@@ -1,6 +1,16 @@
 /* eslint-disable indent */
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
+const path3 = "./database/global.json"
+const fs = require("fs")
+if (!fs.existsSync(path3)) {
+    fs.appendFile('database/global.json', '{ "status": "test", "prefix": "d!", "log": "Change Global Prefix to d!" }', function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+        process.exit()
+    });
+}
+
 //ex[ress
 const express = require('express');
 const app = express();
@@ -23,15 +33,6 @@ const token = require('./config/token.json');
 const COre = require('./handler/ClientBuilder.js');
 const recent = new Set();
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
-const path3 = "./database/global.json"
-const fs = require('fs'); // fs is the built-in Node.js file system module.
-if (!fs.existsSync(path3)) {
-    fs.appendFile('./database/global.json', '{"status": "test","prefix":"d!","log":"Change Global Prefix to d!"}', function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        process.exit()
-    });
-}
 
 
 require('./handler/module.js')(client);
