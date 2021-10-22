@@ -8,17 +8,17 @@ const wait = require('util').promisify(setTimeout);
 const invite = new MessageActionRow()
     .addComponents(
         new MessageButton()
-        .setLabel('YES')
-        .setCustomId('yes')
-        .setStyle('DANGER')
+            .setLabel('YES')
+            .setCustomId('yes')
+            .setStyle('DANGER')
     )
     .addComponents(
         new MessageButton()
-        .setLabel('NO')
-        .setCustomId('no')
-        .setStyle('SUCCESS')
+            .setLabel('NO')
+            .setCustomId('no')
+            .setStyle('SUCCESS')
     )
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
     let embed = new Discord.MessageEmbed()
         .setTimestamp()
         .setTitle(":gear: Global Settings")
@@ -28,15 +28,15 @@ exports.run = async(client, message, args) => {
     const invite = new MessageActionRow()
         .addComponents(
             new MessageButton()
-            .setLabel('YES')
-            .setCustomId('gsetyes')
-            .setStyle('DANGER')
+                .setLabel('YES')
+                .setCustomId('gsetyes')
+                .setStyle('DANGER')
         )
         .addComponents(
             new MessageButton()
-            .setLabel('NO')
-            .setCustomId('gsetno')
-            .setStyle('SUCCESS')
+                .setLabel('NO')
+                .setCustomId('gsetno')
+                .setStyle('SUCCESS')
         )
     let list = new Discord.MessageEmbed()
         .setFooter(`Commands`)
@@ -74,7 +74,7 @@ exports.run = async(client, message, args) => {
     if (args[0].toLowerCase() == "nac") {
         if (client.commands.get(args.slice(1).join(" ")) === undefined) return message.channel.send("Commands Not found");
         message.channel.send({ content: `Confirm disable command ` + args.slice(1).join(" "), components: [invite] });
-        const filter = i => i.user.id === client.config.bot.owner;
+        const filter = i => client.config.bot.owner.includes(i.user.id)
         const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
         collector.on('collect', async i => {
             if (i.customId === 'gsetyes') {
@@ -94,13 +94,13 @@ exports.slash = {
         .setDescription('Global settings (Only Developer)')
         .addStringOption(option =>
             option.setName('prefix')
-            .setDescription('set prefix'))
+                .setDescription('set prefix'))
         .addStringOption(option =>
             option.setName('blacklist')
-            .setDescription('Add blacklist user'))
+                .setDescription('Add blacklist user'))
         .addStringOption(option =>
             option.setName('nac')
-            .setDescription('Disable commands')),
+                .setDescription('Disable commands')),
     async execute(interaction, client, runs) {
         const prefix = interaction.options.getString('prefix');
         const nac = interaction.options.getString('nac');

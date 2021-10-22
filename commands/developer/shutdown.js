@@ -12,31 +12,31 @@ const danger = new Discord.MessageEmbed()
     .setTimestamp()
     .setColor('YELLOW')
     .setDescription("**Are you sure?**")
-    // This command is super frickin' dangerous. Make it only visible and usable for you only, or give it to someone you trust.
+// This command is super frickin' dangerous. Make it only visible and usable for you only, or give it to someone you trust.
 
 const invite = new MessageActionRow()
     .addComponents(
         new MessageButton()
-        .setLabel('YES')
-        .setCustomId('offyes')
-        .setStyle('DANGER')
+            .setLabel('YES')
+            .setCustomId('offyes')
+            .setStyle('DANGER')
     )
     .addComponents(
         new MessageButton()
-        .setLabel('NO')
-        .setCustomId('offno')
-        .setStyle('SUCCESS')
+            .setLabel('NO')
+            .setCustomId('offno')
+            .setStyle('SUCCESS')
     )
 
 
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
     let bot = client.config.bot;
     let prefix = bot.prefix;
     let nama = bot.name;
     let id = client.user.id
 
     message.channel.send({ content: `Confirm Shutdown`, embeds: [danger], components: [invite] });
-    const filter = i => i.user.id === client.config.bot.owner;
+    const filter = i => client.config.bot.owner.includes(i.user.id);
     const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
 
     collector.on('collect', async i => {

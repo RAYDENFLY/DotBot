@@ -16,20 +16,20 @@ const success = new Discord.MessageEmbed()
 const invite = new MessageActionRow()
     .addComponents(
         new MessageButton()
-        .setLabel('YES')
-        .setCustomId('reloadyes')
-        .setStyle('DANGER')
+            .setLabel('YES')
+            .setCustomId('reloadyes')
+            .setStyle('DANGER')
     )
     .addComponents(
         new MessageButton()
-        .setLabel('NO')
-        .setCustomId('reloadno')
-        .setStyle('SUCCESS')
+            .setLabel('NO')
+            .setCustomId('reloadno')
+            .setStyle('SUCCESS')
     )
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
 
     message.channel.send({ content: `Confirm Reload`, embeds: [danger], components: [invite] });
-    const filter = i => i.user.id === client.config.bot.owner;
+    const filter = i => client.config.bot.owner.includes(i.user.id)
     const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
     collector.on('collect', async i => {
         if (i.customId === 'reloadyes') {
