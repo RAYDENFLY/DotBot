@@ -21,6 +21,12 @@ module.exports = async (client, message) => {
     let authorid = message.author.id
     let black = require("../database/blacklist.json")
     let blacklist = black.blacklist
+    let i = await db.get("bios")
+    //if(i === "true") {
+
+    //} false {
+
+    //}
 
     if (blacklist.includes(message.author.id)) {
         const blacklist = new Discord.MessageEmbed()
