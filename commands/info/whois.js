@@ -13,45 +13,45 @@ exports.run = (client, message, args) => {
     var acknowledgements = 'None';
 
     const user = message.mentions.users.first() || message.author;
-    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || client.users.cache.find(u => u.username === args[0]) || message.member;
 
-    if (message.member.permissions.has("KICK_MEMBERS")) {
+    if (member.permissions.has("KICK_MEMBERS")) {
         permissions.push("Kick Members");
     }
 
-    if (message.member.permissions.has("BAN_MEMBERS")) {
+    if (member.permissions.has("BAN_MEMBERS")) {
         permissions.push("Ban Members");
     }
 
-    if (message.member.permissions.has("ADMINISTRATOR")) {
+    if (member.permissions.has("ADMINISTRATOR")) {
         permissions.push("Administrator");
     }
 
-    if (message.member.permissions.has("MANAGE_MESSAGES")) {
+    if (member.permissions.has("MANAGE_MESSAGES")) {
         permissions.push("Manage Messages");
     }
 
-    if (message.member.permissions.has("MANAGE_CHANNELS")) {
+    if (member.permissions.has("MANAGE_CHANNELS")) {
         permissions.push("Manage Channels");
     }
 
-    if (message.member.permissions.has("MENTION_EVERYONE")) {
+    if (member.permissions.has("MENTION_EVERYONE")) {
         permissions.push("Mention Everyone");
     }
 
-    if (message.member.permissions.has("MANAGE_NICKNAMES")) {
+    if (member.permissions.has("MANAGE_NICKNAMES")) {
         permissions.push("Manage Nicknames");
     }
 
-    if (message.member.permissions.has("MANAGE_ROLES")) {
+    if (member.permissions.has("MANAGE_ROLES")) {
         permissions.push("Manage Roles");
     }
 
-    if (message.member.permissions.has("MANAGE_WEBHOOKS")) {
+    if (member.permissions.has("MANAGE_WEBHOOKS")) {
         permissions.push("Manage Webhooks");
     }
 
-    if (message.member.permissions.has("MANAGE_EMOJIS_AND_STICKERS")) {
+    if (member.permissions.has("MANAGE_EMOJIS_AND_STICKERS")) {
         permissions.push("Manage Emojis");
     }
 
@@ -62,6 +62,19 @@ exports.run = (client, message, args) => {
     if (member.user.id == message.guild.ownerId) {
         acknowledgements = 'Server Owner';
     }
+    if (client.config.bot.owner.includes(member.user.id)) {
+        acknowledgements = 'My Developer';
+    }
+    if (member.user.id == client.user.id) {
+        acknowledgements = 'its me';
+    }
+
+    if (member.presence === null) {
+        presence = "offline"
+    } else {
+        presence = member.presence.status
+    }
+
 
     const embed = new Discord.MessageEmbed()
         .setDescription(`<@${member.user.id}>`)
@@ -71,6 +84,7 @@ exports.run = (client, message, args) => {
         .setFooter(`DotBot`)
         .setThumbnail(member.user.displayAvatarURL())
         .setTimestamp()
+        .addField("Status", `${status[presence]}`, true)
         .addField('Joined at: ', `${moment(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss")}`, true)
         .addField("Created at: ", `${moment(message.author.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss")}`, true)
         .addField(`Roles [${member.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `\`${roles.name}\``).length}]`, `${member.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `<@&${roles.id}>`).join(" **|** ") || "No Roles"}`, true)

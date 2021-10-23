@@ -1,6 +1,14 @@
 /* eslint-disable indent */
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
+
+var blessed = require('blessed');
+var screen = blessed.screen({
+    smartCSR: true
+});
+screen.title = 'DotBot';
+
+//Global json 
 const path3 = "./database/global.json"
 const fs = require("fs")
 if (!fs.existsSync(path3)) {
@@ -10,16 +18,22 @@ if (!fs.existsSync(path3)) {
         process.exit()
     });
 }
+//ASCII
+try {
+    var data = fs.readFileSync('doh.txt', 'utf8');
+    console.log(data.toString());
+    console.log("Loading .")
+    console.log("Loading ..")
+    console.log("Loading ...")
+} catch (e) {
+    console.log('Error:', e.stack);
+}
+
 
 //ex[ress
 const express = require('express');
 const app = express();
 const port = 3000;
-const io = require('@pm2/io')
-io.init({
-    transactions: true,
-    http: true
-})
 
 app.get('/', (req, res) => res.send('CYBER ON'));
 
@@ -32,7 +46,7 @@ const config = require('./config/configs.json');
 const token = require('./config/token.json');
 const COre = require('./handler/ClientBuilder.js');
 const recent = new Set();
-const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES"] });
+const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS"] });
 
 
 require('./handler/module.js')(client);

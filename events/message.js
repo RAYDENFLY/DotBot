@@ -114,9 +114,8 @@ module.exports = async (client, message) => {
         if (!commandFile) return;
         commandFile.run(client, message, args, runs, plugin);
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
         message.channel.send(`There was an error while executing this command! ${error.message}`)
-        console.log(error.message);
 
     } finally {
         console.log(`${sender.tag} (${sender.id}) ran a command: ${cmd}`);
