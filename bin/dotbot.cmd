@@ -1,3 +1,4 @@
 @echo off
-cd D:\DotProject\DotBot\DotBot\
-npm start
+echo %~dp0\..
+cd %~dp0\..
+node %~dp0\.. \dotbot.js

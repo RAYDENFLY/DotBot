@@ -1,14 +1,14 @@
 const { MessageActionRow, MessageButton } = require('discord.js');
 const Discord = require('discord.js');
 
-exports.run = async(client, message) => {
+exports.run = async (client, message) => {
     const last = await client.commitshorthash()
     const lastd = await client.commitsubject()
     const mss = await message.channel.send("Calculating...");
     message.channel.sendTyping()
     let os = require('os'),
         cpuStat = require('cpu-stat')
-    cpuStat.usagePercent(function(error, percent) {
+    cpuStat.usagePercent(function (error, percent) {
         if (error) {
             return console.error(error)
         }
@@ -38,16 +38,16 @@ exports.run = async(client, message) => {
             const invite = new MessageActionRow()
                 .addComponents(
                     new MessageButton()
-                    .setLabel('Developer')
-                    .setCustomId('dev')
-                    .setStyle('SUCCESS')
+                        .setLabel('Developer')
+                        .setCustomId('dev')
+                        .setStyle('SUCCESS')
                 )
-                //.addComponents(
-                //    new MessageButton()
-                 //   .setLabel('Source Code')
-                 //   .setURL('https://github.com/DemuraAIdev/DotBot')
-                //    .setStyle('LINK')
-                //)
+            //.addComponents(
+            //    new MessageButton()
+            //   .setLabel('Source Code')
+            //   .setURL('https://github.com/DemuraAIdev/DotBot')
+            //    .setStyle('LINK')
+            //)
 
             const developer = new Discord.MessageEmbed()
                 .setColor('GREEN')
@@ -55,6 +55,7 @@ exports.run = async(client, message) => {
                 .setAuthor('DemuraAI')
                 .setDescription('```js\nName: ' + client.users.cache.get("754192220843802664").username + "#" + client.users.cache.get("754192220843802664").discriminator + '\nID: ' + client.users.cache.get("754192220843802664").id + '```')
                 .setTimestamp()
+                .setImage("https://cdn.discordapp.com/attachments/615704542562091028/901515267207749692/bot1.jpg")
                 .setThumbnail(client.users.cache.get("754192220843802664").displayAvatarURL())
                 .setFooter("Powered By DRM", message.author.displayAvatarURL());
             const utama = new Discord.MessageEmbed()
@@ -63,9 +64,9 @@ exports.run = async(client, message) => {
                 .setAuthor('DemuraAI')
                 .setDescription('```js\nName: ' + client.user.username + '\nID: ' + client.user.id + '```')
                 .setThumbnail(client.user.displayAvatarURL())
-                .addFields({ name: '**Version**', value: client.config.version, inline: true }, { name: '**Kernel**', value: "**ID** " + client.config.kernel + "\n**Version** " + client.config["kernel-version"], inline: true }, )
+                .addFields({ name: '**Version**', value: client.config.version, inline: true }, { name: '**Kernel**', value: "**ID** " + client.config.kernel + "\n**Version** " + client.config["kernel-version"], inline: true },)
                 .addField('Uptime', `${parseDur(client.uptime)}`, true)
-                .addFields({ name: '**Ping**', value: `**Latency** ${mss.createdTimestamp - message.createdTimestamp}ms\n**API** ${Math.floor(client.ws.ping)}ms`, inline: true }, { name: '**Software**', value: `**Discord.js** ${djs}\n**Nodejs** ${Node}`, inline: true }, )
+                .addFields({ name: '**Ping**', value: `**Latency** ${mss.createdTimestamp - message.createdTimestamp}ms\n**API** ${Math.floor(client.ws.ping)}ms`, inline: true }, { name: '**Software**', value: `**Discord.js** ${djs}\n**Nodejs** ${Node}`, inline: true },)
                 .addField('Server', `**Guild** ${guild}\n**User** ${user}\n **Channel** ${channel}`, true)
                 .addField('System', `**CPU** ${cores} - ${cpuModel}\n**Used** ${CPU}%\n**RAM Usage** ${usage}\n**RAM** ${free} - ${total}`, true)
                 .addField('Platfrom', `**${client.platfrom()}**`)
