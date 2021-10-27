@@ -12,6 +12,7 @@ module.exports = async (client, message) => {
     }
     var server = message.guild.id;
     require("../addons/master")(client, message)
+    require("../addons/afk")(client, message)
 
     if (!message.content.startsWith(prefix)) return;
     let args = message.content.slice(prefix.length || prefguild.length).trim().split(/ +/g);
