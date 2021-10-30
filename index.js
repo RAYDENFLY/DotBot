@@ -1,7 +1,3 @@
-//You can disable it
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-
-
 var blessed = require('blessed');
 var screen = blessed.screen({
     smartCSR: true
@@ -28,7 +24,7 @@ try {
 
 
 
-//ex[ress
+//express for uptime
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -52,8 +48,7 @@ require('./handler/plugin')(client) //start plugin
 client.package = require('./package.json');
 client.on('warn', console.warn);
 client.on('error', console.error);
-client.on("disconnect", () => console.log("Disconnected."));
-client.on("reconnecting", () => console.log("Reconnecting."));
+client.on("raw", (d) => client.manager.updateVoiceState(d));
 
 process.on("unhandledRejection", (reason, promise) => {
     console.error("Unhandled Rejection at:", reason.stack || reason);

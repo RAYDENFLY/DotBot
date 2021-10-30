@@ -1,12 +1,11 @@
 const { MessageActionRow, MessageButton } = require('discord.js'), { post } = require("node-superfetch");
 const Discord = require('discord.js')
+const { joinVoiceChannel } = require('@discordjs/voice');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://intidev:min2kota@cluster0.la9xn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 let typeofs;
 
-exports.run = async(client, message, args, runs, plugin) => {
+exports.run = async (client, message, args, runs, plugin) => {
     const embed = new Discord.MessageEmbed()
         .addField(":inbox_tray: Input", "```js\n" + args.join(" ") + "```")
         .setFooter("DotBot");
@@ -32,7 +31,7 @@ exports.run = async(client, message, args, runs, plugin) => {
             const { body } = await post("https://hastebin.com/documents").send(output);
             embed.addField(":outbox_tray: Output", `https://hastebin.com/${body.key}.js`).setColor(0x7289DA);
             embed.addField(":mag: Type", "```js\n" + typeofs + "```")
-                // Sometimes, the body.key will turn into undefined. It might be the API is under maintenance or broken.
+            // Sometimes, the body.key will turn into undefined. It might be the API is under maintenance or broken.
         } else {
             embed.addField(":outbox_tray: Output", "```js\n" + output + "```").setColor(0x7289DA)
             embed.addField(":mag: Type", "```js\n" + typeofs + "```")
@@ -99,7 +98,7 @@ exports.slash = {
                 const { body } = await post("https://hastebin.com/documents").send(output);
                 embed.addField(":outbox_tray: Output", `https://hastebin.com/${body.key}.js`).setColor(0x7289DA);
                 embed.addField(":mag: Type", "```js\n" + typeofs + "```")
-                    // Sometimes, the body.key will turn into undefined. It might be the API is under maintenance or broken.
+                // Sometimes, the body.key will turn into undefined. It might be the API is under maintenance or broken.
             } else {
                 embed.addField(":outbox_tray: Output", "```js\n" + output + "```").setColor(0x7289DA)
                 embed.addField(":mag: Type", "```js\n" + typeofs + "```")

@@ -5,7 +5,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 
-exports.run = async(client, message, args, runs) => {
+exports.run = async (client, message, args, runs) => {
     let bot = client.config.bot;
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;
@@ -29,15 +29,21 @@ exports.run = async(client, message, args, runs) => {
         const invite = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                .setLabel('Report')
-                .setCustomId("report")
-                .setStyle('DANGER')
+                    .setLabel('Report')
+                    .setCustomId("report")
+                    .setStyle('DANGER')
             )
             .addComponents(
                 new MessageButton()
-                .setLabel('Invite')
-                .setURL(`https://discord.com/api/oauth2/authorize?client_id=${id}&permissions=139921391207&scope=bot%20applications.commands`)
-                .setStyle('LINK')
+                    .setLabel('Invite')
+                    .setURL(`https://discord.com/api/oauth2/authorize?client_id=${id}&permissions=139921391207&scope=bot%20applications.commands`)
+                    .setStyle('LINK')
+            )
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Support Server')
+                    .setURL(`https://discord.gg/nC7XxTrVMT`)
+                    .setStyle('LINK')
             )
 
 

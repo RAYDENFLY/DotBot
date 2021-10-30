@@ -10,7 +10,7 @@ class Kusonime {
         return new Promise(async (fullfill, reject) => {
             try {
 
-                const response = await axios.get(`https://kusonime-api.demuraaidev.repl.co/api/cari/${query}`);
+                const response = await axios.get(`https://Kusonime-API.demuraaidev.repl.co/api/cari/${query}`);
                 const data = response.data;
 
                 if (data.length === 0) return message.reply(`Tidak ditemukan dengan teks ${query}!`)
@@ -24,21 +24,10 @@ class Kusonime {
                 let alertBed = await message.reply('pilih untuk melanjutkan!');
 
                 let req = message.author;
-                const filter = m => m.author.id === req.id
-                let request = message.channel.awaitMessages({
-                    filter,
-                    max: 1,
-                    time: 60_000,
-                    errors: ['time']
-                }).catch(collected => {
-                    mEmbed.delete();
-                    alertBed.delete();
-                    message.channel.send('permintaan telah habis, silahkan buat permintaan kembali!').then(t => t.delete({ timeout: 5000 }));
-                })
+                const msg_filter = (m) => m.author.id === message.author.id;
+                const request = await message.channel.awaitMessages({ filter: msg_filter, time: 60_000, max: 1 });
 
-
-                //const answer = request.first().content;
-                const answer = request.then().content;
+                const answer = request.first().content;
                 this.getDetail(chunk[0][answer - 1].link.endpoint, message);
                 fullfill(chunk[0][answer - 1].link.endpoint);
 
@@ -58,12 +47,12 @@ class Kusonime {
         return new Promise(async (fullfill, reject) => {
             try {
 
-                const response = await axios.get(`https://kusonime-api.demuraaidev.repl.co/api/anime/${query}`);
+                const response = await axios.get(`https://Kusonime-API.demuraaidev.repl.co/api/anime/${query}`);
                 const data = response.data;
 
                 let embed = new Discord.MessageEmbed()
                     .setTitle(data.title)
-                    .setColor("GREEN")
+                    .setColor(this.client.warna.kato)
                     .setDescription(data.sinopsis.slice(0, 2048))
                     .setImage(data.thumbnail)
                     .addField("Japanese", data.japanese, true)
@@ -89,7 +78,7 @@ class Kusonime {
                         temp.push(tRes);
                     }
 
-                    dlEmbed.setDescription(temp);
+                    dlEmbed.setDescription(temp.toString());
                     message.channel.send({ embeds: [dlEmbed] });
 
                 }

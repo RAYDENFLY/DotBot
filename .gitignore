@@ -18,6 +18,7 @@ database/global.json
 database/report.json
 database/blacklist.json
 database/guild.json
+database/prefix.json
 json.sqlite
 
 

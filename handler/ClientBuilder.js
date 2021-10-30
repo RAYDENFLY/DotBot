@@ -4,6 +4,7 @@ const { Collection, Client, MessageActionRow, MessageButton } = require("discord
 const Kusonime = require('../util/kusonime');
 var { getLastCommit } = require('git-last-commit');
 let jsoning = require("jsoning");
+const { Manager } = require("erela.js");
 const utilpath = require("./Util")
 module.exports = class system extends Client {
     constructor(options) {
@@ -20,6 +21,38 @@ module.exports = class system extends Client {
         this.recent = new Set();
         this.db = new jsoning("database/global.json");
         this.kusonime = new Kusonime(this);
+        const client = this;
+        this.manager = new Manager({
+            // Pass an array of node. Note: You do not need to pass any if you are using the default values (ones shown below).
+            nodes: [
+                // If you pass a object like so the "host" property is required
+                {
+                    host: "localhost", // Optional if Lavalink is local
+                    port: 2333, // Optional if Lavalink is set to default
+                    password: "dotbotproject", // Optional if Lavalink is set to default
+                },
+            ],
+            // A send method to send data to the Discord WebSocket using your library.
+            // Getting the shard for the guild and sending the data to the WebSocket.
+            send(id, payload) {
+                const guild = client.guilds.cache.get(id);
+                if (guild) guild.shard.send(payload);
+            },
+        })
+            .on("nodeConnect", node => console.log(`Node ${node.options.identifier} connected`))
+            .on("nodeError", (node, error) => console.log(`Node ${node.options.identifier} had an error: ${error.message}`))
+            .on("trackStart", (player, track) => {
+                client.channels.cache
+                    .get(player.textChannel)
+                    .send(`Now playing: ${track.title}`);
+            })
+            .on("queueEnd", (player) => {
+                client.channels.cache
+                    .get(player.textChannel)
+                    .send("Queue has ended.");
+
+                player.destroy();
+            });
     }
     commitshorthash() {
         return new Promise((res, rej) => {

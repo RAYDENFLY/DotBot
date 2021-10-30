@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
-    return message.channel.send("Mode Test on you can use this command")
 
     try {
         let query = args.join(' ');
