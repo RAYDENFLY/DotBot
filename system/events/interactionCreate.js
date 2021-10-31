@@ -1,4 +1,4 @@
-const config = require("../config/configs.json")
+const config = require("../../config/configs.json")
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 const Discord = require("discord.js")
@@ -7,7 +7,7 @@ module.exports = async (client, interaction) => {
     const prefix = await db.get("prefix")
     if (!interaction.isCommand()) return;
     let commandFile = client.commands.get(interaction.commandName)
-    let black = require("../database/blacklist.json")
+    let black = require("../../database/blacklist.json")
     let blacklist = black.blacklist
 
     if (blacklist.includes(interaction.user.id)) {

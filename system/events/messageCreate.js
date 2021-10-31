@@ -20,8 +20,8 @@ module.exports = async (client, message) => {
         prefix = client.config.bot.prefix;
     }
     var server = message.guild.id;
-    require("../addons/master")(client, message)
-    require("../addons/afk")(client, message)
+    require("../../addons/master")(client, message)
+    require("../../addons/afk")(client, message)
 
     if (!message.content.startsWith(prefix)) return;
     let args = message.content.slice(prefix.length || prefguild.length).trim().split(/ +/g);
@@ -29,7 +29,7 @@ module.exports = async (client, message) => {
     let cmd = args.shift().toLowerCase();
     let sender = message.author;
     let authorid = message.author.id
-    let black = require("../database/blacklist.json")
+    let black = require("../../database/blacklist.json")
     let blacklist = black.blacklist
     let i = await db.get("bios")
     //if(i === "true") {

@@ -12,28 +12,24 @@ module.exports = class system extends Client {
         this.connections = new Map();
         this.CommandsRan = 0;
         this.client = this;
-        this.warna = require('../config/color.json');
+        this.warna = require('../../config/color.json');
         this.commands = new Collection();
         this.cooldowns = new Collection();
         this.util = new utilpath
         this.aliases = new Collection();
-        this.config = require('../config/configs.json');
+        this.config = require('../../config/configs.json');
         this.recent = new Set();
         this.db = new jsoning("database/global.json");
         this.kusonime = new Kusonime(this);
         const client = this;
         this.manager = new Manager({
-            // Pass an array of node. Note: You do not need to pass any if you are using the default values (ones shown below).
             nodes: [
-                // If you pass a object like so the "host" property is required
                 {
                     host: "localhost", // Optional if Lavalink is local
                     port: 2333, // Optional if Lavalink is set to default
                     password: "dotbotproject", // Optional if Lavalink is set to default
                 },
             ],
-            // A send method to send data to the Discord WebSocket using your library.
-            // Getting the shard for the guild and sending the data to the WebSocket.
             send(id, payload) {
                 const guild = client.guilds.cache.get(id);
                 if (guild) guild.shard.send(payload);
@@ -82,7 +78,7 @@ module.exports = class system extends Client {
             if (err) console.log(err); // it will send you an error, if there was something went wrong.
             console.log(`Found total ${categories.length} categories.`);
             categories.forEach(category => {
-                let moduleConf = require(`../commands/${category}/module.json`);
+                let moduleConf = require(`../../commands/${category}/module.json`);
                 moduleConf.path = `./commands/${category}`;
                 moduleConf.cmds = [];
                 if (!moduleConf) return;
@@ -96,7 +92,7 @@ module.exports = class system extends Client {
 
                     files.forEach(file => {
                         if (!file.endsWith(".js")) return;
-                        let prop = require(`../commands/${category}/${file}`);
+                        let prop = require(`../../commands/${category}/${file}`);
                         let cmdName = file.split(".")[0];
 
                         this.client.commands.set(prop.help.name, prop);

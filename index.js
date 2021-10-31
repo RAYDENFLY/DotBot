@@ -34,16 +34,17 @@ app.get('/', (req, res) => res.send('CYBER ON'));
 app.listen(port, () =>
     console.log(`app listening at http://localhost:${port}`)
 );
+//Welcome to code
 
 const token = require('./config/token.json');
-const COre = require('./handler/ClientBuilder.js');
+const COre = require('./system/handler/ClientBuilder.js');
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS"] });
 
-require('./handler/bios.js')(client); //load bios
-require('./handler/module.js')(client); //load commands and plugin
-require('./handler/Event.js')(client); //load event
-require('./handler/cunter.js')(client); //Database
-require('./handler/plugin')(client) //start plugin
+require('./system/handler/bios.js')(client); //load bios
+require('./system/handler/module.js')(client); //load commands and plugin
+require('./system/handler/Event.js')(client); //load event
+require('./system/handler/cunter.js')(client); //Database
+require('./system/handler/plugin')(client) //start plugin
 
 client.package = require('./package.json');
 client.on('warn', console.warn);

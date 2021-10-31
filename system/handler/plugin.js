@@ -10,7 +10,7 @@ module.exports = async client => {
         console.log(`Found total ${categories.length} plugin categories.`);
 
         categories.forEach(category => {
-            let moduleConf = require(`../plugin/${category}/plugin.json`);
+            let moduleConf = require(`../../plugin/${category}/plugin.json`);
             moduleConf.path = `./plugin/${category}`;
             moduleConf.cmds = [];
             if (!moduleConf) return;
@@ -26,7 +26,7 @@ module.exports = async client => {
 
 
                 files.forEach(file => {
-                    let prop = require(`../plugin/${category}/`);
+                    let prop = require(`../../plugin/${category}/`);
 
                     if (!file.endsWith("index.js")) return;
 

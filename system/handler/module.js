@@ -2,7 +2,7 @@ const Discord = require("discord.js"),
     fs = require("fs");
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const token = require('../config/token.json');
+const token = require('../../config/token.json');
 const rest = new REST({ version: '9' }).setToken(token.token);
 
 module.exports = client => {
@@ -18,7 +18,7 @@ module.exports = client => {
         console.log(`Found total ${categories.length} categories.`);
 
         categories.forEach(category => {
-            let moduleConf = require(`../commands/${category}/module.json`);
+            let moduleConf = require(`../../commands/${category}/module.json`);
             moduleConf.path = `./commands/${category}`;
             moduleConf.cmds = [];
             if (!moduleConf) return;
@@ -32,7 +32,7 @@ module.exports = client => {
                 let commands = new Array();
 
                 files.forEach(file => {
-                    let prop = require(`../commands/${category}/${file}`);
+                    let prop = require(`../../commands/${category}/${file}`);
 
                     if (!file.endsWith(".js")) return;
 
