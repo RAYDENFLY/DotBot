@@ -15,7 +15,7 @@ module.exports = client => {
 
     fs.readdir("./commands/", (err, categories) => {
         if (err) console.log(err); // it will send you an error, if there was something went wrong.
-        console.log(`Found total ${categories.length} categories.`);
+        console.info(`Found total ${categories.length} categories.`);
 
         categories.forEach(category => {
             let moduleConf = require(`../../commands/${category}/module.json`);
@@ -25,7 +25,7 @@ module.exports = client => {
             client.helps.set(category, moduleConf);
 
             fs.readdir(`./commands/${category}`, (err, files) => {
-                console.log(
+                console.info(
                     `Found total ${files.length - 1} command(s) from ${category}.`
                 );
                 if (err) console.log(err);
@@ -53,11 +53,11 @@ module.exports = client => {
                     commandss.push(prop.slash.data.toJSON());
                     (async () => {
                         try {
-                            console.log(`Started refreshing application (/) commands ${prop.help.name}`);
+                            console.warn(`Started refreshing application (/) commands ${prop.help.name}`);
                             await rest.put(
                                 Routes.applicationGuildCommands("898186273355874324", "901040545265225768"), { body: commandss },
                             );
-                            console.log(`Successfully reloaded application (/) commands. ${prop.help.name}`);
+                            console.info(`Successfully reloaded application (/) commands. ${prop.help.name}`);
                         } catch (error) {
                             console.error(error);
                         }

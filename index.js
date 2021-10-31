@@ -1,22 +1,6 @@
-var blessed = require('blessed');
-var screen = blessed.screen({
-    smartCSR: true
-});
-screen.title = 'DotBot';
 require('console-warn');
 require('console-info');
 require('console-error');
-
-const fs = require("fs")
-//ASCII
-try {
-    var data = fs.readFileSync('doh.txt', 'utf8');
-    console.log(data.toString());
-} catch (e) {
-    console.log('Error:', e.stack);
-}
-//Creating database for first time
-require("./install")
 
 //express for uptime
 const express = require('express');
@@ -30,6 +14,16 @@ app.listen(port, () =>
 );
 //Welcome to code
 
+const fs = require("fs")
+//ASCII
+try {
+    var data = fs.readFileSync('doh.txt', 'utf8');
+    console.log(data.toString());
+} catch (e) {
+    console.error('Error:', e.stack);
+}
+//Creating database for first time
+require("./install")
 const token = require('./config/token.json');
 const COre = require('./system/handler/ClientBuilder.js');
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS"] });

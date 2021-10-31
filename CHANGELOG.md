@@ -1,6 +1,10 @@
 # CHANGELOG
 ## [ALPHA]
 ### ALPHA-0.3.3
+#### - Add Addons afk
+#### - Add commands
+#### - Kernel Update
+### ALPHA-0.3.3
 #### - Add plugin
 #### - Add example plugin
 #### - Add math plugin

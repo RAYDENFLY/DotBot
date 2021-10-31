@@ -35,8 +35,8 @@ module.exports = class system extends Client {
                 if (guild) guild.shard.send(payload);
             },
         })
-            .on("nodeConnect", node => console.log(`Node ${node.options.identifier} connected`))
-            .on("nodeError", (node, error) => console.log(`Node ${node.options.identifier} had an error: ${error.message}`))
+            .on("nodeConnect", node => console.info(`Node ${node.options.identifier} connected`))
+            .on("nodeError", (node, error) => console.error(`Node ${node.options.identifier} had an error: ${error.message}`))
             .on("trackStart", (player, track) => {
                 client.channels.cache
                     .get(player.textChannel)

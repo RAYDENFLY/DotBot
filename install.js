@@ -5,21 +5,19 @@ const fs = require("fs")
 if (!fs.existsSync(path3)) {
     fs.appendFile('database/global.json', '{ "status": "test", "prefix": "d!", "log": "Change Global Prefix to d!" }', function (err) {
         if (err) throw err;
-        console.log('Saved!');
-        process.exit()
+        console.log('Database create 1/3');
     });
 }
 if (!fs.existsSync(path)) {
     fs.appendFile('database/msend.json', '{}', function (err) {
         if (err) throw err;
-        console.log('Saved!');
-        process.exit()
+        console.log('Database create 2/3');
     });
 }
 if (!fs.existsSync(path2)) {
     fs.appendFile('database/blacklist.json', '{"blacklist": []}', function (err) {
         if (err) throw err;
-        console.log('Saved!');
+        console.log('Database create 3/3');
         process.exit()
     });
 }

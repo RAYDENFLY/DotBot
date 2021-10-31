@@ -7,7 +7,7 @@ module.exports = async client => {
 
     fs.readdir("./plugin/", (err, categories) => {
         if (err) console.log(err); // it will send you an error, if there was something went wrong.
-        console.log(`Found total ${categories.length} plugin categories.`);
+        console.info(`Found total ${categories.length} plugin categories.`);
 
         categories.forEach(category => {
             let moduleConf = require(`../../plugin/${category}/plugin.json`);
@@ -18,7 +18,7 @@ module.exports = async client => {
 
 
             fs.readdir(`./plugin/${category}`, (err, files) => {
-                console.log(
+                console.info(
                     `Found total ${files.length - 1} files(s) from plugin ${category}.`
                 );
                 if (err) console.log(err);
