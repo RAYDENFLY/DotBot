@@ -3,17 +3,11 @@ var screen = blessed.screen({
     smartCSR: true
 });
 screen.title = 'DotBot';
+require('console-warn');
+require('console-info');
+require('console-error');
 
-//Global json 
-const path3 = "./database/global.json"
 const fs = require("fs")
-if (!fs.existsSync(path3)) {
-    fs.appendFile('database/global.json', '{ "status": "test", "prefix": "d!", "log": "Change Global Prefix to d!" }', function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        process.exit()
-    });
-}
 //ASCII
 try {
     var data = fs.readFileSync('doh.txt', 'utf8');
@@ -21,8 +15,8 @@ try {
 } catch (e) {
     console.log('Error:', e.stack);
 }
-
-
+//Creating database for first time
+require("./install")
 
 //express for uptime
 const express = require('express');
@@ -32,7 +26,7 @@ const port = 3000;
 app.get('/', (req, res) => res.send('CYBER ON'));
 
 app.listen(port, () =>
-    console.log(`app listening at http://localhost:${port}`)
+    console.log(`http listening at http://localhost:${port}`)
 );
 //Welcome to code
 
