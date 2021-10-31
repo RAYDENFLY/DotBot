@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const axios = require('axios');
 
+
 exports.run = async (client, message, args) => {
 
   try {
@@ -10,8 +11,6 @@ exports.run = async (client, message, args) => {
 
     if (query.startsWith('https')) query = query.match(/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/)[1];
     let data = await axios.get(`https://youtube.demuraaidev.repl.co/api/info/${query}`); data = data.data;
-
-
     let embed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setTitle(data.info.title)
@@ -21,6 +20,7 @@ exports.run = async (client, message, args) => {
       .setFooter("DotBot")
 
     await message.channel.send({ embeds: [embed] });
+
 
 
     let tempRes = { default: [], audioOnly: [], videoOnly: [] };
@@ -55,9 +55,7 @@ exports.conf = {
   permissions: [""],
   needperms: [""],
 }
-
 exports.slash = false
-
 exports.help = {
   name: 'youtube',
   description: 'download video di youtube',

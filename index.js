@@ -38,6 +38,8 @@ client.package = require('./package.json');
 client.on('warn', console.warn);
 client.on('error', console.error);
 client.on("raw", (d) => client.manager.updateVoiceState(d));
+const languages = require("./system/util/languages");
+client.translations = await languages();
 
 process.on("unhandledRejection", (reason, promise) => {
     console.error("Unhandled Rejection at:", reason.stack || reason);
