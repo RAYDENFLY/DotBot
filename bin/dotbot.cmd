@@ -1,3 +1,10 @@
 @echo off
+
+::start Bot
+
 cd %~dp0\..
-node %~dp0\.. \dotbot.js
+start cmd /k node %~dp0\.. \dotbot.js
+
+cd %~dp0\..
+start cmd /k java -jar Lavalink.jar
+

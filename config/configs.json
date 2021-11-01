@@ -11,5 +11,10 @@
         "bios": "696588067481321553",
         "owner-name": "DemuraAI",
         "prefix": "d!"
+    },
+    "lavalink": {
+        "host": "localhost",
+        "port": 2333,
+        "password": "dotbotproject"
     }
 }

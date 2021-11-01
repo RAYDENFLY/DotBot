@@ -9,6 +9,9 @@ plugin-package.json
 #vscode
 .vscode/
 
+#lavalink
+Lavalink.jar
+
 #tokenbot
 config/token.json
 

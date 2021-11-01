@@ -12,8 +12,10 @@ app.get('/', (req, res) => res.send('CYBER ON'));
 app.listen(port, () =>
     console.log(`http listening at http://localhost:${port}`)
 );
-//Welcome to code
 
+
+
+//Welcome to code
 const fs = require("fs")
 //ASCII
 try {
@@ -22,12 +24,16 @@ try {
 } catch (e) {
     console.error('Error:', e.stack);
 }
+
 //Creating database for first time
 require("./install")
-const token = require('./config/token.json');
-const COre = require('./system/handler/ClientBuilder.js');
-const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS"] });
 
+//config
+const token = require('./config/token.json'); //token bot
+const COre = require('./system/handler/ClientBuilder.js');
+const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS"] }); //intents
+
+//start bot
 require('./system/handler/bios.js')(client); //load bios
 require('./system/handler/module.js')(client); //load commands and plugin
 require('./system/handler/Event.js')(client); //load event
@@ -39,8 +45,10 @@ client.on('warn', console.warn);
 client.on('error', console.error);
 client.on("raw", (d) => client.manager.updateVoiceState(d));
 const languages = require("./system/util/languages");
-client.translations = await languages();
+//client.translations = await languages();
 
+
+//error handler
 process.on("unhandledRejection", (reason, promise) => {
     console.error("Unhandled Rejection at:", reason.stack || reason);
     console.error(reason);
@@ -55,5 +63,5 @@ process.on("uncaughtException", err => {
     }
 });
 
-
+//login
 client.login(token.token).catch(console.error);

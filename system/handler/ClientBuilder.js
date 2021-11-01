@@ -4,6 +4,7 @@ const { Collection, Client, MessageActionRow, MessageButton } = require("discord
 const Kusonime = require('../util/kusonime');
 var { getLastCommit } = require('git-last-commit');
 let jsoning = require("jsoning");
+const config = require("../../config/configs.json")
 const { Manager } = require("erela.js");
 const utilpath = require("./Util")
 module.exports = class system extends Client {
@@ -25,9 +26,9 @@ module.exports = class system extends Client {
         this.manager = new Manager({
             nodes: [
                 {
-                    host: "localhost", // Optional if Lavalink is local
-                    port: 2333, // Optional if Lavalink is set to default
-                    password: "dotbotproject", // Optional if Lavalink is set to default
+                    host: config.lavalink.host,
+                    port: config.lavalink.port,
+                    password: config.lavalink.password,
                 },
             ],
             send(id, payload) {
@@ -35,7 +36,7 @@ module.exports = class system extends Client {
                 if (guild) guild.shard.send(payload);
             },
         })
-            .on("nodeConnect", node => console.info(`Node ${node.options.identifier} connected`))
+            .on("nodeConnect", node => console.info(`Connected Lavalink Node ${node.options.identifier}`))
             .on("nodeError", (node, error) => console.error(`Node ${node.options.identifier} had an error: ${error.message}`))
             .on("trackStart", (player, track) => {
                 client.channels.cache
