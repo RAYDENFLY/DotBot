@@ -11,6 +11,7 @@ plugin-package.json
 
 #lavalink
 Lavalink.jar
+logs/
 
 #tokenbot
 config/token.json
@@ -24,8 +25,6 @@ database/guild.json
 database/prefix.json
 json.sqlite
 
-
-ecosystem.config.js
 
 # Runtime data
 pids

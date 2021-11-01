@@ -49,6 +49,7 @@
         "node-superfetch": "^0.2.3",
         "os-name": "^5.0.0",
         "quick.db": "^7.1.3",
+        "serverline": "^1.5.0",
         "superagent": "^6.1.0",
         "twemoji-parser": "^13.1.0"
     }
