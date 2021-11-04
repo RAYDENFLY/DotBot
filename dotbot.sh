@@ -6,8 +6,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
 if [ -f "Lavalink.jar" ]; then
-    terminal -e node $DIR/index.js
-    terminal -e java -jar $DIR/Lavalink.jar
+    #start new process
+    node $DIR/index.js
+    java -jar $DIR/Lavalink.jar
 else 
     echo "Lavalink doest exist"
     #download file
