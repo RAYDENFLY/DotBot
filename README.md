@@ -10,6 +10,7 @@
 - Curl
 - Python
 - Java
+- Git
 
 ## Setup automatically
 1.Install
