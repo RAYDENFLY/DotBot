@@ -37,6 +37,9 @@ $ ./dotbot.sh
 in windows
 $ cd bin
 $ dotbot
+
+
+Note: if you dont have Lavalink it will download it if you have, copy and paste in DotBot directory
 ```
 
 ## Setup config manualy
