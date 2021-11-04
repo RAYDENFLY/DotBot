@@ -1,4 +1,4 @@
-const { Collection, Client, MessageActionRow, MessageButton } = require("discord.js"),
+const { Collection, Client } = require("discord.js"),
     Discord = require("discord.js"),
     fs = require("fs");
 const Kusonime = require('../util/kusonime');

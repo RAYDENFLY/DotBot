@@ -16,5 +16,12 @@
         "host": "localhost",
         "port": 2333,
         "password": "dotbotproject"
+    },
+    "health": {
+        "enabled": true,
+        "ram": "8.00"
+    },
+    "config": {
+        "version": "2"
     }
 }

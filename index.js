@@ -25,6 +25,9 @@ try {
     console.error('Error:', e.stack);
 }
 
+//health startup
+require("./system/health")
+
 //Creating database for first time
 require("./install")
 
