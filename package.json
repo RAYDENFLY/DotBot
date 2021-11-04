@@ -10,7 +10,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node .",
         "setup": "node install.js",
-        "token": "node tokeninit.js"
+        "tokens": "node tokeninit.js"
     },
     "repository": {
         "type": "git",

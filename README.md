@@ -22,7 +22,7 @@ $ npm setup
 ```
 3.Setup token bot
 ```sh
-$ npm token
+$ npm tokens
 ```
 4.Start Bot
 ```sh
