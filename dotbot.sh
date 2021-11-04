@@ -8,12 +8,12 @@ cd $DIR
 if [ -f "Lavalink.jar" ]; then
     #start new process
     node $DIR/index.js
-    java -jar $DIR/Lavalink.jar
 else 
     echo "Lavalink doest exist"
     #download file
     cd .. && curl -L -o Lavalink.jar https://github.com/freyacodes/Lavalink/releases/download/3.4/Lavalink.jar
-    echo "Lavalink downloaded start it"
+    echo "Lavalink downloaded start it in new tab"
+    node $DIR/index.js
 fi
 
 

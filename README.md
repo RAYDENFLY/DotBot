@@ -33,6 +33,8 @@ in Linux / MacOS / Termux
 $ cd bin
 $ chmod +x dotbot.sh
 $ ./dotbot.sh
+open new tab
+$ java -jar Lavalink.jar
 
 in windows
 $ cd bin

@@ -1,9 +1,10 @@
 const discord = require('discord.js')
 const db = require('quick.db')
+const jsoning = require("jsoning")
 
 module.exports = async (client, message) => {
-    let afk = new db.table('AFKs'),
-        authorstatus = await afk.fetch(message.author.id),
+    let afk = new jsoning("database/afk.json"),
+        authorstatus = await afk.has(message.author.id),
         mentioned = message.mentions.members.first();
 
     if (mentioned) {
