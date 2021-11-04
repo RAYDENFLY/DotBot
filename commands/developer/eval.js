@@ -74,7 +74,7 @@ exports.slash = {
         const embed = new Discord.MessageEmbed()
             .addField(":inbox_tray: Input", "```js\n" + interaction.options.getString('input') + "```");
         try {
-            const code = interaction.options.getString('input');;
+            const code = interaction.options.getString('input');
             if (!code) return interaction.reply("Please include the code.");
             let evaled;
 

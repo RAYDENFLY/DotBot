@@ -27,7 +27,7 @@ module.exports = async (client, message) => {
     let cmd = args.shift().toLowerCase();
     let sender = message.author;
     let blacklist = require("../../database/blacklist.json").blacklist
-    let i = await db.get("bios")
+    //let i = await db.get("bios")
     //if(i === "true") {
 
     //} false {
@@ -54,7 +54,6 @@ module.exports = async (client, message) => {
         const AttachmentCollection = client.dataAttachment;
         const attachment = Array.from(message.attachments)[0];
         const image = attachment[1].url;
-        const format = image.match(/\.(gif|jpe?g|tiff?|png|webp|bmp|mp4|mp3|zip|rar|exe)$/i)[0];
         const toBuffer = await require('got')(image).buffer();
 
         AttachmentCollection.set(message.id, { buffer: toBuffer, filename: image });

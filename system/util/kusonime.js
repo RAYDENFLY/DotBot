@@ -37,11 +37,11 @@ class Kusonime {
             } catch (err) {
                 reject(err);
                 message.channel.send(err.message);
-            };
+            }
 
 
         });
-    };
+    }
 
     getDetail(query, message) {
         return new Promise(async (fullfill, reject) => {
@@ -90,8 +90,8 @@ class Kusonime {
 
 
         });
-    };
+    }
 
-};
+}
 
 module.exports = Kusonime;

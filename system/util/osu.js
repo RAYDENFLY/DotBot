@@ -25,7 +25,7 @@ class osu {
         });
     }
 
-};
+}
 
 
 module.exports = osu;

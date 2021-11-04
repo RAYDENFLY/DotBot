@@ -38,7 +38,7 @@ exports.slash = {
     .setDescription('achievement Minecraft Meme')
     .addStringOption(option => option.setName('text').setDescription('text meme')),
   async execute(interaction, client, runs) {
-    const vidio = interaction.options.getString('text');;
+    const vidio = interaction.options.getString('text');
     const text = vidio.split(' ').join('+')
     let status = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
     let rstatus = Math.floor(Math.random() * status.length);
