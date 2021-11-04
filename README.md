@@ -29,7 +29,7 @@ $ npm run tokens
 ```
 4.Start Bot
 ```sh
-in Linux
+in Linux / MacOS / Termux
 $ cd bin
 $ chmod +x dotbot.sh
 $ ./dotbot.sh
