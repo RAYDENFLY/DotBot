@@ -1,11 +1,11 @@
 # DrmPR
 
-| Version | Supported          |
-| ------- | ------------------ |
-| Termux   | :white_check_mark: |
-| Windows   | :white_check_mark: |
-| Linux   | :white_check_mark: |
-| MacOS   | :white_check_mark: |
+| Platform | Supported          | Version |
+| ------- | ------------------ | ------- |
+| Termux   | :white_check_mark: | ALPHA-0.3.5        |
+| Windows   | :white_check_mark: | ALPHA-0.3.5        |
+| Linux   | :white_check_mark: | ALPHA-0.3.5        |
+| MacOS   | :white_check_mark: | ALPHA-0.3.5        |
 
 ## Required
 - Nodejs
