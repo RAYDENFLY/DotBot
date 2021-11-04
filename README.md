@@ -2,8 +2,10 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| Mobile   | :white_check_mark: |
-| Desktop   | :white_check_mark: |
+| Termux   | :white_check_mark: |
+| Windows   | :white_check_mark: |
+| Linux   | :white_check_mark: |
+| MacOS   | :white_check_mark: |
 
 ## Required
 - Nodejs
