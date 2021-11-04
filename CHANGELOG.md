@@ -1,5 +1,10 @@
 # CHANGELOG
 ## [ALPHA]
+### ALPHA-0.3.5
+#### - Update DIrectory src
+#### - Update plugin
+#### - Add many commands
+#### - Kernel Update
 ### ALPHA-0.3.3
 #### - Add Addons afk
 #### - Add commands

@@ -1,6 +1,6 @@
 {
     "name": "dotproject",
-    "version": "ALPHA-0.3.3",
+    "version": "ALPHA-0.3.5",
     "description": "BETA-DotProject",
     "main": "index.js",
     "devDependencies": {
