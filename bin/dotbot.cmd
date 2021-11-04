@@ -5,7 +5,7 @@
 cd %~dp0\..
 
 if exist Lavalink.jar (
-    rem Lavalink found start it
+    rem Lavalink found start its
     start cmd /k node %~dp0\.. \dotbot.js
     start cmd /k java -jar Lavalink.jar
 ) else (
