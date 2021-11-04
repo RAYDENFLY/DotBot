@@ -2,6 +2,7 @@ const { Collection, Client } = require("discord.js"),
     Discord = require("discord.js"),
     fs = require("fs");
 const Kusonime = require('../util/kusonime');
+const Osu = require('../util/osu');
 var { getLastCommit } = require('git-last-commit');
 let jsoning = require("jsoning");
 const config = require("../../config/configs.json")
@@ -22,6 +23,7 @@ module.exports = class system extends Client {
         this.recent = new Set();
         this.db = new jsoning("database/global.json");
         this.kusonime = new Kusonime(this);
+        this.osu = new Osu(this);
         const client = this;
         this.manager = new Manager({
             nodes: [
