@@ -54,7 +54,7 @@ const questions = [
     {
         type: 'input',
         name: 'lavalinkhost',
-        message: "Lavalin host",
+        message: "Lavalink host",
         default() {
             return 'localhost';
         },
@@ -127,7 +127,7 @@ inquirer.prompt(questions).then((answers) => {
     config.lavalink.port = answers.lavalinkport;
     config.lavalink.password = answers.lavalinkpass;
     config.util.hastebin = answers.hastebin;
-    config.util["kusonime-api"] = "https://Kusonime-API.demuraaidev.repl.co"
+    config.util["kusonime-api"] = "https://Kusonime-API.demuraaidev.repl.co";
     config.kernel = "INTI-Hirano-02";
     config["kernel-version"] = "v3.0";
     config.health.enabled = answers.health;
@@ -135,7 +135,7 @@ inquirer.prompt(questions).then((answers) => {
     config.osu.apikey = answers.osuapikey;
     config.config.version = "2";
     var json = JSON.stringify(config);
-    fs.writeFile("./config/configs.json", json, 'utf8', function (err) {
+    fs.writeFile("./config/config.json", json, 'utf8', function (err) {
         if (err) {
             return console.log(err);
         }
