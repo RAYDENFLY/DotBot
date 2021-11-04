@@ -21,6 +21,9 @@
         "enabled": true,
         "ram": "8.00"
     },
+    "osu": {
+        "apikey": "APIKEY OSU https://osu.ppy.sh/p/api/"
+    },
     "config": {
         "version": "2"
     }

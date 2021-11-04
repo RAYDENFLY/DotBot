@@ -18,6 +18,7 @@ backup/
 
 #tokenbot
 config/token.json
+config/configs.json
 
 #database
 database/msend.json

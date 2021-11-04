@@ -21,6 +21,9 @@
         "enabled": true,
         "ram": "8.00"
     },
+    "osu": {
+        "apikey": ""
+    },
     "config": {
         "version": "2"
     }
