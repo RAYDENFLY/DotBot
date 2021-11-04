@@ -1,8 +1,10 @@
 const config = require("../../config/configs.json")
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
+const chalk = require('chalk');
+const log = console.info;
 module.exports = async (client) => {
-    console.info(`${client.user.username} is now ready to be online.`)
+    log(chalk.black.bgGreen(`${client.user.username} is now ready to be online.`))
     client.manager.init(client.user.id);
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;

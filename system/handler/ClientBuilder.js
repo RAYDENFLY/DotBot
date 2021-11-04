@@ -39,7 +39,7 @@ module.exports = class system extends Client {
             },
         })
             .on("nodeConnect", node => console.info(`Connected Lavalink Node ${node.options.identifier}`))
-            .on("nodeError", (node, error) => console.error(`Node ${node.options.identifier} had an error: ${error.message}`))
+            .on("nodeError", (node, error) => console.error(`Cant connect Lavalink host ${node.options.identifier} had an error: ${error.message}`))
             .on("trackStart", (player, track) => {
                 client.channels.cache
                     .get(player.textChannel)

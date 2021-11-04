@@ -19,18 +19,14 @@ module.exports = async (client, message) => {
     } else {
         prefix = client.config.bot.prefix;
     }
-    var server = message.guild.id;
     require("../../src/addons/master")(client, message)
     require("../../src/addons/afk")(client, message)
 
     if (!message.content.startsWith(prefix)) return;
     let args = message.content.slice(prefix.length || prefguild.length).trim().split(/ +/g);
-    let msg = message.content.toLowerCase();
     let cmd = args.shift().toLowerCase();
     let sender = message.author;
-    let authorid = message.author.id
-    let black = require("../../database/blacklist.json")
-    let blacklist = black.blacklist
+    let blacklist = require("../../database/blacklist.json").blacklist
     let i = await db.get("bios")
     //if(i === "true") {
 

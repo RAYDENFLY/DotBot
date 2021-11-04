@@ -29,7 +29,7 @@ try {
 require("./system/health")
 
 //Creating database for first time
-require("./install")
+require("./dbinit")
 
 //config
 const token = require('./config/token.json'); //token bot
