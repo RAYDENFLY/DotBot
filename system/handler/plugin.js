@@ -30,7 +30,6 @@ module.exports = async client => {
 
                     if (!file.endsWith("index.js")) return;
 
-                    let cmdName = file.split(".")[0];
 
                     client.plugin.set(prop.plugin.name, prop);
 

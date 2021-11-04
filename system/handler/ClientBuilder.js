@@ -91,12 +91,10 @@ module.exports = class system extends Client {
                         `Found total ${files.length - 1} command(s) from ${category}.`
                     );
                     if (err) console.log(err);
-                    let commands = new Array();
 
                     files.forEach(file => {
                         if (!file.endsWith(".js")) return;
                         let prop = require(`../../commands/${category}/${file}`);
-                        let cmdName = file.split(".")[0];
 
                         this.client.commands.set(prop.help.name, prop);
 
