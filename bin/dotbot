@@ -1,2 +1,0 @@
-#!/bin/sh
-DOTBOT_CMD_DIR=`dirname "$0"`
