@@ -31,6 +31,7 @@ $ npm run tokens
 ```sh
 in Linux
 $ cd bin
+$ chmod +x dotbot.sh
 $ ./dotbot.sh
 
 in windows
