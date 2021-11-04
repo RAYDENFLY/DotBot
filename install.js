@@ -135,7 +135,7 @@ inquirer.prompt(questions).then((answers) => {
     config.osu.apikey = answers.osuapikey;
     config.config.version = "2";
     var json = JSON.stringify(config);
-    fs.writeFile("./config/config.json", json, 'utf8', function (err) {
+    fs.writeFile("./config/configs.json", json, 'utf8', function (err) {
         if (err) {
             return console.log(err);
         }
