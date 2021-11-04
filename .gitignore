@@ -27,6 +27,7 @@ database/report.json
 database/blacklist.json
 database/guild.json
 database/prefix.json
+database/afk.json
 json.sqlite
 
 

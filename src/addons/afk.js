@@ -1,5 +1,4 @@
 const discord = require('discord.js')
-const db = require('quick.db')
 const jsoning = require("jsoning")
 
 module.exports = async (client, message) => {
