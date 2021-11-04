@@ -6,6 +6,7 @@ if [ -f "$FILE" ]; then
 else 
     echo "Lavalink doest exist"
     #download file
+    cd ..
     curl -L -o Lavalink.jar https://github.com/freyacodes/Lavalink/releases/download/3.4/Lavalink.jar
     echo "Lavalink downloaded start it"
 
