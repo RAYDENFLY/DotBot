@@ -18,11 +18,11 @@ $ npm install
 ```
 2.Setup config
 ```sh
-$ npm setup
+$ npm run setup
 ```
 3.Setup token bot
 ```sh
-$ npm tokens
+$ npm run tokens
 ```
 4.Start Bot
 ```sh
