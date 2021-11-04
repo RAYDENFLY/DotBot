@@ -22,8 +22,6 @@ class Kusonime {
 
                 let mEmbed = await message.channel.send({ embeds: [embed] });
                 let alertBed = await message.reply('pilih untuk melanjutkan!');
-
-                let req = message.author;
                 const msg_filter = (m) => m.author.id === message.author.id;
                 const request = await message.channel.awaitMessages({ filter: msg_filter, time: 60_000, max: 1 });
 
@@ -63,9 +61,6 @@ class Kusonime {
                     .addField('Score', data.score, true)
 
                 await message.channel.send({ embeds: [embed] })
-                // res.list_download.map((a) => `*${a[0]}*\n${a[1].map(b => `*${b.resolusi}*\n${b.link_download.map(c => `├${c.platform}\n${c.link}`).join('\n')}`).join('\n')}`)
-                // let link_data = data.list_download.map((a, i) => `${a.resolusi}\n${a.link_download.map((a, i) => `[${a.platform}](${a.link})`).join('\n')}\n`);
-                // link_data = this.client.util.chunk(link_data, 2);
                 for (let eachTitle of data.list_download) {
 
                     const temp = [];
