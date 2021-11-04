@@ -1,5 +1,5 @@
 #!/bin/sh
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd.. )"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. )"
 if [ -f "$FILE" ]; then
     open -a Terminal node $DIR/index.js
     open -a Terminal java -jar $DIR/lavalink.jar
