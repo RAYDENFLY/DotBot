@@ -1,0 +1,20 @@
+{
+    "version": "ALPHA-0.3.4",
+    "kernel": "INTI-Hirano-02",
+    "kernel-version": "v3.0",
+    "bot": {
+        "name": "DotBot",
+        "owner": [
+            "754192220843802664",
+            "696588067481321553"
+        ],
+        "bios": "696588067481321553",
+        "owner-name": "DemuraAI",
+        "prefix": "d!"
+    },
+    "lavalink": {
+        "host": "localhost",
+        "port": 2333,
+        "password": "dotbotproject"
+    }
+}
