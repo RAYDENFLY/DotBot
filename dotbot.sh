@@ -1,7 +1,11 @@
 #!/bin/sh
+#get current directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-FILE=$DIR && cd .. && pwd/Lavalink.jar
-if [ -f "$FILE" ]; then
+
+#enter current directory
+cd $DIR
+
+if [ -f "Lavalink.jar" ]; then
     terminal -e node $DIR/index.js
     terminal -e java -jar $DIR/Lavalink.jar
 else 
