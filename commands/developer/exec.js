@@ -5,7 +5,7 @@ exports.run = async (client, message, args, runs, plugin) => {
 
     process.exec(args.join(" "), (error, stdout) => {
         let response = (error || stdout);
-        message.channel.send(response, { code: "asciidoc", split: "\n" }).catch(err => message.channel.send(err));
+        message.channel.send(`\`\`\`${response}\`\`\``, { code: "asciidoc", split: "\n" }).catch(err => message.channel.send(err));
     })
     return;
 }
