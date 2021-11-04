@@ -17,12 +17,16 @@
         "port": 2333,
         "password": "dotbotproject"
     },
+    "util": {
+        "hastebin": "https://hastebin.com",
+        "kusonime-api": "https://Kusonime-API.demuraaidev.repl.co"
+    },
     "health": {
         "enabled": true,
         "ram": "8.00"
     },
     "osu": {
-        "apikey": "APIKEY OSU https://osu.ppy.sh/p/api/"
+        "apikey": "APIKEY"
     },
     "config": {
         "version": "2"

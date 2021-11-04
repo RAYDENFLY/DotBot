@@ -27,9 +27,7 @@ exports.run = async (client, message, args, runs, plugin) => {
 
         let output = await clean(evaled);
         if (output.length > 1024) {
-            // If the output was more than 1024 characters, we're gonna export them into the hastebin.
-            const { body } = await post("https://hastebin.com/documents").send(output);
-            embed.addField(":outbox_tray: Output", `https://hastebin.com/${body.key}.js`).setColor(0x7289DA);
+            embed.addField(":outbox_tray: Output", await client.util.hastebin(output)).setColor(0x7289DA);
             embed.addField(":mag: Type", "```js\n" + typeofs + "```")
             // Sometimes, the body.key will turn into undefined. It might be the API is under maintenance or broken.
         } else {
@@ -43,8 +41,7 @@ exports.run = async (client, message, args, runs, plugin) => {
         let err = clean(error);
         if (err.length > 1024) {
             // Do the same like above if the error output was more than 1024 characters.
-            const { body } = await post("https://hastebin.com/documents").send(err);
-            embed.addField(":outbox_tray: Output", `https://hastebin.com/${body.key}.js`).setColor("RED");
+            embed.addField(":outbox_tray: Output", await client.util.hastebin(err)).setColor("RED");
         } else {
             embed.addField(":outbox_tray: Output", "```js\n" + err + "```").setColor("RED");
         }
@@ -95,8 +92,7 @@ exports.slash = {
             let output = await clean(evaled);
             if (output.length > 1024) {
                 // If the output was more than 1024 characters, we're gonna export them into the hastebin.
-                const { body } = await post("https://hastebin.com/documents").send(output);
-                embed.addField(":outbox_tray: Output", `https://hastebin.com/${body.key}.js`).setColor(0x7289DA);
+                embed.addField(":outbox_tray: Output", await client.util.hastebin(output)).setColor(0x7289DA);
                 embed.addField(":mag: Type", "```js\n" + typeofs + "```")
                 // Sometimes, the body.key will turn into undefined. It might be the API is under maintenance or broken.
             } else {
@@ -111,8 +107,7 @@ exports.slash = {
             let err = clean(error);
             if (err.length > 1024) {
                 // Do the same like above if the error output was more than 1024 characters.
-                const { body } = await post("https://hastebin.com/documents").send(err);
-                embed.addField(":outbox_tray: Output", `https://hastebin.com/${body.key}.js`).setColor("RED");
+                embed.addField(":outbox_tray: Output", await client.util.hastebin(err)).setColor("RED");
             } else {
                 embed.addField(":outbox_tray: Output", "```js\n" + err + "```").setColor("RED");
             }

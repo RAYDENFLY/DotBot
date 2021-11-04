@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const axios = require('axios');
+const kusonimeurl = require("../../config/configs.json").util['kusonime-api']
+
 
 class Kusonime {
     constructor(client) {
@@ -10,7 +12,7 @@ class Kusonime {
         return new Promise(async (fullfill, reject) => {
             try {
 
-                const response = await axios.get(`https://Kusonime-API.demuraaidev.repl.co/api/cari/${query}`);
+                const response = await axios.get(`${kusonimeurl}/api/cari/${query}`);
                 const data = response.data;
 
                 if (data.length === 0) return message.reply(`Tidak ditemukan dengan teks ${query}!`)
@@ -45,7 +47,7 @@ class Kusonime {
         return new Promise(async (fullfill, reject) => {
             try {
 
-                const response = await axios.get(`https://Kusonime-API.demuraaidev.repl.co/api/anime/${query}`);
+                const response = await axios.get(`${kusonimeurl}/api/anime/${query}`);
                 const data = response.data;
 
                 let embed = new Discord.MessageEmbed()
