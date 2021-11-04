@@ -1,6 +1,6 @@
 #!/bin/sh
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. )"
-FILE=$DIR/Lavalink.jar
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+FILE=$DIR && cd .. && pwd/Lavalink.jar
 if [ -f "$FILE" ]; then
     terminal -e node $DIR/index.js
     terminal -e java -jar $DIR/Lavalink.jar
