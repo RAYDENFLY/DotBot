@@ -22,7 +22,7 @@ if (fs.existsSync("./config/configs.json")) {
     if (fs.existsSync("./config/token.json")) {
         console.log("Config file found, skipping setup");
         console.log("entering BIOS mode")
-        returnbios();
+        return bios();
     } else {
         //if config exists but token doesn't
         console.log("Config file found!");
@@ -41,7 +41,7 @@ if (fs.existsSync("./config/configs.json")) {
                         return console.log(err);
                     }
                     console.log("Token file created!");
-                    bios();
+                    return bios();
                 });
             });
     }
