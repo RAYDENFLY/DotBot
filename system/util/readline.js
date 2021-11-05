@@ -7,7 +7,7 @@ module.exports = async client => {
     });
     setTimeout(() => {
         rl.prompt();
-    }, 6000);
+    }, 10000);
 
     rl.on('line', (line) => {
         console.log(eval(line))
