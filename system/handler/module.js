@@ -53,11 +53,11 @@ module.exports = client => {
                     commandss.push(prop.slash.data.toJSON());
                     (async () => {
                         try {
-                            console.warn(`Started refreshing application (/) commands ${prop.help.name}`);
+                            console.warn(`Started refreshing slash : ${prop.help.name}`);
                             await rest.put(
                                 Routes.applicationGuildCommands("898186273355874324", "897850095335268412"), { body: commandss },
                             );
-                            console.info(`Successfully reloaded application (/) commands. ${prop.help.name}`);
+                            console.info(`Successfully reloaded slash : ${prop.help.name}`);
                         } catch (error) {
                             console.error(error);
                         }
