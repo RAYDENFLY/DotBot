@@ -30,7 +30,7 @@ if (fs.existsSync("./config/configs.json")) {
             });
     }
 } else {
-    require("./install")
+    return require("./install")
 }
 
 //express for uptime
