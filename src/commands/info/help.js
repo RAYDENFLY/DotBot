@@ -11,7 +11,7 @@ exports.run = async (client, message, args, runs) => {
     let prefix = globalprefix || client.config.bot.prefix;
     let nama = bot.name;
     let id = client.user.id
-    let log = await client.db.get("log")
+    let log = await db.get("log")
 
 
     if (!args[0]) {

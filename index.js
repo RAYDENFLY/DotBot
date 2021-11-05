@@ -1,6 +1,37 @@
-require('console-warn');
-require('console-info');
-require('console-error');
+require("./src/lib/console.warn");
+require('./src/lib/console.info');
+require('./src/lib/console.error');
+
+const fs = require("fs")
+if (fs.existsSync("./config/configs.json")) {
+    //if token exists
+    if (fs.existsSync("./config/token.json")) {
+        console.info("Config file found, skipping setup");
+    } else {
+        //if config exists but token doesn't
+        console.log("Config file found!");
+        console.log("Please enter your token");
+        return inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'token',
+                    message: 'Please enter your token',
+                }
+            ])
+            .then((answers) => {
+                fs.writeFile("./config/token.json", JSON.stringify(answers.token), function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("Token file created!");
+
+                });
+            });
+    }
+} else {
+    require("./install")
+}
 
 //express for uptime
 const express = require('express');
@@ -16,10 +47,9 @@ app.listen(port, () =>
 
 
 //Welcome to code
-const fs = require("fs")
 //ASCII
 try {
-    var data = fs.readFileSync('doh.txt', 'utf8');
+    var data = fs.readFileSync("./src/assets/doh.txt", 'utf8');
     console.log(data.toString());
 } catch (e) {
     console.error('Error:', e.stack);
@@ -29,7 +59,7 @@ try {
 require("./system/health")
 
 //Creating database for first time
-require("./dbinit")
+require("./system/util/dbinit")
 
 //config
 const token = require('./config/token.json'); //token bot
@@ -40,7 +70,6 @@ const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES
 require('./system/handler/bios.js')(client); //load bios
 require('./system/handler/module.js')(client); //load commands and plugin
 require('./system/handler/Event.js')(client); //load event
-require('./system/handler/cunter.js')(client); //Database
 require('./system/handler/plugin')(client) //start plugin
 require('./system/util/readline')(client) //start plugin
 

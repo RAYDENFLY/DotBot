@@ -13,18 +13,18 @@ module.exports = client => {
     client.dataAttachment = new Discord.Collection()
     const commandss = [];
 
-    fs.readdir("./commands/", (err, categories) => {
+    fs.readdir("./src/commands/", (err, categories) => {
         if (err) console.log(err); // it will send you an error, if there was something went wrong.
         console.info(`Found total ${categories.length} categories.`);
 
         categories.forEach(category => {
-            let moduleConf = require(`../../commands/${category}/module.json`);
-            moduleConf.path = `./commands/${category}`;
+            let moduleConf = require(`../../src/commands/${category}/module.json`);
+            moduleConf.path = `./src/commands/${category}`;
             moduleConf.cmds = [];
             if (!moduleConf) return;
             client.helps.set(category, moduleConf);
 
-            fs.readdir(`./commands/${category}`, (err, files) => {
+            fs.readdir(`./src/commands/${category}`, (err, files) => {
                 console.info(
                     `Found total ${files.length - 1} command(s) from ${category}.`
                 );
@@ -32,7 +32,7 @@ module.exports = client => {
                 let commands = new Array();
 
                 files.forEach(file => {
-                    let prop = require(`../../commands/${category}/${file}`);
+                    let prop = require(`../../src/commands/${category}/${file}`);
 
                     if (!file.endsWith(".js")) return;
 

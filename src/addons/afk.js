@@ -2,24 +2,32 @@ const discord = require('discord.js')
 const jsoning = require("jsoning")
 
 module.exports = async (client, message) => {
-    let afk = new jsoning("database/afk.json"),
-        authorstatus = await afk.has(message.author.id),
+    var query2 = { user: message.author.id }
+    let afk = client.db.collection.collection("afk"),
+        authorstatus = await client.db.ifqueryhas("afk", query2),
         mentioned = message.mentions.members.first();
 
     if (mentioned) {
-        let status = await afk.get(`${mentioned.id}.alasan`);
-        let waktu = await afk.get(`${mentioned.id}.time`)
-
+        var query = { user: mentioned.id };
+        let data = await client.db.collection.collection("afk").find(query).toArray();
+        let status = data[0].afk;
+        console.log(data[0]);
+        let waktu = data[0].time;
         let msTos = Date.now() - waktu
         let since = client.util.parseDur(msTos)
-        if (status) {
-            message.reply(`**${mentioned.user.tag}** currently on AFK - **${since}** ago\n**Reason:**\n\`\`\`${status}\`\`\` `, { disableMentions: 'all' }
-            );
-        }
+
+        client.db.ifqueryhas("afk", query).then(async (res) => {
+            if (res) {
+                message.reply(`**${mentioned.user.tag}** currently on AFK - **${since}** ago\n**Reason:**\n\`\`\`${status}\`\`\` `, { allowedMentions: { parse: [] } });
+            }
+            //send message but disable mention
+        })
     };
 
     if (authorstatus) {
         message.reply(`INTI has revoked your AFK status!`)
-        afk.delete(message.author.id)
+        afk.deleteOne(query2, function (err, res) {
+            if (err) throw err;
+        })
     };
 }

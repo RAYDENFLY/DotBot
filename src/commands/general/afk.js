@@ -1,30 +1,35 @@
 const Discord = require('discord.js');
-const jsoning = require("jsoning")
 
 exports.run = async (client, message, args) => {
+    const status = client.db.collection.collection("afk")
     try {
-        const status = new jsoning("database/afk.json");
-        let afk = await status.has(message.author.id);
+        let struktur = {
+            user: message.author.id,
+            afk: args.join(" ") || "No reason",
+            time: Date.now()
+        }
+        let afk = await client.db.ifqueryhas("afk", struktur)
 
         //ignore AFK
         let reason = args.join(' ').toString();
 
         if (!afk) {
-            message.channel.send(`**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, { disableMentions: 'all' })
+            message.reply({ content: `**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, allowedMentions: { parse: [] } })
             setTimeout(() => {
-                status.set(message.author.id, {
-                    alasan: reason || 'AFK', waktu: Date.now()
+                status.insertOne(struktur, function (err, res) {
+                    if (err) throw err;
                 });
             }, 4000);
 
         } else {
-            status.delete(message.author.id);
+            status.deleteOne(struktur, function (err, res) {
+                if (err) throw err;
+            })
         };
 
 
     } catch (error) {
         return message.channel.send(`Something went wrong: ${error.message}`);
-        // Restart the bot as usual.
     };
 };
 

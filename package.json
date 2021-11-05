@@ -1,6 +1,6 @@
 {
     "name": "dotproject",
-    "version": "ALPHA-0.3.5",
+    "version": "BETA-1.0.0",
     "description": "BETA-DotProject",
     "main": "index.js",
     "devDependencies": {
@@ -9,8 +9,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node .",
-        "setup": "node install.js",
-        "tokens": "node tokeninit.js"
+        "setup": "node install.js"
     },
     "repository": {
         "type": "git",
@@ -32,9 +31,6 @@
         "axios": "^0.23.0",
         "blessed": "^0.1.81",
         "chalk-pipe": "^5.1.1",
-        "console-error": "^0.0.4",
-        "console-info": "^0.0.5",
-        "console-warn": "^0.0.4",
         "cpu-stat": "^2.0.1",
         "discord-api-types": "^0.23.1",
         "discord-buttons": "^4.0.0",
@@ -49,6 +45,7 @@
         "jsoning": "^0.12.22",
         "moment": "^2.29.1",
         "moment-duration-format": "^2.3.2",
+        "mongodb": "^4.1.4",
         "node-osu": "^2.2.1",
         "node-superfetch": "^0.2.3",
         "os-name": "^5.0.0",

@@ -6,12 +6,6 @@ let dbp = new jsoning("database/prefix.json");
 module.exports = async (client, message) => {
     let prefix;
     if (message.author.bot || message.author === client.user) return;
-    if (await db.has("prefix")) {
-        prefix = await db.get("prefix")
-    } else {
-        prefix = client.config.bot.prefix;
-    }
-
     if (await dbp.has(message.guild.id)) {
         prefix = await dbp.get(message.guild.id)
     } else if (await db.has("prefix")) {

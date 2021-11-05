@@ -11,10 +11,41 @@ var config = {
     },
     lavalink: {},
     util: {},
+    mongodb: {},
     health: {},
     osu: {},
     config: {},
 };
+
+if (fs.existsSync("./config/configs.json")) {
+    //if token exists
+    if (fs.existsSync("./config/token.json")) {
+        console.log("Config file found, skipping setup");
+        console.log("entering BIOS mode")
+        returnbios();
+    } else {
+        //if config exists but token doesn't
+        console.log("Config file found!");
+        console.log("Please enter your token");
+        return inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'token',
+                    message: 'Please enter your token',
+                }
+            ])
+            .then((answers) => {
+                fs.writeFile("./config/token.json", JSON.stringify(answers.token), function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("Token file created!");
+                    bios();
+                });
+            });
+    }
+}
 
 
 const questions = [
@@ -50,6 +81,16 @@ const questions = [
         type: 'input',
         name: 'ownername',
         message: "What's your name?"
+    },
+    {
+        type: 'input',
+        name: 'mongourl',
+        message: "Mongodb Url (required)?"
+    },
+    {
+        type: 'input',
+        name: 'mongodb',
+        message: "Mongodb db name (required)?"
     },
     {
         type: 'input',
@@ -130,6 +171,8 @@ inquirer.prompt(questions).then((answers) => {
     config.util["kusonime-api"] = "https://Kusonime-API.demuraaidev.repl.co";
     config.kernel = "INTI-Hirano-02";
     config["kernel-version"] = "v3.0";
+    config.mongodb.url = answers.mongourl;
+    config.mongodb.db = answers.mongodb;
     config.health.enabled = answers.health;
     config.health.ram = answers.healthram;
     config.osu.apikey = answers.osuapikey;
@@ -141,4 +184,64 @@ inquirer.prompt(questions).then((answers) => {
         }
     })
     console.log("Config file created!");
+
+    //check if config file exist
+    fs.exists("./config/token.json", function (exists) {
+        if (exists) {
+            console.log("Token file found");
+        } else {
+            console.log("Token file not found Loading tokeninit.js ....");
+            require("./system/util/tokeninit")
+        }
+    });
+
 });
+
+function bios() {
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                name: 'menu',
+                message: 'BIOS MENU',
+                choices: [
+                    'Reset config',
+                    'Reset token',
+                    "Reset both"
+                ],
+            }
+        ])
+        .then((answers) => {
+            if (answers.menu == "Reset config") {
+                fs.unlink("./config/configs.json", function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("Config file deleted!");
+                    bios();
+                });
+            } else if (answers.menu == "Reset token") {
+                fs.unlink("./config/token.json", function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("Token file deleted!");
+                    bios();
+                });
+            } else if (answers.menu == "Reset both") {
+                fs.unlink("./config/configs.json", function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log("Config file deleted!");
+                    fs.unlink("./config/token.json", function (err) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                        console.log("Token file deleted!");
+                        bios();
+                    });
+                });
+            }
+        });
+}
