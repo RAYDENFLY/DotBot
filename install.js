@@ -41,7 +41,7 @@ if (fs.existsSync("./config/configs.json")) {
                         return console.log(err);
                     }
                     console.log("Token file created!");
-                    return bios();
+                    process.exit();
                 });
             });
     }
