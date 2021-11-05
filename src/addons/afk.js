@@ -9,19 +9,22 @@ module.exports = async (client, message) => {
 
     if (mentioned) {
         var query = { user: mentioned.id };
-        let data = await client.db.collection.collection("afk").find(query).toArray();
-        let status = data[0].afk;
-        console.log(data[0]);
-        let waktu = data[0].time;
-        let msTos = Date.now() - waktu
-        let since = client.util.parseDur(msTos)
+        if (await client.db.ifqueryhas("afk", query)) {
+            let data = await client.db.collection.collection("afk").find(query).toArray();
+            var afkreason = data[0].afk;
+            let waktu = data[0].time;
+            let msTos = Date.now() - waktu
+            let since = client.util.parseDur(msTos)
+            var afkembed = new discord.MessageEmbed()
+                .setDescription(`**${mentioned} is AFK**\nReason: ${afkreason}`)
+                .setColor("#ff0000")
+                .setFooter(`AFK since ${since}`)
+            message.channel.send({
+                embeds: [afkembed],
+                allowedMentions: { parse: [] } // This is to prevent the bot from mentioning the user
+            });
+        } else return;
 
-        client.db.ifqueryhas("afk", query).then(async (res) => {
-            if (res) {
-                message.reply(`**${mentioned.user.tag}** currently on AFK - **${since}** ago\n**Reason:**\n\`\`\`${status}\`\`\` `, { allowedMentions: { parse: [] } });
-            }
-            //send message but disable mention
-        })
     };
 
     if (authorstatus) {

@@ -4,7 +4,7 @@ class database {
     constructor(config) {
         //connect to mongodb
         this.config = config
-        this.client = new MongoClient(configs.mongodb.uri, { useNewUrlParser: true });
+        this.client = new MongoClient(configs.mongodb.uri);
         this.client.connect(err => {
             this.collection = this.client.db(configs.mongodb.db)
             console.info("Connected to mongodb");
