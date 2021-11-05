@@ -64,7 +64,7 @@ require("./system/util/dbinit")
 //config
 const token = require('./config/token.json'); //token bot
 const COre = require('./system/handler/ClientBuilder.js');
-const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS"] }); //intents
+const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] }); //intents
 
 //start bot
 require('./system/handler/bios.js')(client); //load bios
