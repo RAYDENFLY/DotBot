@@ -1,5 +1,5 @@
 const fs = require("fs");
-var config = require('../config/configs.json');
+var config = require('../config/configs.json')
 
 //check config version
 if (config.config.version < 2) {
@@ -8,17 +8,39 @@ if (config.config.version < 2) {
 } else {
     console.info("Config version up to date")
 }
-//Memory usage protection
-if (config.health.enabled === true) {
-    const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    var interval = setInterval(function () {
-        if (`${Math.round(used * 100) / 100}` > config.health.ram) {
-            console.warn("Memory usage overload")
-            process.exit(1)
-        }
-    }, 2000);
+
+//if health enabled
+if (config.health.enabled) {
+    console.info("Health enabled")
+    console.info("Checking health every " + msToSec(config.health.interval) + " seconds")
+    console.info("running Health service...")
+} else {
+    return console.warn("Health protection is disabled")
 }
+//memory usage overload protection
+var interval = setInterval(function () {
+    const used = convert(process.memoryUsage().heapUsed)
+    if (used > config.health.ram) {
+        console.warn("Memory usage overload")
+        process.exit(1)
+    }
+}, 2000);
+
+
+//memory usage to megabyte
+function convert(bytes) {
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return '0 Byte';
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+//ms to seconds
+function msToSec(ms) {
+    return ms / 1000
+}
+
 //TODO: Add cpu protection overload
+
 
 //Core protection
 var interval = setInterval(function () {
@@ -27,4 +49,5 @@ var interval = setInterval(function () {
             console.warn("[CP] WARNING CORE FILE MISSING!!")
         }
     })
-}, 2000);
+}, config.health.interval);
+

@@ -145,7 +145,15 @@ const questions = [
         name: 'healthram',
         message: "Max Ram Usage?",
         default() {
-            return "8.00";
+            return "36 MB";
+        },
+    },
+    {
+        type: 'input',
+        name: 'healthinterval',
+        message: "Check RAM intervl in ms?",
+        default() {
+            return "2000";
         },
     },
     {
@@ -175,6 +183,7 @@ inquirer.prompt(questions).then((answers) => {
     config.mongodb.db = answers.mongodb;
     config.health.enabled = answers.health;
     config.health.ram = answers.healthram;
+    config.health.interval = answers.healthinterval;
     config.osu.apikey = answers.osuapikey;
     config.config.version = "2";
     var json = JSON.stringify(config);

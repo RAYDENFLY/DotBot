@@ -26,7 +26,8 @@
     },
     "health": {
         "enabled": true,
-        "ram": "8.00"
+        "ram": "36 MB",
+        "interval": "2000"
     },
     "osu": {
         "apikey": "APIKEY"
