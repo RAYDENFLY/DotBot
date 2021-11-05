@@ -5,8 +5,10 @@ module.exports = async client => {
         output: process.stdout,
         prompt: 'CMD> '
     });
+    setTimeout(() => {
+        rl.prompt();
+    }, 6000);
 
-    rl.prompt();
     rl.on('line', (line) => {
         console.log(eval(line))
         rl.prompt();
