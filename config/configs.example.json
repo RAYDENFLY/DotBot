@@ -26,7 +26,7 @@
     },
     "health": {
         "enabled": true,
-        "ram": "36 MB",
+        "ram": "50 MB",
         "interval": "2000"
     },
     "osu": {

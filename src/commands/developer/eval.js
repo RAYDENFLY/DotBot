@@ -8,7 +8,7 @@ let typeofs;
 exports.run = async (client, message, args, runs, plugin) => {
     const embed = new Discord.MessageEmbed()
         .addField(":inbox_tray: Input", "```js\n" + args.join(" ") + "```")
-        .setFooter("DotBot");
+        .setFooter(client.config.bot.name, client.user.displayAvatarURL());
     try {
         const code = args.join(" ");
         if (!code) return message.channel.send("Please include the code.");

@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
         .setTitle(":gear: Global Settings")
         .setColor('GREEN')
         .setDescription("```status``` \n```Activity``` \n```globalpref``` \n```nac```\n```blacklist```")
-        .setFooter(`DemuraAI.`, client.user.displayAvatarURL())
+        .setFooter(client.config.bot["owner-name"], client.user.displayAvatarURL())
     const invite = new MessageActionRow()
         .addComponents(
             new MessageButton()
