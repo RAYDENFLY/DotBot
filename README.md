@@ -23,11 +23,7 @@ $ npm install
 ```sh
 $ npm run setup
 ```
-3.Setup token bot
-```sh
-$ npm run tokens
-```
-4.Start Bot
+3.Start Bot
 ```sh
 in Linux / MacOS / Termux
 $ cd bin
