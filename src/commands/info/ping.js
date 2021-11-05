@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 const wait = require('util').promisify(setTimeout);
-exports.run = async(client, message, args, runs) => {
+exports.run = async (client, message, args, runs) => {
     let bot = client.config.bot;
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;
@@ -15,19 +15,19 @@ exports.run = async(client, message, args, runs) => {
         const invite = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                .setLabel('Bot Info')
-                .setCustomId('info')
-                .setEmoji("🤖")
-                .setStyle('SUCCESS')
+                    .setLabel('Bot Info')
+                    .setCustomId('info')
+                    .setEmoji("🤖")
+                    .setStyle('SUCCESS')
             )
         const update = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                .setLabel('Bot Info')
-                .setCustomId('up')
-                .setEmoji("🤖")
-                .setStyle('SUCCESS')
-                .setDisabled(true)
+                    .setLabel('Bot Info')
+                    .setCustomId('up')
+                    .setEmoji("🤖")
+                    .setStyle('SUCCESS')
+                    .setDisabled(true)
             )
         const embed = new Discord.MessageEmbed()
             .setFooter(nama)
@@ -37,7 +37,7 @@ exports.run = async(client, message, args, runs) => {
         m.edit({ content: `🏓 Pong!`, embeds: [embed], components: [invite] });
         author = message.author.id
         const filter = i => i.customId === 'info' && i.user.id === author
-        const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
+        const collector = message.channel.createMessageComponentCollector({ filter, max: 1, time: 10000 });
         collector.on('collect', async i => {
             if (i.customId === 'info') {
                 i.update({ components: [update] })
