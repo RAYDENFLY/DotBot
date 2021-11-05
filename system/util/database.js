@@ -18,6 +18,9 @@ class database {
             return data.serverInfo.ping;
         })
     }
+    closedb() {
+        this.client.close();
+    }
 
     checkcollection(collectionname) {
         return this.collection.listCollections({ name: collectionname }).toArray().then(collections => {

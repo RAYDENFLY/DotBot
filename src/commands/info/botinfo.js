@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 
 exports.run = async (client, message) => {
     const last = await client.commitshorthash()
+    const lavalinkuptime = await client.util.msToTime(client.manager.nodes.get(client.config.lavalink.host).stats.uptime)
     const lastd = await client.commitsubject()
     const mss = await message.channel.send("Calculating...");
     message.channel.sendTyping()
@@ -65,7 +66,7 @@ exports.run = async (client, message) => {
                 .setDescription('```js\nName: ' + client.user.username + '\nID: ' + client.user.id + '```')
                 .setThumbnail(client.user.displayAvatarURL())
                 .addFields({ name: '**Version**', value: client.config.version, inline: true }, { name: '**Kernel**', value: "**ID** " + client.config.kernel + "\n**Version** " + client.config["kernel-version"], inline: true },)
-                .addField('Uptime', `${parseDur(client.uptime)}`, true)
+                .addField('Uptime', `**Client** ${parseDur(client.uptime)}\n**Lavalink** ${lavalinkuptime}`, true)
                 .addFields({ name: '**Ping**', value: `**Latency** ${mss.createdTimestamp - message.createdTimestamp}ms\n**API** ${Math.floor(client.ws.ping)}ms`, inline: true }, { name: '**Software**', value: `**Discord.js** ${djs}\n**Nodejs** ${Node}`, inline: true },)
                 .addField('Server', `**Guild** ${guild}\n**User** ${user}\n **Channel** ${channel}`, true)
                 .addField('System', `**CPU** ${cores} - ${cpuModel}\n**Used** ${CPU}%\n**RAM Usage** ${usage}\n**RAM** ${free} - ${total}`, true)

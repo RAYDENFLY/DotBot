@@ -65,6 +65,19 @@ class Util {
         }
         return window.btoa(binary);
     }
+    msToTime(ms) {
+        var sec = ms / 1000;
+        var hours = parseInt(sec / 3600);
+        sec = sec % 3600;
+        var minutes = parseInt(sec / 60);
+        sec = parseInt(sec % 60);
+        if (hours) {
+            return `${hours} hours, ${minutes} minutes, ${sec} seconds`;
+        } else if (minutes) {
+            return `${minutes} minutes, ${sec} seconds`;
+        }
+        return `${sec} seconds`;
+    }
 }
 
 module.exports = Util
