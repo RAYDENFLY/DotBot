@@ -10,7 +10,15 @@ class database {
             console.info("Connected to mongodb");
         });
 
+
     }
+    //get latency and resolv without promise return is ms
+    getlatency() {
+        return this.client.db(configs.mongodb.db).command({ ping: 1 }).then(data => {
+            return data.serverInfo.ping;
+        })
+    }
+
     checkcollection(collectionname) {
         return this.collection.listCollections({ name: collectionname }).toArray().then(collections => {
             if (collections.length > 0) {
@@ -77,6 +85,7 @@ class database {
             }
         })
     }
+
 
 
 }
