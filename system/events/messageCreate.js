@@ -2,12 +2,16 @@ const Discord = require("discord.js"),
     cooldowns = new Discord.Collection();
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
-let dbp = new jsoning("database/prefix.json");
 module.exports = async (client, message) => {
+    const data = {}
     let prefix;
     if (message.author.bot || message.author === client.user) return;
-    if (await dbp.has(message.guild.id)) {
-        prefix = await dbp.get(message.guild.id)
+    if (message.guild) {
+        const guild = await client.findOrCreateGuild({ id: message.guild.id });
+        message.guild.data = data.guild = guild;
+    }
+    if (data.guild) {
+        prefix = data.guild.prefix;
     } else if (await db.has("prefix")) {
         prefix = await db.get("prefix")
     } else {
@@ -126,7 +130,7 @@ module.exports = async (client, message) => {
 
     try {
         if (!commandFile) return;
-        commandFile.run(client, message, args, runs, plugin);
+        commandFile.run(client, message, args, runs, plugin, data);
     } catch (error) {
         console.log(error);
         message.channel.send(`There was an error while executing this command! ${error.message}`)

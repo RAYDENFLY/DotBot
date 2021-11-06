@@ -1,6 +1,7 @@
 require("./src/lib/console.warn");
 require('./src/lib/console.info');
 require('./src/lib/console.error');
+require("./src/lib/extenders")
 const { execSync } = require("child_process");
 const isReplit = (
     process.env.REPLIT_DB_URL !== undefined &&
@@ -88,7 +89,8 @@ require("./system/util/dbinit")
 
 //config
 const token = require('./config/token.json'); //token bot
-const COre = require('./system/kernel/ClientBuilder.js');
+const COre = require('./system/kernel/ClientBuilder.js'),
+    mongoose = require("mongoose")
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] }); //intents
 
 //start bot
@@ -104,9 +106,20 @@ client.on('error', console.error);
 client.on("raw", (d) => client.music.manager.updateVoiceState(d));
 var lisen = fs.readFileSync('LICENSE', 'utf8');
 client.license = lisen.toString()
-const languages = require("./system/util/languages");
-//client.translations = await languages();
 
+const init = async () => {
+    const languages = require("./system/util/languages");
+    client.translations = await languages();
+
+    // connect to mongoose database
+    mongoose.connect(config.mongodb.uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+        console.info("Connected to the Mongodb database.");
+    }).catch((err) => {
+        console.info("Unable to connect to the Mongodb database. Error:" + err);
+    });
+}
+
+init()
 
 //error handler
 process.on("unhandledRejection", (reason, promise) => {

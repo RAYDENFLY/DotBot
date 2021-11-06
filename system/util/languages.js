@@ -2,7 +2,10 @@ const i18next = require("i18next");
 const Backend = require("i18next-node-fs-backend");
 const path = require("path");
 const fs = require("fs").promises;
-
+/**
+ * Language System by Atlanta bot
+ * GIthub Page: https://github.com/Androz2091/AtlantaBot
+ */
 async function walkDirectory(dir, namespaces = [], folderName = "") {
     const files = await fs.readdir(dir);
 
@@ -31,11 +34,11 @@ async function walkDirectory(dir, namespaces = [], folderName = "") {
 module.exports = async () => {
     const options = {
         jsonIndent: 2,
-        loadPath: path.resolve(__dirname, "../../languages/{{lng}}/{{ns}}.json")
+        loadPath: path.resolve(__dirname, "../../src/lang/{{lng}}/{{ns}}.json")
     };
 
     const { namespaces, languages } = await walkDirectory(
-        path.resolve(__dirname, "./.../languages/")
+        path.resolve(__dirname, "../../src/lang/")
     );
 
     i18next.use(Backend);

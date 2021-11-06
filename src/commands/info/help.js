@@ -5,9 +5,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 
-exports.run = async (client, message, args, runs) => {
+exports.run = async (client, message, args, data) => {
     let bot = client.config.bot;
-    let globalprefix = await db.get("prefix")
+    let globalprefix = message.guild.data.prefix
     let prefix = globalprefix || client.config.bot.prefix;
     let nama = bot.name;
     let id = client.user.id

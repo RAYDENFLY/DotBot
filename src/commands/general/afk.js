@@ -1,30 +1,20 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
-    const status = client.db.collection.collection("afk")
+    const status = client.dbcache.afk
     try {
-        let struktur = {
-            user: message.author.id,
-            afk: args.join(" ") || "No reason",
-            time: Date.now()
-        }
-        let afk = await client.db.ifqueryhas("afk", struktur)
 
         //ignore AFK
-        let reason = args.join(' ').toString();
+        let reason = args.join(' ').toString() || "AFK";
 
-        if (!afk) {
+        if (status.get(message.author.id) !== message.author.id) {
             message.reply({ content: `**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, allowedMentions: { parse: [] } })
-            setTimeout(() => {
-                status.insertOne(struktur, function (err, res) {
-                    if (err) throw err;
-                });
-            }, 4000);
-
-        } else {
-            status.deleteOne(struktur, function (err, res) {
-                if (err) throw err;
+            status.set(message.author.id, {
+                "reason": reason,
+                "time": Date.now()
             })
+        } else {
+            status.delete(message.author.id)
         };
 
 

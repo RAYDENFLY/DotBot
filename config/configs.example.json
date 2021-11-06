@@ -1,7 +1,7 @@
 {
     "version": "BETA-1.0.0",
     "kernel": "INTI-Hirano-02",
-    "kernel-version": "v4.0",
+    "kernel-version": "v5.0",
     "bot": {
         "name": "DotBot",
         "owner": [
@@ -18,8 +18,7 @@
         "password": "dotbotproject"
     },
     "mongodb": {
-        "uri": "localhost",
-        "db": "dotbotcenter"
+        "uri": "localhost"
     },
     "util": {
         "hastebin": "https://hastebin.com",

@@ -1,10 +1,12 @@
-let jsoning = require("jsoning");
-let db = new jsoning("database/prefix.json");
-exports.run = async (client, message, args) => {
-    const prefix = args.join(" ");
+exports.run = async (client, message, args, data) => {
+    const prefix = args[0];
     if (!prefix) return message.channel.send("pls input new prefix `prefix d!`");
-    await db.set(message.guild.id, prefix)
-    message.reply("Update prefix to `" + prefix + "`")
+    if (prefix.length > 10) return message.channel.send("prefix can't be longer than 10 characters");
+    //set data.guilf.prefix to prefix
+    message.guild.data.prefix = prefix;
+    await message.guild.data.save();
+    //send message
+    message.channel.send(`prefix changed to ${prefix}`);
 }
 exports.conf = {
     aliases: [],

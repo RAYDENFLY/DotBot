@@ -5,7 +5,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 let typeofs;
 
-exports.run = async (client, message, args, runs, plugin) => {
+exports.run = async (client, message, args, runs, plugin, data) => {
     const embed = new Discord.MessageEmbed()
         .addField(":inbox_tray: Input", "```js\n" + args.join(" ") + "```")
         .setFooter(client.config.bot.name, client.user.displayAvatarURL());

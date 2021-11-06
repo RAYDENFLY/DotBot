@@ -88,11 +88,6 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'mongodb',
-        message: "Mongodb db name (required)?"
-    },
-    {
-        type: 'input',
         name: 'lavalinkhost',
         message: "Lavalink host",
         default() {
@@ -180,7 +175,6 @@ inquirer.prompt(questions).then((answers) => {
     config.kernel = client.idkernel;
     config["kernel-version"] = client.version;
     config.mongodb.uri = answers.mongourl;
-    config.mongodb.db = answers.mongodb;
     config.health.enabled = answers.health;
     config.health.ram = answers.healthram;
     config.health.interval = answers.healthinterval;

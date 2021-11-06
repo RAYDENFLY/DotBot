@@ -1,0 +1,28 @@
+[
+    {
+        "name": "en-US",
+        "nativeName": "English",
+        "moment": "en",
+        "defaultMomentFormat": "MMMM Do YYYY",
+        "default": true,
+        "aliases": [
+            "English",
+            "en",
+            "en-us",
+            "en_us",
+            "en_US"
+        ]
+    },
+    {
+        "name": "id-ID",
+        "nativeName": "bahasa Indonesia",
+        "defaultMomentFormat": "Do MMMM YYYY",
+        "moment": "id",
+        "default": false,
+        "aliases": [
+            "Indonesian",
+            "id",
+            "id_id"
+        ]
+    }
+]

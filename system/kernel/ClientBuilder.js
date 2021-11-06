@@ -5,7 +5,6 @@ const Kusonime = require('../util/kusonime');
 const Osu = require('../util/osu');
 const { getLastCommit } = require('git-last-commit');
 const config = require("../../config/configs.json")
-const Db = require("../util/database")
 const { Manager } = require("erela.js");
 const drmpath = require('../util/drnmusic');
 const utilpath = require("./Util")
@@ -20,15 +19,20 @@ module.exports = class system extends Client {
         this.warna = require('../../config/color.json');
         this.commands = new Collection();
         this.cooldowns = new Collection();
+        this.languages = require("../../src/lang/language-meta.json");
         this.util = new utilpath
         this.aliases = new Collection();
         this.config = require('../../config/configs.json');
         this.recent = new Set();
-        this.db = new Db();
+        this.db = {}
+        this.db.guild = require("../util/schema/guild")
         this.kusonime = new Kusonime(this);
-        this.version = "v4.0"
+        this.version = "v5.0"
         this.idkernel = "INTI-Hirano-02"
         this.osu = new Osu(this);
+        this.dbcache = {}
+        this.dbcache.guilds = new Collection();
+        this.dbcache.afk = new Collection();
         const client = this;
         this.music = new drmpath(this);
     }
@@ -39,6 +43,32 @@ module.exports = class system extends Client {
                 return res(commit.shortHash)
             })
         })
+    }
+    async findOrCreateGuild({ id: guildID }, isLean) {
+        if (this.dbcache.guilds.get(guildID)) {
+            return isLean ? this.dbcache.guilds.get(guildID).toJSON() : this.dbcache.guilds.get(guildID);
+        } else {
+            let guildData = (isLean ? await this.db.guild.findOne({ guildid: guildID }).lean() : await this.db.guild.findOne({ guildid: guildID }));
+            if (guildData) {
+                if (!isLean) this.dbcache.guilds.set(guildID, guildData);
+                return guildData;
+            } else {
+                guildData = new this.db.guild({ guildid: guildID });
+                await guildData.save();
+                this.dbcache.guilds.set(guildID, guildData);
+                return isLean ? guildData.toJSON() : guildData;
+            }
+        }
+    }
+    get defaultLanguage() {
+        return this.languages.find((language) => language.default).name;
+    }
+
+    translate(key, args, locale) {
+        if (!locale) locale = this.defaultLanguage;
+        const language = this.translations.get(locale);
+        if (!language) throw "Invalid language set in data.";
+        return language(key, args);
     }
     platfrom() {
         let osname = process.platform
