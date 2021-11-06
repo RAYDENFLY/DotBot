@@ -1,7 +1,7 @@
 require("./src/lib/console.warn");
 require('./src/lib/console.info');
 require('./src/lib/console.error');
-
+const { execSync } = require("child_process");
 const isReplit = (
     process.env.REPLIT_DB_URL !== undefined &&
     process.env.REPL_ID !== undefined &&
