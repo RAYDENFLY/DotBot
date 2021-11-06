@@ -63,14 +63,14 @@ require("./system/util/dbinit")
 
 //config
 const token = require('./config/token.json'); //token bot
-const COre = require('./system/handler/ClientBuilder.js');
+const COre = require('./system/kernel/ClientBuilder.js');
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] }); //intents
 
 //start bot
-require('./system/handler/bios.js')(client); //load bios
-require('./system/handler/module.js')(client); //load commands and plugin
-require('./system/handler/Event.js')(client); //load event
-require('./system/handler/plugin')(client) //start plugin
+require('./system/kernel/bios')(client); //load bios
+require('./system/kernel/module')(client); //load commands and plugin
+require('./system/kernel/Event')(client); //load event
+require('./system/kernel/plugin')(client) //start plugin
 require('./system/util/readline')(client) //start plugin
 
 client.package = require('./package.json');

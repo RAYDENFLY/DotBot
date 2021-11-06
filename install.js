@@ -2,7 +2,7 @@
 var inquirer = require('inquirer');
 var fs = require("fs")
 const { execSync } = require("child_process");
-const COre = require('./system/handler/ClientBuilder.js');
+const COre = require('./system/kernel/ClientBuilder.js');
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] });
 var config = {
     bot: {

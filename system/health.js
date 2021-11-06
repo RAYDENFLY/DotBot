@@ -9,6 +9,21 @@ if (config.config.version < 2) {
     console.info("Config version up to date")
 }
 
+const isReplit = (
+    process.env.REPLIT_DB_URL !== undefined &&
+    process.env.REPL_ID !== undefined &&
+    process.env.REPL_IMAGE !== undefined &&
+    process.env.REPL_LANGUAGE !== undefined &&
+    process.env.REPL_OWNER !== undefined &&
+    process.env.REPL_PUBKEYS !== undefined &&
+    process.env.REPL_SLUG !== undefined)
+if (isReplit && (Number(process.versions.node.split(".")[0]) < 16)) {
+    console.info("This doesn't use Node.js v16 or newer, trying to install Node.js v16...");
+    execSync(`npm i --save-dev node@16.6.1 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH`);
+    console.info("Node.js v16 has installed, please re-run the bot.");
+    process.exit(0);
+}
+
 try {
     require("discord.js")
 } catch (error) {
@@ -62,9 +77,9 @@ function msToSec(ms) {
 
 //Core protection
 var interval = setInterval(function () {
-    fs.access("./system/handler/ClientBuilder.js", function (error) {
+    fs.access("./system/kernel/ClientBuilder.js", function (error) {
         if (error) {
-            console.warn("[CP] WARNING CORE FILE MISSING!!")
+            console.error("[CP] WARNING CORE FILE MISSING!!")
         }
     })
 }, config.health.interval);

@@ -2,8 +2,7 @@ const readline = require('readline');
 module.exports = async client => {
     const rl = readline.createInterface({
         input: process.stdin,
-        output: process.stdout,
-        prompt: 'CMD> '
+        output: process.stdout
     });
     //confirm exit
     rl.on('SIGINT', () => {
@@ -27,16 +26,11 @@ module.exports = async client => {
 
     });
 
-    setTimeout(() => {
-        rl.prompt();
-    }, 10000);
-
     rl.on('line', (line) => {
         if (line === 'stop') {
             return close();
         }
         console.log(eval(line))
-        rl.prompt();
     })
     function close() {
         setTimeout(() => {
