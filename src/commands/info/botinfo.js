@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 exports.run = async (client, message) => {
     const last = await client.commitshorthash()
-    const lavalinkuptime = await client.util.msToTime(client.manager.nodes.get(client.config.lavalink.host).stats.uptime)
+    const lavalinkuptime = await client.util.msToTime(client.music.manager.nodes.get(client.config.lavalink.host).stats.uptime) || "Offline"
     const lastd = await client.commitsubject()
     const mss = await message.channel.send("Calculating...");
     message.channel.sendTyping()
