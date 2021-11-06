@@ -22,6 +22,7 @@ if (isReplit && (Number(process.versions.node.split(".")[0]) < 16)) {
     process.exit(0);
 }
 
+//idk this code wont work
 const fs = require("fs")
 if (fs.existsSync("./config/configs.json")) {
     //if token exists
@@ -52,6 +53,10 @@ if (fs.existsSync("./config/configs.json")) {
 } else {
     return require("./install")
 }
+//wait until this code finishes
+
+
+
 const config = require("./config/configs.json")
 
 //express for uptime
