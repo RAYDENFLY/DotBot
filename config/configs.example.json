@@ -9,7 +9,8 @@
             "696588067481321553"
         ],
         "owner-name": "DemuraAI",
-        "prefix": "d!"
+        "prefix": "d!",
+        "slash": true
     },
     "lavalink": {
         "host": "localhost",

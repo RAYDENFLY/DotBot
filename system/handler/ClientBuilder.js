@@ -8,6 +8,8 @@ const config = require("../../config/configs.json")
 const Db = require("../util/database")
 const { Manager } = require("erela.js");
 const utilpath = require("./Util")
+const chalk = require('chalk');
+const log = console.info;
 module.exports = class system extends Client {
     constructor(options) {
         super(options)
@@ -23,6 +25,8 @@ module.exports = class system extends Client {
         this.recent = new Set();
         this.db = new Db();
         this.kusonime = new Kusonime(this);
+        this.version = "v4.0"
+        this.idkernel = "INTI-Hirano-02"
         this.osu = new Osu(this);
         const client = this;
         this.manager = new Manager({
@@ -38,7 +42,7 @@ module.exports = class system extends Client {
                 if (guild) guild.shard.send(payload);
             },
         })
-            .on("nodeConnect", node => console.info(`Connected Lavalink Node ${node.options.identifier}`))
+            .on("nodeConnect", node => log(chalk.black.bgGreen(`Connected Lavalink Node ${node.options.identifier}`)))
             .on("nodeError", (node, error) => console.error(`Cant connect Lavalink host ${node.options.identifier} had an error: ${error.message}`))
             .on("trackStart", (player, track) => {
                 client.channels.cache

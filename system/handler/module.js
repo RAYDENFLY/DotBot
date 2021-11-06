@@ -3,6 +3,7 @@ const Discord = require("discord.js"),
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const token = require('../../config/token.json');
+const { config } = require("process");
 const rest = new REST({ version: '9' }).setToken(token.token);
 
 module.exports = client => {
@@ -51,17 +52,20 @@ module.exports = client => {
                     if (prop.slash === false) return;
                     client.slash.set(prop.help.name, prop)
                     commandss.push(prop.slash.data.toJSON());
-                    (async () => {
-                        try {
-                            console.warn(`Started refreshing slash : ${prop.help.name}`);
-                            await rest.put(
-                                Routes.applicationGuildCommands("898186273355874324", "897850095335268412"), { body: commandss },
-                            );
-                            console.info(`Successfully reloaded slash : ${prop.help.name}`);
-                        } catch (error) {
-                            console.error(error);
-                        }
-                    })();
+                    //if config slash is true
+                    if (client.config.bot.slash) {
+                        (async () => {
+                            try {
+                                console.warn(`Started refreshing slash : ${prop.help.name}`);
+                                await rest.put(
+                                    Routes.applicationGuildCommands("898186273355874324", "897850095335268412"), { body: commandss },
+                                );
+                                console.info(`Successfully reloaded slash : ${prop.help.name}`);
+                            } catch (error) {
+                                console.error(error);
+                            }
+                        })();
+                    }
 
                 });
             });

@@ -1,12 +1,24 @@
 const fs = require("fs");
 var config = require('../config/configs.json')
-
+const { execSync } = require("child_process");
 //check config version
 if (config.config.version < 2) {
     console.warn("Config version outdate")
     process.exit(1)
 } else {
     console.info("Config version up to date")
+}
+
+try {
+    require("discord.js")
+} catch (error) {
+    console.error("dependency not found")
+    console.error("Calling npm to install")
+    execSync("npm install")
+    console.info("npm installed")
+    console.info("restarting..")
+
+    process.exit(1)
 }
 
 //if health enabled
@@ -17,6 +29,12 @@ if (config.health.enabled) {
 } else {
     return console.warn("Health protection is disabled")
 }
+if (config.bot.slash) {
+    console.info("Slash command enabled")
+} else {
+    console.warn("Slash command disabled")
+}
+
 //memory usage overload protection
 var interval = setInterval(function () {
     const used = convert(process.memoryUsage().heapUsed)

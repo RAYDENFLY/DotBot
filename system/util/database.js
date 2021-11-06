@@ -1,5 +1,7 @@
 const { MongoClient } = require('mongodb');
 const configs = require("../../config/configs.json")
+const chalk = require('chalk');
+const log = console.info;
 class database {
     constructor(config) {
         //connect to mongodb
@@ -7,7 +9,7 @@ class database {
         this.client = new MongoClient(configs.mongodb.uri, { useUnifiedTopology: true, useNewUrlParser: true });
         this.client.connect(err => {
             this.collection = this.client.db(configs.mongodb.db)
-            console.info("Connected to mongodb");
+            log(chalk.black.bgGreen("Connected to Database"))
         });
 
 

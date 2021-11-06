@@ -32,7 +32,28 @@ module.exports = async client => {
     }, 10000);
 
     rl.on('line', (line) => {
+        if (line === 'stop') {
+            return close();
+        }
         console.log(eval(line))
         rl.prompt();
     })
+    function close() {
+        setTimeout(() => {
+            console.warn("Closing database...")
+            client.db.client.close()
+            setTimeout(() => {
+                console.warn("Closing client...")
+                rl.close();
+                setTimeout(() => {
+                    console.warn("Closing server...")
+                    setTimeout(() => {
+                        console.error("Closing...")
+                        process.exit(0);
+                    }, 1000);
+                }, 1000);
+            }, 1000)
+        }, 1000);
+        console.error('Starting closing');
+    }
 }

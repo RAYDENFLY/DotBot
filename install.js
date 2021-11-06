@@ -1,10 +1,9 @@
 'use strict';
 var inquirer = require('inquirer');
 var fs = require("fs")
-let botname;
-let botversion = "1.0";
-let ownerid;
-let ownername = "DemuraAI";
+const { execSync } = require("child_process");
+const COre = require('./system/handler/ClientBuilder.js');
+const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] });
 var config = {
     bot: {
         owner: []
@@ -172,13 +171,14 @@ inquirer.prompt(questions).then((answers) => {
     config.bot.owner.push(answers.ownerid)
     config.bot["owner-name"] = answers.ownername;
     config.bot.prefix = answers.prefix;
+    config.bot.slash = true
     config.lavalink.host = answers.lavalinkhost;
     config.lavalink.port = answers.lavalinkport;
     config.lavalink.password = answers.lavalinkpass;
     config.util.hastebin = answers.hastebin;
     config.util["kusonime-api"] = "https://Kusonime-API.demuraaidev.repl.co";
-    config.kernel = "INTI-Hirano-02";
-    config["kernel-version"] = "v3.0";
+    config.kernel = client.idkernel;
+    config["kernel-version"] = client.version;
     config.mongodb.uri = answers.mongourl;
     config.mongodb.db = answers.mongodb;
     config.health.enabled = answers.health;
@@ -203,6 +203,7 @@ inquirer.prompt(questions).then((answers) => {
             require("./system/util/tokeninit")
         }
     });
+
 
 });
 
