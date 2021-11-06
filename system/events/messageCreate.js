@@ -51,6 +51,15 @@ module.exports = async (client, message) => {
         const toBuffer = await require('got')(image).buffer();
 
         AttachmentCollection.set(message.id, { buffer: toBuffer, filename: image });
+        client.db.Collection.Collection("image").insertOne({
+            id: message.id,
+            image: image,
+            user: message.author.id,
+            guild: message.guild.id,
+            channel: message.channel.id,
+            time: Date.now()
+        })
+
     }
 
     message.flags = []
