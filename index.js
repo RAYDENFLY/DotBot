@@ -101,7 +101,7 @@ require('./system/util/readline')(client) //start plugin
 client.package = require('./package.json');
 client.on('warn', console.warn);
 client.on('error', console.error);
-client.on("raw", (d) => client.manager.updateVoiceState(d));
+client.on("raw", (d) => client.music.manager.updateVoiceState(d));
 var lisen = fs.readFileSync('LICENSE', 'utf8');
 client.license = lisen.toString()
 const languages = require("./system/util/languages");

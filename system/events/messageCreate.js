@@ -132,6 +132,6 @@ module.exports = async (client, message) => {
         message.channel.send(`There was an error while executing this command! ${error.message}`)
 
     } finally {
-        console.info(`${sender.tag} (${sender.id}) ran a command: ${cmd}`);
+        console.info(`${sender.tag} ran a command: ${cmd}`);
     }
 }

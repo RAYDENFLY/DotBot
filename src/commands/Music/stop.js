@@ -1,5 +1,5 @@
 exports.run = async (client, message, args) => {
-    const player = message.client.manager.get(message.guild.id);
+    const player = message.client.music.manager.get(message.guild.id);
     if (!player) return message.reply("there is no player for this guild.");
 
     const { channel } = message.member.voice;

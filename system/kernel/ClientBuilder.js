@@ -7,6 +7,7 @@ const { getLastCommit } = require('git-last-commit');
 const config = require("../../config/configs.json")
 const Db = require("../util/database")
 const { Manager } = require("erela.js");
+const drmpath = require('../util/drnmusic');
 const utilpath = require("./Util")
 const chalk = require('chalk');
 const log = console.info;
@@ -29,33 +30,7 @@ module.exports = class system extends Client {
         this.idkernel = "INTI-Hirano-02"
         this.osu = new Osu(this);
         const client = this;
-        this.manager = new Manager({
-            nodes: [
-                {
-                    host: config.lavalink.host,
-                    port: config.lavalink.port,
-                    password: config.lavalink.password,
-                },
-            ],
-            send(id, payload) {
-                const guild = client.guilds.cache.get(id);
-                if (guild) guild.shard.send(payload);
-            },
-        })
-            .on("nodeConnect", node => log(chalk.black.bgGreen(`Connected Lavalink Node ${node.options.identifier}`)))
-            .on("nodeError", (node, error) => console.error(`Cant connect Lavalink host ${node.options.identifier} had an error: ${error.message}`))
-            .on("trackStart", (player, track) => {
-                client.channels.cache
-                    .get(player.textChannel)
-                    .send(`Now playing: ${track.title}`);
-            })
-            .on("queueEnd", (player) => {
-                client.channels.cache
-                    .get(player.textChannel)
-                    .send("Queue has ended.");
-
-                player.destroy();
-            });
+        this.music = new drmpath(this);
     }
     commitshorthash() {
         return new Promise((res, rej) => {

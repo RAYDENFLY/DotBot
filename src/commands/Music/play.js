@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 
     try {
         // Search for tracks using a query or url, using a query searches youtube automatically and the track requester object
-        res = await client.manager.search(search, message.author);
+        res = await client.music.manager.search(search, message.author);
         // Check the load type as this command is not that advanced for basics
         if (res.loadType === "LOAD_FAILED") throw res.exception;
         else if (res.loadType === "PLAYLIST_LOADED") throw { message: "Playlists are not supported with this command." };
@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
     if (res.loadType === "NO_MATCHES") return message.reply("there was no tracks found with that query.");
 
     // Create the player 
-    const player = client.manager.create({
+    const player = client.music.manager.create({
         guild: message.guild.id,
         voiceChannel: message.member.voice.channel.id,
         textChannel: message.channel.id,

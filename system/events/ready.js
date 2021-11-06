@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const log = console.info;
 module.exports = async (client) => {
     log(chalk.black.bgGreen(`${client.user.username} is now ready to be online.`))
-    client.manager.init(client.user.id);
+    client.music.manager.init(client.user.id);
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;
 
