@@ -10,6 +10,9 @@ const isReplit = (
     process.env.REPL_OWNER !== undefined &&
     process.env.REPL_PUBKEYS !== undefined &&
     process.env.REPL_SLUG !== undefined)
+if (isReplit) {
+    console.warn("Replit is not fully supported");
+}
 if (isReplit && (Number(process.versions.node.split(".")[0]) < 16)) {
     console.info("This doesn't use Node.js v16 or newer, trying to install Node.js v16...");
     execSync(`npm i --save-dev node@16.6.1 && npm config set prefix=$(pwd)/node_modules/node && export PATH=$(pwd)/node_modules/node/bin:$PATH`);
@@ -47,6 +50,7 @@ if (fs.existsSync("./config/configs.json")) {
 } else {
     return require("./install")
 }
+const config = require("./config/configs.json")
 
 //express for uptime
 const express = require('express');
@@ -66,6 +70,12 @@ app.listen(port, () =>
 try {
     var data = fs.readFileSync("./src/assets/doh.txt", 'utf8');
     console.log(data.toString());
+    console.log("|  Version          : " + config.version);
+    console.log("|  Kernel id        : " + config.kernel);
+    console.log("|  Kernel version   : " + config["kernel-version"]);
+    console.log("|  Prototype name   : " + config.bot.name);
+    console.log("|  Owner ID         : " + config.bot.owner);
+    console.log("---------------------\n");
 } catch (e) {
     console.error('Error:', e.stack);
 }
@@ -112,7 +122,6 @@ process.on("uncaughtException", err => {
         console.error("true");
     }
 });
-
 
 //login
 client.login(token.token).catch(console.error);
