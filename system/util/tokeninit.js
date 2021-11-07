@@ -20,6 +20,8 @@ inquirer.prompt(questions).then((answers) => {
         }
     })
     console.log("token file created!");
+    console.log("Running Bot ....");
+    require("../../index")
 
 });
 
