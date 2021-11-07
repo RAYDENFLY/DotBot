@@ -1,4 +1,5 @@
 {
-    "name": ":placard: information",
+    "name": "help:INFO",
+    "emoji": ":placard:",
     "hide": false
 }

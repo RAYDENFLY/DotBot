@@ -1,4 +1,5 @@
 {
-    "name": ":inbox_tray: Downloader",
+    "name": "help:DOWNLOADER",
+    "emoji": ":inbox_tray:",
     "hide": false
 }

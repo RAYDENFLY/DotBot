@@ -25,9 +25,6 @@ database/global.json
 database/report.json
 database/blacklist.json
 database/guild.json
-database/prefix.json
-database/afk.json
-json.sqlite
 
 
 # Runtime data
@@ -77,26 +74,11 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
-
 # dotenv environment variables file
 .env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
-# next.js build output
-.next
-
-# nuxt.js build output
-.nuxt
-
-# vuepress build output
-.vuepress/dist
-
 # Serverless directories
-.serverless
-
-# FuseBox cache
-.fusebox/
+.serverless\

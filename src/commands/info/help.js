@@ -16,6 +16,8 @@ exports.run = async (client, message, args, data) => {
 
     if (!args[0]) {
         let module = Array.from(client.helps.values());
+        let description1 = message.translate("help:DESCRIPTION1");
+        let description2 = message.translate("help:DESCRIPTION2");
 
         if (!client.config.bot.owner.includes(message.author.id)) module = module.filter(x => !x.hide);
         const embed = new Discord.MessageEmbed()
@@ -23,7 +25,7 @@ exports.run = async (client, message, args, data) => {
             .setTitle(nama + " Menu")
             .setAuthor(nama, client.user.displayAvatarURL())
             .setThumbnail(client.user.displayAvatarURL())
-            .setDescription(`To start Command start with \`${prefix}help\` To know the details of the command type \`${prefix}help [command]\`` + "\n```js\nLog:\n" + log + "```")
+            .setDescription(description1 + ` \`${prefix}help\` ` + description2 + ` \`${prefix}help [command]\`` + "\n```js\nLog:\n" + log + "```")
             .setFooter(`DemuraAI.`, client.user.displayAvatarURL())
             .setTimestamp(new Date())
         const invite = new MessageActionRow()
@@ -48,7 +50,9 @@ exports.run = async (client, message, args, data) => {
 
 
         for (const mod of module) {
-            embed.addField(`${mod.name}`, mod.cmds.map(x => `\`${x}\``).join(" | "));
+            const nametl = message.translate(mod.name);
+            const weh = `${mod.emoji} ${nametl}`
+            embed.addField(`${weh}`, mod.cmds.map(x => `\`${x}\``).join(" | "));
         }
         const filter = i => i.customId === 'report' && i.user.id === message.author.id
         const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
