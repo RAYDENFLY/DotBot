@@ -2,8 +2,7 @@
 var inquirer = require('inquirer');
 var fs = require("fs")
 const { execSync } = require("child_process");
-const COre = require('./system/kernel/ClientBuilder.js');
-const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] });
+const defaulttconfig = require("./config/configs.example.json")
 var config = {
     bot: {
         owner: []
@@ -172,8 +171,8 @@ inquirer.prompt(questions).then((answers) => {
     config.lavalink.password = answers.lavalinkpass;
     config.util.hastebin = answers.hastebin;
     config.util["kusonime-api"] = "https://Kusonime-API.demuraaidev.repl.co";
-    config.kernel = client.idkernel;
-    config["kernel-version"] = client.version;
+    config.kernel = defaulttconfig.kernel
+    config["kernel-version"] = defaulttconfig["kernel-version"];
     config.mongodb.uri = answers.mongourl;
     config.health.enabled = answers.health;
     config.health.ram = answers.healthram;
@@ -192,6 +191,7 @@ inquirer.prompt(questions).then((answers) => {
     fs.exists("./config/token.json", function (exists) {
         if (exists) {
             console.log("Token file found");
+            return require("./index");
         } else {
             console.log("Token file not found Loading tokeninit.js ....");
             require("./system/util/tokeninit")
