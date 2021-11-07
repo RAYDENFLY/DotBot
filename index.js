@@ -3,6 +3,7 @@ require('./src/lib/console.info');
 require('./src/lib/console.error');
 require(`./src/lib/console.tips`)
 require("./src/lib/extenders")
+const fs = require("fs")
 const { execSync } = require("child_process");
 const isReplit = (
     process.env.REPLIT_DB_URL !== undefined &&
