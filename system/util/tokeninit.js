@@ -17,11 +17,13 @@ inquirer.prompt(questions).then((answers) => {
     fs.writeFile("./config/token.json", json, 'utf8', function (err) {
         if (err) {
             return console.log(err);
+        } else {
+            console.log("Token Saved!");
+            console.log("token file created!");
+            console.log("Running Bot ....");
+            require("../../index")
         }
     })
-    console.log("token file created!");
-    console.log("Running Bot ....");
-    require("../../index")
 
 });
 
