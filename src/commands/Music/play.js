@@ -1,10 +1,10 @@
 exports.run = async (client, message, args) => {
     let CheckNode = client.music.manager.nodes.get(client.config.lavalink.host);
     if (!CheckNode || !CheckNode.connected) {
-        return client.sendTime(message.channel, "❌ | **Lavalink node not connected, for now the music command is disabled**");
+        return message.error("music/play:CANTCONNECT")
     }
-    if (!message.member.voice.channel) return message.reply("you need to join a voice channel.");
-    if (!args.length) return message.reply("you need to give me a URL or a search term.");
+    if (!message.member.voice.channel) return message.reply(message.translate("music/play:NOTINVOICE"));
+    if (!args.length) return message.reply(message.translate("music/play:NOARGS"));
 
     const search = args.join(" ");
     let res;
@@ -14,12 +14,14 @@ exports.run = async (client, message, args) => {
         res = await client.music.manager.search(search, message.author);
         // Check the load type as this command is not that advanced for basics
         if (res.loadType === "LOAD_FAILED") throw res.exception;
-        else if (res.loadType === "PLAYLIST_LOADED") throw { message: "Playlists are not supported with this command." };
+        else if (res.loadType === "PLAYLIST_LOADED") throw message.error("music/play:NOTSUPPORT");
     } catch (err) {
-        return message.reply(`there was an error while searching: ${err.message}`);
+        return message.error("music/play:ERRORPLAY", {
+            error: err.message
+        });
     }
 
-    if (res.loadType === "NO_MATCHES") return message.reply("there was no tracks found with that query.");
+    if (res.loadType === "NO_MATCHES") return message.reply(message.translate("music/play:NOMATCH"));
 
     // Create the player 
     const player = client.music.manager.create({
@@ -34,8 +36,10 @@ exports.run = async (client, message, args) => {
 
     // Checks if the client should play the track if it's the first one added
     if (!player.playing && !player.paused && !player.queue.size) player.play()
-
-    return message.reply(`enqueuing ${res.tracks[0].title}.`);
+    return message.success("music/play:PLAY", {
+        title: res.tracks[0].title,
+        url: res.tracks[0].uri
+    });
 
 }
 exports.slash = false

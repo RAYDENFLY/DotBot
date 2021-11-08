@@ -8,6 +8,12 @@ module.exports = async (client) => {
     client.music.manager.init(client.user.id);
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;
+    const global = await client.createnew()
+    const guild = client.guilds.cache.size.toLocaleString()
+    const user = client.users.cache.size.toLocaleString()
+    global.guildcount = guild
+    global.usercount = user
+    global.save()
 
     function randomStatus() {
         let status = [config.kernel, config["kernel-version"], "My Prefix is " + prefix]

@@ -32,6 +32,7 @@ module.exports = class system extends Client {
         this.neural = new Neural(this);
         this.dbcache.guilds = new Collection();
         this.dbcache.afk = new Collection();
+        this.dbcache.global = new Collection();
         const client = this;
         this.music = new drmpath(this);
     }
@@ -56,6 +57,23 @@ module.exports = class system extends Client {
                 await guildData.save();
                 this.dbcache.guilds.set(guildID, guildData);
                 return isLean ? guildData.toJSON() : guildData;
+            }
+        }
+    }
+    async createnew() {
+
+        if (this.dbcache.global.get(config.bot.name)) {
+            return this.dbcache.guilds.get(config.bot.name);
+        } else {
+            let globalData = await this.db.global.findOne({ name: config.bot.name });
+            if (globalData) {
+                this.dbcache.global.set(config.bot.name, globalData);
+                return globalData;
+            } else {
+                globalData = new this.db.guild({ name: config.bot.name });
+                await globalData.save();
+                this.dbcache.global.set(config.bot.name, globalData);
+                return globalData;
             }
         }
     }

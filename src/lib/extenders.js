@@ -35,9 +35,12 @@ Message.prototype.sendT = function (key, args, options = {}) {
         string = `${this.client.emoji[options.prefixEmoji]} | **${string}**`;
     }
     const embed = new Discord.MessageEmbed()
-        .setColor(options.color)
+        .setURL(options.url)
         .setDescription(string)
+        .setColor(options.color)
         .setFooter("DotBot")
+    //if options url is set, set the image
+
 
     if (options.edit) {
         return this.edit({ embeds: [embed] });
