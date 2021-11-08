@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const { MessageActionRow, MessageButton } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 exports.run = async (client, message, args) => {
-    message.channel.send(message.translate('kernel:TEST'));
+    message.success('test:SUCCESS')
 }
 
 exports.help = {

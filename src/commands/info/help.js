@@ -47,6 +47,12 @@ exports.run = async (client, message, args, data) => {
                     .setURL(`https://discord.gg/nC7XxTrVMT`)
                     .setStyle('LINK')
             )
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Website')
+                    .setURL(`https://dotbotwebsite.demuraaidev.repl.co/`)
+                    .setStyle('LINK')
+            )
 
 
         for (const mod of module) {

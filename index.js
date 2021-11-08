@@ -3,6 +3,19 @@ require('./src/lib/console.info');
 require('./src/lib/console.error');
 require(`./src/lib/console.tips`)
 require("./src/lib/extenders")
+const config = require("./config/configs.json")
+const Sentry = require("@sentry/node")
+if (config.sentry) {
+    try {
+        Sentry.init({
+            dsn: config.sentry
+        });
+    } catch (e) {
+        console.error(e);
+        console.tips("Looks like your Sentry DSN key is invalid. If you do not intend to use Sentry, please remove the key from the configuration file.");
+    }
+}
+
 const fs = require("fs")
 const { execSync } = require("child_process");
 const isReplit = (
@@ -22,10 +35,6 @@ if (isReplit && (Number(process.versions.node.split(".")[0]) < 16)) {
     console.info("Node.js v16 has installed, please re-run the bot.");
     process.exit(0);
 }
-
-
-
-const config = require("./config/configs.json")
 
 //express for uptime
 const express = require('express');

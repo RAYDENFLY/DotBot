@@ -12,6 +12,7 @@
         "prefix": "d!",
         "slash": true
     },
+    "sentry": "API KEY HERE get at https://docs.sentry.io/api/auth/",
     "lavalink": {
         "host": "localhost",
         "port": 2333,

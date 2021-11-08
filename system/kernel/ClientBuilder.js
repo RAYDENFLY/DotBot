@@ -5,16 +5,13 @@ const Kusonime = require('../util/kusonime');
 const Osu = require('../util/osu');
 const { getLastCommit } = require('git-last-commit');
 const config = require("../../config/configs.json")
-const { Manager } = require("erela.js");
 const drmpath = require('../util/drnmusic');
+const Neural = require('../util/neural');
 const utilpath = require("./Util")
-const chalk = require('chalk');
-const log = console.info;
 module.exports = class system extends Client {
     constructor(options) {
         super(options)
         this.connections = new Map();
-        this.CommandsRan = 0;
         this.client = this;
         this.warna = require('../../config/color.json');
         this.commands = new Collection();
@@ -23,7 +20,7 @@ module.exports = class system extends Client {
         this.util = new utilpath
         this.aliases = new Collection();
         this.config = require('../../config/configs.json');
-        this.recent = new Set();
+        this.emoji = require('../../config/emoji.json');
         this.db = {}
         this.db.guild = require("../util/schema/guild")
         this.kusonime = new Kusonime(this);
@@ -31,6 +28,7 @@ module.exports = class system extends Client {
         this.idkernel = "INTI-Hirano-02"
         this.osu = new Osu(this);
         this.dbcache = {}
+        this.neural = new Neural(this);
         this.dbcache.guilds = new Collection();
         this.dbcache.afk = new Collection();
         const client = this;
@@ -119,6 +117,11 @@ module.exports = class system extends Client {
             })
         })
         return this.client.commands
+    }
+    sendTime(Channel, Error) {
+        let embed = new Discord.MessageEmbed().setColor("RANDOM").setDescription(Error);
+
+        Channel.send({ embeds: [embed] });
     }
 
 }

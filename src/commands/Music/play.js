@@ -1,4 +1,8 @@
 exports.run = async (client, message, args) => {
+    let CheckNode = client.music.manager.nodes.get(client.config.lavalink.host);
+    if (!CheckNode || !CheckNode.connected) {
+        return client.sendTime(message.channel, "❌ | **Lavalink node not connected, for now the music command is disabled**");
+    }
     if (!message.member.voice.channel) return message.reply("you need to join a voice channel.");
     if (!args.length) return message.reply("you need to give me a URL or a search term.");
 

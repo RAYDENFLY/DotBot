@@ -157,6 +157,12 @@ const questions = [
             return "get at https://osu.ppy.sh/p/api/";
         },
     }
+    ,
+    {
+        type: 'input',
+        name: 'sentry',
+        message: "sentry api key",
+    }
 ];
 
 inquirer.prompt(questions).then((answers) => {
@@ -170,6 +176,7 @@ inquirer.prompt(questions).then((answers) => {
     config.lavalink.port = answers.lavalinkport;
     config.lavalink.password = answers.lavalinkpass;
     config.util.hastebin = answers.hastebin;
+    config.sentry = answers.sentry;
     config.util["kusonime-api"] = "https://Kusonime-API.demuraaidev.repl.co";
     config.kernel = defaulttconfig.kernel
     config["kernel-version"] = defaulttconfig["kernel-version"];
