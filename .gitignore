@@ -12,9 +12,6 @@ plugin-package.json
 #lavalink
 Lavalink.jar
 logs/
-
-#Lavalink
-application.yml
 #tokenbot
 config/token.json
 config/configs.json
@@ -81,3 +78,4 @@ typings/
 
 # Serverless directories
 .serverless\
+application.yml

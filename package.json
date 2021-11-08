@@ -8,8 +8,8 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node install-index.js",
-        "setup": "node install.js"
+        "start": "node script/install-index.js",
+        "setup": "node script/install.js"
     },
     "repository": {
         "type": "git",

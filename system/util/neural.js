@@ -6,11 +6,11 @@ class Neural {
         this.socket = io("https://drmneural.demuraaidev.repl.co");
         //client on connect
         this.socket.on("connect", () => {
-            console.log("Connected to Neural DRM with id " + this.socket.id);
+            console.info("Connected to Neural DRM with id " + this.socket.id);
         });
         //client on disconnect
         this.socket.on("disconnect", () => {
-            console.info("Disconnected from Neural DRM with id " + this.socket.id);
+            console.error("Disconnected from Neural DRM");
         });
         //listen for message from room brodcast
 
@@ -24,5 +24,13 @@ class Neural {
             callback(data);
         });
     }
+    async ping() {
+        await this.socket.emit("ping", "1", (response) => {
+            //reutrn response without undefined
+            return response;
+        })
+    }
+    //callback
+
 }
 module.exports = Neural;

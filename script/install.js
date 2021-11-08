@@ -2,7 +2,7 @@
 var inquirer = require('inquirer');
 var fs = require("fs")
 const { execSync } = require("child_process");
-const defaulttconfig = require("./config/configs.example.json")
+const defaulttconfig = require("../config/configs.example.json")
 var config = {
     bot: {
         owner: []
@@ -198,10 +198,10 @@ inquirer.prompt(questions).then((answers) => {
     fs.exists("./config/token.json", function (exists) {
         if (exists) {
             console.log("Token file found");
-            return require("./index");
+            return require("../index");
         } else {
             console.log("Token file not found Loading tokeninit.js ....");
-            require("./system/util/tokeninit")
+            require("../system/util/tokeninit")
         }
     });
 

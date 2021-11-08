@@ -23,6 +23,7 @@ module.exports = class system extends Client {
         this.emoji = require('../../config/emoji.json');
         this.db = {}
         this.db.guild = require("../util/schema/guild")
+        this.db.global = require("../util/schema/global")
         this.kusonime = new Kusonime(this);
         this.version = "v5.0"
         this.idkernel = "INTI-Hirano-02"

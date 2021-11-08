@@ -3,6 +3,7 @@ require('./src/lib/console.info');
 require('./src/lib/console.error');
 require(`./src/lib/console.tips`)
 require("./src/lib/extenders")
+
 const config = require("./config/configs.json")
 const Sentry = require("@sentry/node")
 if (config.sentry) {

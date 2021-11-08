@@ -28,7 +28,7 @@ exports.slash = {
     const member = interaction.options.getMember('targetavatar')
     let avatar = member.displayAvatarURL({ size: 1024, dynamic: true })
     const embed = new Discord.MessageEmbed()
-      .setAuthor(interaction.author.username)
+      .setAuthor(interaction.user.username)
       .setTitle(`Avatar`)
       .setDescription("")
       .setImage(avatar)
