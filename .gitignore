@@ -13,9 +13,8 @@ plugin-package.json
 Lavalink.jar
 logs/
 
-#backup
-backup/
-
+#Lavalink
+application.yml
 #tokenbot
 config/token.json
 config/configs.json
