@@ -2,7 +2,7 @@ const fs = require("fs");
 var config = require('../config/configs.json')
 
 //check config version
-if (config.config.version < 2) {
+if (config.config.version < 3) {
     console.warn("Config version outdate")
     process.exit(1)
 } else {

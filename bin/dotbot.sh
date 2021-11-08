@@ -17,7 +17,7 @@ else
     cd ..
     curl -L -o Lavalink.jar https://github.com/freyacodes/Lavalink/releases/download/3.4/Lavalink.jar
     echo "Lavalink downloaded start it in new tab"
-    node index.js
+    npm start
 fi
 
 
