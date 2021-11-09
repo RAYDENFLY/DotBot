@@ -1,0 +1,7 @@
+{
+    "NOQUERY": "masukkan permintaan terlebih dahulu!",
+    "DURATION": "Durasi",
+    "RESOLUTION": "Resolusi yang tersedia",
+    "ERROR": "Ada yang salah: {{error}}",
+    "DESCRIPTION": "download video di youtube"
+}

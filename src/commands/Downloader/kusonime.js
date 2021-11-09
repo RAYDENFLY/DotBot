@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 
     try {
         let query = args.join(' ');
-        if (!query) return message.reply('insert anime name!');
+        if (!query) return message.reply('Masukan nama anime!');
 
         if (query.startsWith('https')) await client.kusonime.getDetail(query.replace('https://kusonime.com/', ''), message);
         else await client.kusonime.getBySearch(query, message);

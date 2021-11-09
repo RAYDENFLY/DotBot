@@ -7,14 +7,14 @@ exports.run = async (client, message, args) => {
   try {
 
     let query = args.join(' ');
-    if (!query) return message.reply('insert a request first!');
+    if (!query) return message.error('youtube:NOQUERY');
 
     if (query.startsWith('https')) query = query.match(/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/)[1];
     let data = await axios.get(`https://youtube.demuraaidev.repl.co/api/info/${query}`); data = data.data;
     let embed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setTitle(data.info.title)
-      .addField('Duration', client.util.parseDur(data.info.lengthSeconds * 1000), true)
+      .addField(message.translate("youtube:DURATION"), client.util.parseDur(data.info.lengthSeconds * 1000), true)
       .addField('ID', data.info.videoId, true)
       .setImage(data.info.thumbnail.thumbnails.pop().url)
       .setFooter("DotBot")
@@ -36,7 +36,7 @@ exports.run = async (client, message, args) => {
 
     let embede = new Discord.MessageEmbed()
       .setColor('RANDOM')
-      .setTitle('Available resolutions')
+      .setTitle(message.translate("youtube:RESOLUTION"))
       .setDescription(`**Videos with audio**\n${tempRes.default.join('\n')}\n\n**Audio Only**\n${tempRes.audioOnly.join('\n')}\n\n**Video Only**\n${tempRes.videoOnly.join('\n')}`)
 
     await message.channel.send({ embeds: [embede] })
@@ -44,10 +44,13 @@ exports.run = async (client, message, args) => {
 
   } catch (error) {
     console.log(error)
-    return message.channel.send(`Something went wrong: ${error.message}`);
-    // Restart the bot as usual.
-  }
+    return message.error("youtube:ERROR", {
+      error: error
+    })
+  };
+  // Restart the bot as usual.
 }
+
 
 exports.conf = {
   aliases: ["ytd"],
@@ -58,7 +61,7 @@ exports.conf = {
 exports.slash = false
 exports.help = {
   name: 'youtube',
-  description: 'download video di youtube',
-  usage: 'k!ytdl <link||id>',
-  example: 'k!about c9K1tiCUMyY'
+  description: "youtube:DESCRIPTION",
+  usage: 'd!ytdl <link||id>',
+  example: 'd!about c9K1tiCUMyY'
 }

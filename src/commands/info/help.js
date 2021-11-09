@@ -75,7 +75,7 @@ exports.run = async (client, message, args, runs) => {
         if (client.commands.has(cmd) || client.commands.get(client.aliases.get(cmd))) {
             let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
             let name = command.help.name;
-            let desc = command.help.description;
+            let desc = message.translate(command.help.description);
             let cooldown = command.conf.cooldown + " second(s)";
             let aliases = command.conf.aliases.join(", ") ? command.conf.aliases.join(", ") : "No aliases provided.";
             let usage = command.help.usage ? command.help.usage : "No usage provided.";

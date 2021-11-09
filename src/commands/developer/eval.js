@@ -11,12 +11,12 @@ exports.run = async (client, message, args, runs, plugin, data) => {
         .setFooter(client.config.bot.name, client.user.displayAvatarURL());
     try {
         const code = args.join(" ");
-        if (!code) return message.channel.send("Please include the code.");
+        if (!code) return message.error("eval:NOINCLUDE")
         let evaled;
 
         // This method is to prevent someone that you trust, open the secret shit here.
         if (code.includes(`secret`) || code.includes(`token`) || code.includes("process.env")) {
-            evaled = "No, shut up, what will you do it with the token?";
+            evaled = message.translate("eval:INCLUDETOKEN");
         } else {
             evaled = await eval(code);
         }
@@ -52,7 +52,7 @@ exports.run = async (client, message, args, runs, plugin, data) => {
 
 exports.help = {
     name: "eval",
-    description: "Evaluate some code.",
+    description: "eval:DESCRIPTION",
     usage: "eval <code>",
     example: "eval client.commands"
 }
@@ -75,12 +75,12 @@ exports.slash = {
             .addField(":inbox_tray: Input", "```js\n" + interaction.options.getString('input') + "```");
         try {
             const code = interaction.options.getString('input');
-            if (!code) return interaction.reply("Please include the code.");
+            if (!code) return interaction.reply(message.translate("eval:NOINCLUDE"));
             let evaled;
 
             // This method is to prevent someone that you trust, open the secret shit here.
             if (code.includes(`secret`) || code.includes(`token`) || code.includes("process.env")) {
-                evaled = "No, shut up, what will you do it with the token?";
+                evaled = message.translate("eval:INCLUDETOKEN");
             } else {
                 evaled = await eval(code);
             }
