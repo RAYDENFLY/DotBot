@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
     aliases: ["lang"],
     developer: false,
-    permissions: [""],
+    permissions: ["MANAGE_GUILD"],
     needperms: [""],
     cooldown: 4,
 };
