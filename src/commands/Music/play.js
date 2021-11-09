@@ -1,10 +1,10 @@
 exports.run = async (client, message, args) => {
     let CheckNode = client.music.manager.nodes.get(client.config.lavalink.host);
     if (!CheckNode || !CheckNode.connected) {
-        return message.error("music/play:CANTCONNECT")
+        return message.error("play:CANTCONNECT")
     }
-    if (!message.member.voice.channel) return message.reply(message.translate("music/play:NOTINVOICE"));
-    if (!args.length) return message.reply(message.translate("music/play:NOARGS"));
+    if (!message.member.voice.channel) return message.reply(message.translate("play:NOTINVOICE"));
+    if (!args.length) return message.reply(message.translate("play:NOARGS"));
 
     const search = args.join(" ");
     let res;
@@ -14,14 +14,14 @@ exports.run = async (client, message, args) => {
         res = await client.music.manager.search(search, message.author);
         // Check the load type as this command is not that advanced for basics
         if (res.loadType === "LOAD_FAILED") throw res.exception;
-        else if (res.loadType === "PLAYLIST_LOADED") throw message.error("music/play:NOTSUPPORT");
+        else if (res.loadType === "PLAYLIST_LOADED") throw message.error("play:NOTSUPPORT");
     } catch (err) {
-        return message.error("music/play:ERRORPLAY", {
+        return message.error("play:ERRORPLAY", {
             error: err.message
         });
     }
 
-    if (res.loadType === "NO_MATCHES") return message.reply(message.translate("music/play:NOMATCH"));
+    if (res.loadType === "NO_MATCHES") return message.reply(message.translate("play:NOMATCH"));
 
     // Create the player 
     const player = client.music.manager.create({
@@ -36,7 +36,7 @@ exports.run = async (client, message, args) => {
 
     // Checks if the client should play the track if it's the first one added
     if (!player.playing && !player.paused && !player.queue.size) player.play()
-    return message.success("music/play:PLAY", {
+    return message.success("play:PLAY", {
         title: res.tracks[0].title,
         url: res.tracks[0].uri
     });

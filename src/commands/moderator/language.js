@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
 
     if (!args[0] || !language) {
         //send error message
-        return message.error("moderator/lang:NOTFOUND", {
+        return message.error("lang:NOTFOUND", {
             list: client.languages.map((l) => "`" + l.name + "`").join(", ")
         });
     }
@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
     message.guild.data.lang = language.name;
     await message.guild.data.save();
 
-    return message.success("moderator/lang:SUCCESS")
+    return message.success("lang:SUCCESS")
 }
 exports.conf = {
     aliases: ["lang"],
