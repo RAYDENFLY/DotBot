@@ -1,6 +1,6 @@
 const Discord = require('discord.js'); //npm i discord.js
 const superagent = require('superagent'); //npm i superagent
-
+const { SlashCommandBuilder } = require('@discordjs/builders');
 exports.run = async (client, message, args) => { //lets started your commands script
   let member = message.mentions.users.first() || client.users.cache.find(u => u.username === args[0])
   if (!args[0]) return message.reply("you almost mention someone to pat them")
@@ -18,7 +18,26 @@ exports.run = async (client, message, args) => { //lets started your commands sc
   message.channel.send({ embeds: [embed] })
 };
 
-exports.slash = false
+exports.slash = {
+  data: new SlashCommandBuilder()
+    .setName('pat')
+    .setDescription('Pats anyone you went')
+    .addUserOption(option => option
+      .setName('targetpat')
+      .setDescription('Select a user')),
+  async execute(interaction, client, args) {
+    const member = interaction.options.getMember('targetpat')
+    if (member.id === "754192220843802664") return interaction.reply('Lol You can pat my developer ');
+    const { body } = await superagent
+      .get("https://nekos.life/api/pat");
+    const embed = new Discord.MessageEmbed() //onec Discordjs is updated to 12.2.0 , richembed is removed ! they replaced now as MessageEmbed
+      .setColor("#3bb9ff")
+      .setTitle(`i see that is, ${interaction.user.username} patted ${member.user.username}`) //lets reply as
+      .setImage(body.url) // lets showing pat (GIF}
+      .setFooter(`DotBot`); //your personnel Footer
+    interaction.reply({ embeds: [embed] })
+  }
+}
 
 exports.conf = {
   enabled: true,

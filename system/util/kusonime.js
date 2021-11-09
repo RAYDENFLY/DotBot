@@ -92,6 +92,7 @@ class Kusonime {
         });
     }
 
+
 }
 
 module.exports = Kusonime;

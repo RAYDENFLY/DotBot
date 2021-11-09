@@ -46,7 +46,7 @@ exports.slash = {
             .setDescription('Enter a reason')
             .setRequired(true)),
     async execute(interaction, client, runs) {
-        const owner = client.users.cache.get(client.config.bot.owner);
+        const owner = client.users.cache.get(client.config.bot.owner[0]);
         const success = new Discord.MessageEmbed()
             .setFooter("DotBot")
             .setColor("GREEN")
