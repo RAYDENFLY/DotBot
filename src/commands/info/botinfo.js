@@ -7,6 +7,21 @@ exports.run = async (client, message) => {
     const lastd = await client.commitsubject()
     const mss = await message.channel.send("Calculating...");
     message.channel.sendTyping()
+    const promises = [
+        client.shard.fetchClientValues('guilds.cache.size'),
+        client.shard.fetchClientValues('channels.cache.size'),
+        client.shard.fetchClientValues('users.cache.size'),
+    ];
+    let guild;
+    let channel;
+    let user;
+    Promise.all(promises)
+        .then(results => {
+            guild = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
+            channel = results[1].reduce((acc, guildCount) => acc + guildCount, 0);
+            user = results[2].reduce((acc, memberCount) => acc + memberCount, 0);
+        })
+        .catch(console.error);
     let os = require('os'),
         cpuStat = require('cpu-stat')
     cpuStat.usagePercent(function (error, percent) {
@@ -24,9 +39,6 @@ exports.run = async (client, message) => {
             cores = os.cpus().length
             cpuModel = os.cpus()[0].model
         }
-        const guild = client.guilds.cache.size.toLocaleString()
-        const user = client.users.cache.size.toLocaleString()
-        const channel = client.channels.cache.size.toLocaleString()
         const usage = formatBytes(process.memoryUsage().heapUsed)
         const total = formatBytes(os.totalmem())
         const free = formatBytes(os.freemem())

@@ -34,6 +34,7 @@ module.exports = class system extends Client {
         this.dbcache.afk = new Collection();
         this.dbcache.global = new Collection();
         const client = this;
+        this.galatic = this.client.shard
         this.music = new drmpath(this);
     }
     commitshorthash() {
