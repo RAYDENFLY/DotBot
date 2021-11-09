@@ -1,5 +1,4 @@
 # DrmPR
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot?ref=badge_shield)
 
 | Platform | Supported          | Version |
 | ------- | ------------------ | ------- |
@@ -57,7 +56,3 @@ Note: if you dont have Lavalink it will download it if you have, copy and paste 
 - 1.Download Lavalink.jar from https://github.com/freyacodes/Lavalink/releases/
 - 2.Move Lavalink.jar to DotBot Directory
 - 3.Start Dotbot in bin/dotbot
-
-## LICENSE
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot?ref=badge_large)
