@@ -1,3 +1,0 @@
-files:
-  - source: /src/lang/en-US/help.json
-    translation: /src/lang/%locale%/%original_file_name%
