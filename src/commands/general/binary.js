@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
     let choice = ["decode", "encode"];
-    if (!choice.includes(args[0].toLowerCase())) return message.error("binary:UNKNOW")
+    if (!choice.includes(args[0])) return message.error("binary:UNKNOW")
 
     let text = args.slice(1).join(" ");
 

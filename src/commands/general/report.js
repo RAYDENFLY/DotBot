@@ -6,16 +6,16 @@ let dbs = new jsoning("database/global.json");
 let db = new jsoning("database/report.json");
 
 exports.run = async (client, message, args) => {
-    const prefix = await dbs.get("prefix")
+    const prefix = await message.guild.data.prefix
     const reason = args.slice(0).join(" ")
-    const owner = client.users.cache.get(client.config.bot.owner);
+    const owner = client.users.cache.get(client.config.bot.owner[0]);
     const Standar = new Discord.MessageEmbed()
         .setFooter("DotBot")
         .setColor("RED")
         .setTitle(message.translate("report:TITLE1"))
-        .setDescription(`report:DESC1`, {
+        .setDescription(message.translate("report:DESC1", {
             prefix: prefix,
-        })
+        }))
     const success = new Discord.MessageEmbed()
         .setFooter("DotBot")
         .setColor("GREEN")
