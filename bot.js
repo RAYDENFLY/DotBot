@@ -74,7 +74,10 @@ require("./system/util/dbinit")
 const token = require('./config/token.json'); //token bot
 const COre = require('./system/kernel/ClientBuilder.js'),
     mongoose = require("mongoose")
-const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] }); //intents
+const client = new COre({
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"],
+    shards: 'auto'
+}); //intents
 
 //start bot
 require('./system/kernel/module')(client); //load commands and plugin
