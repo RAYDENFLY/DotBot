@@ -3,12 +3,12 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const superagent = require('superagent');
 exports.run = async (client, message, args) => {
   const input = args.slice(0).join(" ")
-  if (!input) return message.channel.send("pls insert a input example d!achievement Hello")
+  if (!input) return message.error("achievement:NEEDINPUT")
   const text = args.join("+");
   let status = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
   let rstatus = Math.floor(Math.random() * status.length);
   const e = new MessageEmbed()
-    .setTitle("MineCraft achievement!")
+    .setTitle(message.translate("achievement:TITLE"))
     .setColor("RANDOM")
     .setImage(
       `https://minecraftskinstealer.com/achievement/${rstatus}/Achievement%20Get!/${text}`
@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
   name: "achievement",
-  description: "achievement Minecraft Meme",
+  description: "achievement:DESCRIPTION",
   usage: ["achievement <text>"],
   example: ["achievement covid"]
 }
@@ -35,7 +35,7 @@ exports.conf = {
 exports.slash = {
   data: new SlashCommandBuilder()
     .setName('achievement')
-    .setDescription('achievement Minecraft Meme')
+    .setDescription(message.translate("achievement:DESCRIPTION"))
     .addStringOption(option => option.setName('text').setDescription('text meme')),
   async execute(interaction, client, runs) {
     const vidio = interaction.options.getString('text');
@@ -43,7 +43,7 @@ exports.slash = {
     let status = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
     let rstatus = Math.floor(Math.random() * status.length);
     const e = new MessageEmbed()
-      .setTitle("MineCraft achievement!")
+      .setTitle(message.translate("achievement:TITLE"))
       .setColor("RANDOM")
       .setImage(
         `https://minecraftskinstealer.com/achievement/${rstatus}/Achievement%20Get!/${text}`

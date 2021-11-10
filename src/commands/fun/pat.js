@@ -3,10 +3,10 @@ const superagent = require('superagent'); //npm i superagent
 const { SlashCommandBuilder } = require('@discordjs/builders');
 exports.run = async (client, message, args) => { //lets started your commands script
   let member = message.mentions.users.first() || client.users.cache.find(u => u.username === args[0])
-  if (!args[0]) return message.reply("you almost mention someone to pat them")
+  if (!args[0]) return message.error("pat:NEEDMENTION")
   //if no one is mentions , lets reply as
 
-  if (member.id === "754192220843802664") return message.channel.send('Lol You can pat my developer '); //lets make a some a some funny reply |you can set a random emoji|
+  if (member.id === "754192220843802664") return message.error("pat:CANTPATDEV"); //lets make a some a some funny reply |you can set a random emoji|
   const { body } = await superagent
     .get("https://nekos.life/api/pat"); //lets see wut we went
 
@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => { //lets started your commands sc
 exports.slash = {
   data: new SlashCommandBuilder()
     .setName('pat')
-    .setDescription('Pats anyone you went')
+    .setDescription(message.translate("pat:DESCRIPTION"))
     .addUserOption(option => option
       .setName('targetpat')
       .setDescription('Select a user')),
@@ -50,7 +50,7 @@ exports.conf = {
 
 exports.help = { //lets load commands
   name: 'pat', //commands name
-  description: 'Pats anyone you went', //commands description
+  description: 'pat:DESCRIPTION', //commands description
   usage: 'pat', // how they work
   example: 'pat <@otaku#--->' //here a some example about how they work
 };
