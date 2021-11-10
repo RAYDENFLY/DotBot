@@ -1,0 +1,7 @@
+{
+    "NOQUERY": "insert a request first!",
+    "DURATION": "Duration",
+    "RESOLUTION": "Available resolutions",
+    "ERROR": "Something went wrong: {{error}}",
+    "DESCRIPTION": "download videos on youtube"
+}

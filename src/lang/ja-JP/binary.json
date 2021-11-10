@@ -1,0 +1,6 @@
+{
+    "UNKNOW": "Unknown parameter. Please choose the method first, either decode or encode it.",
+    "NEEDARG": "Please input some text.",
+    "MUCH": "Oww, that is too much. The maximium character was 1,204.",
+    "DESCRIPTION": "Convert text to binary or otherwise"
+}
