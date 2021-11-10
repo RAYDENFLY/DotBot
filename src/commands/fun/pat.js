@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => { //lets started your commands sc
 exports.slash = {
   data: new SlashCommandBuilder()
     .setName('pat')
-    .setDescription(message.translate("pat:DESCRIPTION"))
+    .setDescription("Pats anyone you went")
     .addUserOption(option => option
       .setName('targetpat')
       .setDescription('Select a user')),

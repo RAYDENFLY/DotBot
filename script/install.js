@@ -172,6 +172,7 @@ inquirer.prompt(questions).then((answers) => {
     config.bot["owner-name"] = answers.ownername;
     config.bot.prefix = answers.prefix;
     config.bot.slash = true
+    config.debug = false
     config.lavalink.host = answers.lavalinkhost;
     config.lavalink.port = answers.lavalinkport;
     config.lavalink.password = answers.lavalinkpass;
@@ -218,7 +219,10 @@ function bios() {
                 choices: [
                     'Reset config',
                     'Reset token',
-                    "Reset both"
+                    "Reset both",
+                    "Debug Mode",
+                    "exit",
+                    "exit and start bot"
                 ],
             }
         ])
@@ -239,6 +243,51 @@ function bios() {
                     console.log("Token file deleted!");
                     bios();
                 });
+            } else if (answers.menu == "Debug Mode") {
+                const questions = [
+                    {
+                        type: 'confirm',
+                        name: 'debug',
+                        message: "Debug Mode?",
+                        default: true,
+                    }
+                ];
+
+                inquirer.prompt(questions).then((answers) => {
+                    //if debug mode is true
+                    const debug = require("../config/debug.json");
+                    if (answers.debug) {
+                        const debug = {}
+                        if (debug.debug === true) {
+                            debug.debug = false
+
+                            var json = JSON.stringify(debug);
+                            fs.writeFile("./config/debug.json", json, 'utf8', function (err) {
+                                if (err) {
+                                    return console.log(err);
+                                }
+                            })
+                            console.log("Debug mode disabled!");
+                            return bios();
+                        } else {
+                            debug.debug = true
+                            var json = JSON.stringify(debug);
+                            fs.writeFile("./config/debug.json", json, 'utf8', function (err) {
+                                if (err) {
+                                    return console.log(err);
+                                }
+                            })
+                            console.log("Debug mode enabled!");
+                            return bios();
+                        }
+                    } else {
+                        return bios();
+                    }
+                });
+
+
+            } else if (answers.menu == "exit") {
+                return process.exit(0);
             } else if (answers.menu == "Reset both") {
                 fs.unlink("./config/configs.json", function (err) {
                     if (err) {

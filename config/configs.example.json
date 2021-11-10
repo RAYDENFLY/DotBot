@@ -2,6 +2,7 @@
     "version": "BETA-1.0.0",
     "kernel": "INTI-Hirano-02",
     "kernel-version": "v5.0",
+    "debug": false,
     "bot": {
         "name": "DotBot",
         "owner": [

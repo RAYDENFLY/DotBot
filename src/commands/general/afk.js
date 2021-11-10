@@ -8,7 +8,10 @@ exports.run = async (client, message, args) => {
         let reason = args.join(' ').toString() || "AFK";
 
         if (status.get(message.author.id) !== message.author.id) {
-            message.reply({ content: `**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, allowedMentions: { parse: [] } })
+            message.replyT("afk:DONE", {
+                reason: reason,
+                author: message.author.tag
+            })
             status.set(message.author.id, {
                 "reason": reason,
                 "time": Date.now()
@@ -19,7 +22,9 @@ exports.run = async (client, message, args) => {
 
 
     } catch (error) {
-        return message.channel.send(`Something went wrong: ${error.message}`);
+        return message.error("afk:ERROR", {
+            error: error.message
+        })
     };
 };
 
@@ -34,7 +39,7 @@ exports.conf = {
 
 exports.help = {
     name: 'afk',
-    description: 'menambahkan status afk pada user',
-    usage: 'k!avatar [mention/userid/server]',
-    example: 'k!avatar @juned | k!avatar 458342161474387999 | k!avatar server'
+    description: 'afk:DESCRIPTION',
+    usage: 'afk <reason>',
+    example: 'd!afk Test'
 }

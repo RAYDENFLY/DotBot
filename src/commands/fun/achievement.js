@@ -35,7 +35,7 @@ exports.conf = {
 exports.slash = {
   data: new SlashCommandBuilder()
     .setName('achievement')
-    .setDescription(message.translate("achievement:DESCRIPTION"))
+    .setDescription("achievement Minecraft Meme")
     .addStringOption(option => option.setName('text').setDescription('text meme')),
   async execute(interaction, client, runs) {
     const vidio = interaction.options.getString('text');

@@ -53,6 +53,7 @@
         "node-osu": "^2.2.1",
         "node-superfetch": "^0.2.3",
         "os-name": "^5.0.0",
+        "portfinder": "^1.0.28",
         "socket.io-client": "^4.3.2",
         "superagent": "^6.1.0",
         "twemoji-parser": "^13.1.0"

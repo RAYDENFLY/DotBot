@@ -48,3 +48,33 @@ Message.prototype.sendT = function (key, args, options = {}) {
         return this.channel.send({ embeds: [embed] });
     }
 };
+Message.prototype.sendTr = function (key, args, options = {}) {
+    let string = this.translate(key, args);
+    if (options.prefixEmoji) {
+        string = `${this.client.emoji[options.prefixEmoji]} | **${string}**`;
+    }
+
+    //if options url is set, set the image
+
+
+    if (options.edit) {
+        return this.edit({ content: string, allowedMentions: { parse: [] } });
+    } else {
+        return this.channel.send({ content: string, allowedMentions: { parse: [] } });
+    }
+};
+Message.prototype.replyT = function (key, args, options = {}) {
+    let string = this.translate(key, args);
+    if (options.prefixEmoji) {
+        string = `${this.client.emoji[options.prefixEmoji]} | **${string}**`;
+    }
+
+    //if options url is set, set the image
+
+
+    if (options.edit) {
+        return this.edit({ content: string });
+    } else {
+        return this.reply({ content: string, allowedMentions: { parse: [] } });
+    }
+};

@@ -2,6 +2,7 @@ require("./src/lib/console.warn");
 require('./src/lib/console.info');
 require('./src/lib/console.error');
 require(`./src/lib/console.tips`)
+require(`./src/lib/console.debug`)
 require("./src/lib/extenders")
 
 const config = require("./config/configs.json")
@@ -44,10 +45,17 @@ const port = 3000;
 
 
 app.get('/', (req, res) => res.send('CYBER ON'));
-
-app.listen(port, () =>
-    console.log(`http listening at http://localhost:${port}`)
-);
+//express if port has been used, use another port
+const portfinder = require('portfinder');
+portfinder.getPort((err, port) => {
+    if (err) {
+        console.error(err);
+        process.exit(1);
+    }
+    app.listen(port, () => {
+        console.info(`Listening on port ${port}`);
+    });
+});
 
 //Welcome to code
 //ASCII
@@ -88,6 +96,11 @@ require('./system/util/readline')(client) //start plugin
 client.package = require('./package.json');
 client.on('warn', console.warn);
 client.on('error', console.error);
+client.on('debug', (message) => {
+    if (config.debug) {
+        console.debug(message);
+    }
+});
 client.on("raw", (d) => client.music.manager.updateVoiceState(d));
 var lisen = fs.readFileSync('LICENSE', 'utf8');
 client.license = lisen.toString()

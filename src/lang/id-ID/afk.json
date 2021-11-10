@@ -1,0 +1,5 @@
+{
+    "DONE": "{{author}}** telah AFK! \n**Alasan:** ${{reason}}**",
+    "ERROR": "Ada yang salah: {{error}}",
+    "DESCRIPTION": "Menambahkan status afk"
+}
