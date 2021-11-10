@@ -91,7 +91,7 @@ const questions = [
         name: 'lavalinkhost',
         message: "Lavalink host (enter for default)",
         default() {
-            return 'lava.link';
+            return 'localhost';
         },
     },
     {
@@ -99,7 +99,7 @@ const questions = [
         name: 'lavalinkport',
         message: "Lavalink port (enter for default)",
         default() {
-            return 80;
+            return 2333;
         },
     },
     {
@@ -107,7 +107,7 @@ const questions = [
         name: 'lavalinkpass',
         message: "Lavalink Password (enter for default)",
         default() {
-            return "youshallnotpass";
+            return "dotbotproject";
         },
     },
     {
