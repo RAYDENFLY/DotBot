@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
     name: "test",
-    description: "DotBot Playground",
+    description: "test:DESC",
     usage: "[prefix]test",
     example: "d!test"
 }

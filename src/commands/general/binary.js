@@ -1,16 +1,14 @@
 const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
-    if (!args[0]) return message.channel.send("Unknown parameter. Please choose the method first, either decode or encode it.");
-
     let choice = ["decode", "encode"];
-    if (!choice.includes(args[0].toLowerCase())) return message.channel.send("Unknown parameter. Please choose the method first, either decord or encode it.");
+    if (!choice.includes(args[0].toLowerCase())) return message.error("binary:UNKNOW")
 
     let text = args.slice(1).join(" ");
 
-    if (!text) return message.channel.send("Please input some text.");
+    if (!text) return message.error("binary:NEEDARG")
 
-    if (text.length > 1024) return message.channel.send("Oww, that is too much. The maximium character was 1,204.");
+    if (text.length > 1024) return message.error("binary:MUCH")
 
     function encode(char) {
         return char.split("").map(str => {
@@ -34,7 +32,7 @@ exports.slash = false
 
 exports.help = {
     name: "binary",
-    description: "Convert text to binary or otherwise.",
+    description: "binary:DESCRIPTION",
     usage: "binary <encode | decode> <text>",
     example: "binary encode hello"
 }

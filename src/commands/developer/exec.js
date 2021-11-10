@@ -12,7 +12,7 @@ exports.run = async (client, message, args, runs, plugin) => {
 
 exports.help = {
     name: "exec",
-    description: "Shell / CMD Prompt command",
+    description: "exec:DESC",
     usage: "exec <text>",
     example: "exec -h"
 }

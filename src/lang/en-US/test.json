@@ -1,3 +1,4 @@
 {
-    "SUCCESS": "test command success"
+    "SUCCESS": "test command success",
+    "DESC": "DotBot Playground"
 }

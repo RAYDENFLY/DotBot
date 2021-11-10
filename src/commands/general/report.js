@@ -5,7 +5,6 @@ let jsoning = require("jsoning");
 let dbs = new jsoning("database/global.json");
 let db = new jsoning("database/report.json");
 
-
 exports.run = async (client, message, args) => {
     const prefix = await dbs.get("prefix")
     const reason = args.slice(0).join(" ")
@@ -13,13 +12,15 @@ exports.run = async (client, message, args) => {
     const Standar = new Discord.MessageEmbed()
         .setFooter("DotBot")
         .setColor("RED")
-        .setTitle("Send Report to Developer ")
-        .setDescription(`if you have a problem with our bot send a report by \`${prefix}report <reason>\``)
+        .setTitle(message.translate("report:TITLE1"))
+        .setDescription(`report:DESC1`, {
+            prefix: prefix,
+        })
     const success = new Discord.MessageEmbed()
         .setFooter("DotBot")
         .setColor("GREEN")
-        .setTitle("Thank you")
-        .setDescription(`thanks for reporting the problem, we will add to the database and will fix the bot soon`)
+        .setTitle(message.translate("report:TITLE2"))
+        .setDescription(message.translate("report:DESC2"))
     if (reason) {
         const id = message.author.id
         await db.push(id, reason)
@@ -33,7 +34,7 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
     name: "report",
-    description: "report if have a issue with bot",
+    description: "report:DESC",
     usage: "[prefix]report <reason>",
     example: "d!report commands help cant show up"
 }

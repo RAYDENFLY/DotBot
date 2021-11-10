@@ -54,7 +54,7 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
     name: "shutdown",
-    description: "Shutdown Bot.",
+    description: "shutdown:DESC",
     usage: "[prefix]shutdown",
     example: "[prefix]shutdown"
 }

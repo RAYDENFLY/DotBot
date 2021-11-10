@@ -54,7 +54,7 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
     name: "update",
-    description: "Update file bot & reload",
+    description: "update:DESC",
     usage: "[prefix]update",
     example: "[prefix]update"
 }

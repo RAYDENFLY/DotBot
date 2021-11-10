@@ -140,7 +140,7 @@ exports.slash = {
 
 exports.help = {
     name: "gset",
-    description: "Checkmate the `ms`",
+    description: "gset:DESC",
     usage: "[prefix]gset [module] [args]",
     example: "d!gset prefix +"
 }

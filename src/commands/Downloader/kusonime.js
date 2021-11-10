@@ -25,7 +25,7 @@ exports.slash = false
 
 exports.help = {
     name: 'kusonime',
-    description: 'download anime batch lewat discord',
+    description: 'kusonime:DESC',
     usage: 'kusonime <query>',
     example: 'kusonime <query>'
 }

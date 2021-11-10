@@ -3,7 +3,7 @@ const { parse } = require("twemoji-parser");
 
 exports.run = async (client, message, args) => {
     const emoji = args[0];
-    if (!emoji) return message.channel.send("No emoji provided!");
+    if (!emoji) return message.error("enlarge:NOEMOT")
 
     let custom = Discord.Util.parseEmoji(emoji);
     const embed = new Discord.MessageEmbed()
@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
     }
     else {
         let parsed = parse(emoji, { assetType: "png" });
-        if (!parsed[0]) return message.channel.send("Invalid emoji!");
+        if (!parsed[0]) return message.error("enlarge:INVALID")
 
         embed.setImage(parsed[0].url);
         return message.channel.send({ embeds: [embed] });
@@ -26,7 +26,7 @@ exports.run = async (client, message, args) => {
 
 exports.help = {
     name: "enlarge",
-    description: "Large the emojis and scam it",
+    description: "enlarge:DESCRIPTION",
     usage: "enlarge <emoji>",
     example: "enlarge 🤨"
 }
