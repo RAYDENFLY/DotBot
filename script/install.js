@@ -255,33 +255,28 @@ function bios() {
 
                 inquirer.prompt(questions).then((answers) => {
                     //if debug mode is true
-                    const debug = require("../config/debug.json");
                     if (answers.debug) {
                         const debug = {}
-                        if (debug.debug === true) {
-                            debug.debug = false
-
-                            var json = JSON.stringify(debug);
-                            fs.writeFile("./config/debug.json", json, 'utf8', function (err) {
-                                if (err) {
-                                    return console.log(err);
-                                }
-                            })
-                            console.log("Debug mode disabled!");
-                            return bios();
-                        } else {
-                            debug.debug = true
-                            var json = JSON.stringify(debug);
-                            fs.writeFile("./config/debug.json", json, 'utf8', function (err) {
-                                if (err) {
-                                    return console.log(err);
-                                }
-                            })
-                            console.log("Debug mode enabled!");
-                            return bios();
-                        }
+                        debug.debug = true;
+                        var json = JSON.stringify(debug);
+                        fs.writeFile("./config/debug.json", json, 'utf8', function (err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                        })
+                        console.log("Debug Mode enabled");
+                        bios();
                     } else {
-                        return bios();
+                        const debug = {}
+                        debug.debug = false;
+                        var json = JSON.stringify(debug);
+                        fs.writeFile("./config/debug.json", json, 'utf8', function (err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                        })
+                        console.log("Debug Mode Disabled");
+                        bios();
                     }
                 });
 

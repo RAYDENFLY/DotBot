@@ -3,6 +3,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
+config/debug.json
 #plugin
 plugin-package.json
 
