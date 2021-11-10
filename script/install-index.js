@@ -4,7 +4,7 @@ if (fs.existsSync("./config/configs.json")) {
     //if token exists
     if (fs.existsSync("./config/token.json")) {
         console.info("Config file found, skipping setup");
-        return require("../index.js");
+        return require("../system/index");
     } else {
         //if config exists but token doesn't
         console.log("Config file found!");

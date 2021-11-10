@@ -1,11 +1,11 @@
-require("./src/lib/console.warn");
-require('./src/lib/console.info');
-require('./src/lib/console.error');
-require(`./src/lib/console.tips`)
-require(`./src/lib/console.debug`)
-require("./src/lib/extenders")
+require("../src/lib/console.warn");
+require('../src/lib/console.info');
+require('../src/lib/console.error');
+require(`../src/lib/console.tips`)
+require(`../src/lib/console.debug`)
+require("../src/lib/extenders")
 
-const config = require("./config/configs.json")
+const config = require("../config/configs.json")
 const Sentry = require("@sentry/node")
 if (config.sentry) {
     try {
@@ -73,14 +73,14 @@ try {
 }
 
 //health startup
-require("./system/health")
+require("./health")
 
 //Creating database for first time
-require("./system/util/dbinit")
+require("./util/dbinit")
 
 //config
-const token = require('./config/token.json'); //token bot
-const COre = require('./system/kernel/ClientBuilder.js'),
+const token = require('../config/token.json'); //token bot
+const COre = require('./kernel/ClientBuilder.js'),
     mongoose = require("mongoose")
 const client = new COre({
     intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"],
@@ -88,17 +88,17 @@ const client = new COre({
 }); //intents
 
 //start bot
-require('./system/kernel/module')(client); //load commands and plugin
-require('./system/kernel/Event')(client); //load event
-require('./system/kernel/plugin')(client) //start plugin
-require('./system/util/readline')(client) //start plugin
+require('./kernel/module')(client); //load commands and plugin
+require('./kernel/Event')(client); //load event
+require('./kernel/plugin')(client) //start plugin
+require('./util/readline')(client) //start plugin
 
-client.package = require('./package.json');
+client.package = require('../package.json');
 client.on('warn', console.warn);
 client.on('error', console.error);
 //if file exist load it
 if (fs.existsSync("./config/debug.json")) {
-    const debug = require("./config/debug.json");
+    const debug = require("../config/debug.json");
     if (debug.debug) {
         console.info("Debug mode enbled");
         client.on('debug', (message) => {
@@ -111,7 +111,7 @@ var lisen = fs.readFileSync('LICENSE', 'utf8');
 client.license = lisen.toString()
 
 const init = async () => {
-    const languages = require("./system/util/languages");
+    const languages = require("./util/languages");
     client.translations = await languages();
 
     // connect to mongoose database

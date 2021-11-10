@@ -21,7 +21,7 @@ inquirer.prompt(questions).then((answers) => {
             console.log("Token Saved!");
             console.log("token file created!");
             console.log("Running Bot ....");
-            require("../../index")
+            require("../index")
         }
     })
 
