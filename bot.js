@@ -77,7 +77,6 @@ const COre = require('./system/kernel/ClientBuilder.js'),
 const client = new COre({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"] }); //intents
 
 //start bot
-require('./system/kernel/bios')(client); //load bios
 require('./system/kernel/module')(client); //load commands and plugin
 require('./system/kernel/Event')(client); //load event
 require('./system/kernel/plugin')(client) //start plugin
