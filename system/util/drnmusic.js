@@ -1,17 +1,32 @@
 const { Manager } = require("erela.js");
 const config = require("../../config/configs.json")
 const chalk = require('chalk');
+const Spotify = require("erela.js-spotify");
 const log = console.info;
+const clientID = config.spotify.client_id
+const clientSecret = config.spotify.secret
+const hostl = config.lavalink.host || "youshallnotpass"
+const portl = config.lavalink.port || 80
+const passwordl = config.lavalink.password || "lava.link"
 class drmusic {
     constructor(client) {
         this.client = client;
         this.manager = new Manager({
             nodes: [
                 {
-                    host: config.lavalink.host,
-                    port: config.lavalink.port,
-                    password: config.lavalink.password,
+                    id: "Main",
+                    host: hostl,
+                    port: portl,
+                    password: passwordl,
                 },
+            ],
+            plugins: [
+                // Initiate the plugin and pass the two required options.
+                new Spotify({
+                    clientID,
+                    clientSecret,
+                    convertUnresolved: true
+                })
             ],
             send(id, payload) {
                 const guild = client.guilds.cache.get(id);

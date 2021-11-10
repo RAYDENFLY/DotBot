@@ -96,11 +96,16 @@ require('./system/util/readline')(client) //start plugin
 client.package = require('./package.json');
 client.on('warn', console.warn);
 client.on('error', console.error);
-client.on('debug', (message) => {
-    if (config.debug) {
-        console.debug(message);
+//if file exist load it
+if (fs.existsSync("./config/debug.json")) {
+    const debug = require("./config/debug.json");
+    if (debug.debug) {
+        console.info("Debug mode enbled");
+        client.on('debug', (message) => {
+            console.debug(message);
+        });
     }
-});
+}
 client.on("raw", (d) => client.music.manager.updateVoiceState(d));
 var lisen = fs.readFileSync('LICENSE', 'utf8');
 client.license = lisen.toString()

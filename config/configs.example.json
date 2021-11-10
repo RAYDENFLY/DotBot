@@ -15,9 +15,13 @@
     },
     "sentry": "API KEY HERE get at https://docs.sentry.io/api/auth/",
     "lavalink": {
-        "host": "localhost",
-        "port": 2333,
-        "password": "dotbotproject"
+        "host": "lava.link",
+        "port": 80,
+        "password": "youshallnotpass"
+    },
+    "spotify": {
+        "client_id": "GET AT https://developer.spotify.com",
+        "secret": ""
     },
     "mongodb": {
         "uri": "localhost"

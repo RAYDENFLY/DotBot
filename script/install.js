@@ -10,6 +10,7 @@ var config = {
     lavalink: {},
     util: {},
     mongodb: {},
+    spotify: {},
     health: {},
     osu: {},
     config: {},
@@ -88,39 +89,31 @@ const questions = [
     {
         type: 'input',
         name: 'lavalinkhost',
-        message: "Lavalink host",
+        message: "Lavalink host (enter for default)",
         default() {
-            return 'localhost';
+            return 'lava.link';
         },
     },
     {
         type: 'input',
         name: 'lavalinkport',
-        message: "Lavalink port",
+        message: "Lavalink port (enter for default)",
         default() {
-            return 2333;
+            return 80;
         },
     },
     {
         type: 'input',
         name: 'lavalinkpass',
-        message: "Lavalink Password",
+        message: "Lavalink Password (enter for default)",
         default() {
-            return "dotbotproject";
-        },
-    },
-    {
-        type: 'input',
-        name: 'lavalinkport',
-        message: "Lavalink port",
-        default() {
-            return 2333;
+            return "youshallnotpass";
         },
     },
     {
         type: 'input',
         name: 'hastebin',
-        message: "Haste server",
+        message: "Haste server (enter for default)",
         default() {
             return "https://hastebin.com";
         },
@@ -128,7 +121,7 @@ const questions = [
     {
         type: 'input',
         name: 'health',
-        message: "Healt protection?",
+        message: "Healt protection? (enter for default)",
         default() {
             return true;
         },
@@ -136,7 +129,7 @@ const questions = [
     {
         type: 'input',
         name: 'healthram',
-        message: "Max Ram Usage?",
+        message: "Max Ram Usage? (enter for default)",
         default() {
             return "36 MB";
         },
@@ -148,6 +141,16 @@ const questions = [
         default() {
             return "2000";
         },
+    },
+    {
+        type: 'input',
+        name: 'spotifyclient',
+        message: "Spotify clientid"
+    },
+    {
+        type: 'input',
+        name: 'spotifyscret',
+        message: "Spotify Screet"
     },
     {
         type: 'input',
@@ -172,7 +175,8 @@ inquirer.prompt(questions).then((answers) => {
     config.bot["owner-name"] = answers.ownername;
     config.bot.prefix = answers.prefix;
     config.bot.slash = true
-    config.debug = false
+    config.spotify.client_id = answers.spotifyclient;
+    config.spotify.scret = answers.spotifyscret;
     config.lavalink.host = answers.lavalinkhost;
     config.lavalink.port = answers.lavalinkport;
     config.lavalink.password = answers.lavalinkpass;
@@ -283,6 +287,8 @@ function bios() {
 
             } else if (answers.menu == "exit") {
                 return process.exit(0);
+            } else if (answers.menu == "exit and start bot") {
+                return require("../index");
             } else if (answers.menu == "Reset both") {
                 fs.unlink("./config/configs.json", function (err) {
                     if (err) {

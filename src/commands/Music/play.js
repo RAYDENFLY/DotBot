@@ -1,3 +1,4 @@
+const Discord = require("discord.js")
 exports.run = async (client, message, args) => {
     let CheckNode = client.music.manager.nodes.get(client.config.lavalink.host);
     if (!CheckNode || !CheckNode.connected) {
@@ -6,40 +7,45 @@ exports.run = async (client, message, args) => {
     if (!message.member.voice.channel) return message.reply(message.translate("play:NOTINVOICE"));
     if (!args.length) return message.reply(message.translate("play:NOARGS"));
 
-    const search = args.join(" ");
-    let res;
-
-    try {
-        // Search for tracks using a query or url, using a query searches youtube automatically and the track requester object
-        res = await client.music.manager.search(search, message.author);
-        // Check the load type as this command is not that advanced for basics
-        if (res.loadType === "LOAD_FAILED") throw res.exception;
-        else if (res.loadType === "PLAYLIST_LOADED") throw message.error("play:NOTSUPPORT");
-    } catch (err) {
-        return message.error("play:ERRORPLAY", {
-            error: err.message
-        });
-    }
-
-    if (res.loadType === "NO_MATCHES") return message.reply(message.translate("play:NOMATCH"));
-
-    // Create the player 
     const player = client.music.manager.create({
         guild: message.guild.id,
         voiceChannel: message.member.voice.channel.id,
         textChannel: message.channel.id,
     });
+    let SongAddedEmbed = new Discord.MessageEmbed().setColor("RANDOM");
 
-    // Connect to the voice channel and add the track to the queue
-    player.connect();
-    player.queue.add(res.tracks[0]);
 
-    // Checks if the client should play the track if it's the first one added
-    if (!player.playing && !player.paused && !player.queue.size) player.play()
-    return message.success("play:PLAY", {
-        title: res.tracks[0].title,
-        url: res.tracks[0].uri
-    });
+    let SearchString = args.join(" ");
+    if (player.state != "CONNECTED") await player.connect();
+    const res = await player.search(SearchString, message.author);
+
+
+    switch (res.loadType) {
+
+        case 'PLAYLIST_LOADED':
+            player.queue.add(res.tracks);
+
+            if (!player.playing && !player.paused && player.queue.totalSize === res.tracks.length) player.play();
+            return message.reply(`enqueuing playlist \`${res.playlist.name}\` with ${res.tracks.length} tracks.`);
+        case 'NO_MATCHES':
+            if (!player.queue.current) player.destroy()
+            return message.reply('there were no results found.')
+        case 'LOAD_FAILED':
+            if (!player.queue.current) player.destroy();
+            throw res.exception;
+        default:
+            player.queue.add(res.tracks[0]);
+
+            player.play()
+            return message.success("play:PLAY", {
+                title: res.tracks[0].title,
+                url: res.tracks[0].uri
+            });
+
+
+
+    }
+
 
 }
 exports.slash = false
