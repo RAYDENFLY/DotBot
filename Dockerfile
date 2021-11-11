@@ -9,3 +9,4 @@ COPY package.json /dotbot
 RUN npm install
 COPY . /dotbot
 CMD [“node”, index.js”]
+EXPOSE 3000-8080
