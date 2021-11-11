@@ -17,7 +17,7 @@ module.exports = async client => {
                     console.warn("Closing server...")
                     setTimeout(() => {
                         console.error("Closing...")
-                        process.exit(1);
+                        process.exit(0);
                     }, 1000);
                 }, 1000);
             }, 1000)
