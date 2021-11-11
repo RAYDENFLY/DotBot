@@ -12,7 +12,7 @@ console.log('--------------')
 manager.on('shardCreate', shard => {
     console.info(`Launched shard ${shard.id}`)
     shard.on('message', message => {
-        console.info(`Shard ${shard.id} Eval ${message._result}`);
+        console.info(`Shard ${shard.id} Eval: ${message._result}`);
     })
     shard.on('death', (process) => {
         if (process.exitCode === null) {
