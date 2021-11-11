@@ -21,5 +21,6 @@ module.exports = async (client, guild) => {
                 .catch(console.error);
         const global = await client.createnew()
         global.guildcount = guilds
+        global.usercount = user
         global.save()
 }

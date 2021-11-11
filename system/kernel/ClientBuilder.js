@@ -10,7 +10,11 @@ const Neural = require('../util/neural');
 const utilpath = require("./Util")
 module.exports = class system extends Client {
     constructor(options) {
-        super(options)
+        super({
+            intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"],
+            shardCount: 10,
+            shards: "auto"
+        })
         this.connections = new Map();
         this.client = this;
         this.warna = require('../../config/color.json');

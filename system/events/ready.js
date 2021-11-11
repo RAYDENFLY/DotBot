@@ -8,10 +8,23 @@ module.exports = async (client) => {
     client.music.manager.init(client.user.id);
     let globalprefix = await db.get("prefix")
     let prefix = globalprefix || client.config.bot.prefix;
+    let guilds
+    let channel
+    let user
+    const promises = [
+        client.shard.fetchClientValues('guilds.cache.size'),
+        client.shard.fetchClientValues('channels.cache.size'),
+        client.shard.fetchClientValues('users.cache.size'),
+    ];
+    Promise.all(promises)
+        .then(results => {
+            guilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
+            channel = results[1].reduce((acc, guildCount) => acc + guildCount, 0);
+            user = results[2].reduce((acc, memberCount) => acc + memberCount, 0);
+        })
+        .catch(console.error);
     const global = await client.createnew()
-    const guild = client.guilds.cache.size.toLocaleString()
-    const user = client.users.cache.size.toLocaleString()
-    global.guildcount = guild
+    global.guildcount = guilds
     global.usercount = user
     global.save()
 

@@ -82,10 +82,7 @@ require("./util/dbinit")
 const token = require('../config/token.json'); //token bot
 const COre = require('./kernel/ClientBuilder.js'),
     mongoose = require("mongoose")
-const client = new COre({
-    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_PRESENCES", "GUILD_MEMBERS", "GUILD_VOICE_STATES"],
-    shards: 'auto'
-}); //intents
+const client = new COre(); //intents
 
 //start bot
 require('./kernel/module')(client); //load commands and plugin
@@ -118,12 +115,11 @@ const init = async () => {
     mongoose.connect(config.mongodb.uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
         console.info("Connected to the Mongodb database.");
     }).catch((err) => {
-        console.info("Unable to connect to the Mongodb database. Error:" + err);
+        console.error("Unable to connect to the Mongodb database. Error:" + err);
     });
     setTimeout(() => {
         console.tips("if you like this project give star to my github");
     }, 1000);
-
 }
 
 init()
