@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
         .setTimestamp()
         .setTitle(":gear: Global Settings")
         .setColor('GREEN')
-        .setDescription("```status``` \n```Activity``` \n```globalpref``` \n```nac```\n```blacklist```")
+        .setDescription("```status``` \n```Activity``` \n```nac```\n```blacklist```")
         .setFooter(client.config.bot["owner-name"], client.user.displayAvatarURL())
     const invite = new MessageActionRow()
         .addComponents(
@@ -45,7 +45,7 @@ exports.run = async (client, message, args) => {
         .setColor('RED')
         .setDescription("```" + client.commands + "```")
     if (!args[0]) return message.channel.send({ embeds: [embed] });
-    let choice = ["status", "blacklist", "activity", "globalpref", "nac"];
+    let choice = ["status", "blacklist", "activity", "nac"];
     if (!choice.includes(args[0].toLowerCase())) return message.channel.send("Unknown parameter");
 
     let text = args.slice(1).join(" ");
@@ -64,11 +64,6 @@ exports.run = async (client, message, args) => {
     }
     if (args[0].toLowerCase() == "activity") {
         db.set('activity', args.slice(1).join(" "))
-        return message.channel.send("settings Update!")
-    }
-    if (args[0].toLowerCase() == "globalpref") {
-        await db.set('prefix', args.slice(1).join(" "))
-        await db.set("log", `Change Global Prefix to ` + args.slice(1).join(" "))
         return message.channel.send("settings Update!")
     }
     if (args[0].toLowerCase() == "nac") {
@@ -93,25 +88,16 @@ exports.slash = {
         .setName('gset')
         .setDescription('Global settings (Only Developer)')
         .addStringOption(option =>
-            option.setName('prefix')
-                .setDescription('set prefix'))
-        .addStringOption(option =>
             option.setName('blacklist')
                 .setDescription('Add blacklist user'))
         .addStringOption(option =>
             option.setName('nac')
                 .setDescription('Disable commands')),
     async execute(interaction, client, runs) {
-        const prefix = interaction.options.getString('prefix');
         const nac = interaction.options.getString('nac');
         const blacklist = interaction.options.getString('blacklist');
         if (!interaction.isCommand()) return;
         if (interaction.commandName === 'gset') {
-            if (prefix) {
-                await db.set('prefix', prefix)
-                await db.set("log", `Change Global Prefix to ` + prefix)
-                return interaction.reply("settings Update!")
-            }
             if (blacklist) {
                 await dbb.push('blacklist', blacklist)
                 return interaction.reply("Adding to database!")

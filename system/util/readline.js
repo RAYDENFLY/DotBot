@@ -35,9 +35,9 @@ module.exports = async client => {
     function close() {
         setTimeout(() => {
             console.warn("Closing database...")
-            client.db.client.close()
             setTimeout(() => {
                 console.warn("Closing client...")
+                client.destroy();
                 rl.close();
                 setTimeout(() => {
                     console.warn("Closing server...")
