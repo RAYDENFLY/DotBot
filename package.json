@@ -25,10 +25,7 @@
     },
     "homepage": "https://github.com/DemuraAIdev/DotProject#readme",
     "dependencies": {
-<<<<<<< HEAD
         "@discordjs/builders": "^0.8.2",
-=======
->>>>>>> e9fd3668dd99768a700a00b23c71fee029763162
         "@discordjs/rest": "^0.1.0-canary.0",
         "@discordjs/voice": "^0.7.3",
         "@sentry/node": "^6.14.1",
