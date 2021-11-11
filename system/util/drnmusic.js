@@ -19,6 +19,12 @@ class drmusic {
                     port: portl,
                     password: passwordl,
                 },
+                {
+                    id: "Main",
+                    host: "lava.link",
+                    port: 80,
+                    password: "youshallnotpass",
+                },
             ],
             plugins: [
                 // Initiate the plugin and pass the two required options.
@@ -33,7 +39,7 @@ class drmusic {
                 if (guild) guild.shard.send(payload);
             },
         })
-            .on("nodeConnect", node => log(chalk.black.bgGreen(`Connected Lavalink Node ${node.options.identifier}`)))
+            .on("nodeConnect", node => log(chalk.black.bgGreen(`Connected Lavalink host ${node.options.identifier}`)))
             .on("nodeError", (node, error) => console.error(`Cant connect Lavalink host ${node.options.identifier} had an error: ${error.message}`))
             .on("trackStart", (player, track) => {
                 client.channels.cache

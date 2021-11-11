@@ -129,9 +129,9 @@ const questions = [
     {
         type: 'input',
         name: 'healthram',
-        message: "Max Ram Usage? (enter for default)",
+        message: "Max Ram Usage in mb? (enter for default)",
         default() {
-            return "36 MB";
+            return "150";
         },
     },
     {

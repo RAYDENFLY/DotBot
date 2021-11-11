@@ -37,8 +37,8 @@ if (config.bot.slash) {
 
 //memory usage overload protection
 var interval = setInterval(function () {
-    const used = convert(process.memoryUsage().heapUsed)
-    if (used > config.health.ram) {
+    const used = process.memoryUsage().heapUsed
+    if (used > MbToBytes(config.health.ram)) {
         console.warn("Memory usage overload")
         process.exit(1)
     }
@@ -55,6 +55,9 @@ function convert(bytes) {
 //ms to seconds
 function msToSec(ms) {
     return ms / 1000
+}
+function MbToBytes(mb) {
+    return mb * 1024 * 1024;
 }
 
 //TODO: Add cpu protection overload
