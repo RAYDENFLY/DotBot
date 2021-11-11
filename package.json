@@ -4,7 +4,7 @@
     "description": "BETA-DotProject",
     "main": "index.js",
     "devDependencies": {
-        "eslint": "^8.0.1"
+        "eslint": "8.2.0"
     },
     "scripts": {
         "test": "node test/test.js",
