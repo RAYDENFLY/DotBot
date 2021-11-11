@@ -28,7 +28,6 @@
 <<<<<<< HEAD
         "@discordjs/builders": "^0.8.2",
 =======
-        "@discordjs/builders": "^0.8.0",
 >>>>>>> e9fd3668dd99768a700a00b23c71fee029763162
         "@discordjs/rest": "^0.1.0-canary.0",
         "@discordjs/voice": "^0.7.3",
