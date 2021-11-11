@@ -1,9 +1,0 @@
-{
-    "CANTCONNECT": "Lavalink node not connected, for now the music command is disabled",
-    "NOTINVOICE": "you need to join a voice channel.",
-    "NOARGS": "you need to give me a URL or a search term.",
-    "NOTSUPPORT": "Playlists are not supported with this command.",
-    "ERRORPLAY": "there was an error while searching: {{error}}",
-    "NOMATCH": "there was no tracks found with that query.",
-    "PLAY": "enqueuing {{title}}"
-}

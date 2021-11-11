@@ -12,18 +12,5 @@
             "en_us",
             "en_US"
         ]
-    },
-    {
-        "name": "id-ID",
-        "nativeName": "bahasa Indonesia",
-        "defaultMomentFormat": "Do MMMM YYYY",
-        "moment": "id",
-        "default": false,
-        "aliases": [
-            "Indonesian",
-            "id",
-            "id_id",
-            "indonesia"
-        ]
     }
 ]

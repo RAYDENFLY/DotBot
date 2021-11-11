@@ -1,5 +1,0 @@
-{
-    "DONE": "{{author}}** has been AFK! \n**Reason:** ${{reason}}",
-    "ERROR": "Something went wrong: {{error}}",
-    "DESCRIPTION": "add afk status to user"
-}

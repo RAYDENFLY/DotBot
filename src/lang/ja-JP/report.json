@@ -1,7 +1,0 @@
-{
-    "TITLE1": "Send Report to Developer",
-    "DESC1": "if you have a problem with our bot send a report by `{{prefix}}report <reason>`",
-    "TITLE2": "Thank you",
-    "DESC2": "thanks for reporting the problem, we will add to the database and will fix the bot soon",
-    "DESC": "report if have a issue with bot"
-}

@@ -1,9 +1,0 @@
-{
-    "CANTCONNECT": "Node lavalink tidak terhubung, untuk saat ini perintah musik dinonaktifkan",
-    "NOTINVOICE": "Kamu harus join voice channel.",
-    "NOARGS": "Kamu perlu memberi URL atau istilah pencarian.",
-    "NOTSUPPORT": "Daftar putar tidak didukung dengan perintah ini.",
-    "ERRORPLAY": "ada kesalahan saat mencari: {{error}}",
-    "NOMATCH": "tidak ada trek yang ditemukan dengan kueri itu.",
-    "PLAY": "Antri {{title}}"
-}

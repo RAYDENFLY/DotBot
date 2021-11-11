@@ -1,7 +1,0 @@
-{
-    "TITLE1": "Kirim Laporan ke Pengembang",
-    "DESC1": "jika Anda memiliki masalah dengan bot kami, kirim laporan dengan `{{prefix}} report <alasan>`",
-    "TITLE2": "Terima kasih",
-    "DESC2": "terima kasih telah melaporkan masalah, kami akan menambah database dan akan segera memperbaiki bot",
-    "DESC": "laporkan jika memiliki masalah dengan bot"
-}

@@ -1,6 +1,5 @@
 # DrmPR
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot?ref=badge_shield)
-[![Crowdin](https://badges.crowdin.net/dotbot/localized.svg)](https://crowdin.com/project/dotbot)
 
 
 | Platform | Supported          | Version |

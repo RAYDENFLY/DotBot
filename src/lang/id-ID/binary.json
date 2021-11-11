@@ -1,6 +1,0 @@
-{
-    "UNKNOW": "Parameter tidak diketahui. Silakan pilih metodenya terlebih dahulu, baik decode atau encode.",
-    "NEEDARG": "Silakan masukkan beberapa teks.",
-    "MUCH": "Oww, itu terlalu banyak. Karakter maksimal adalah 1.204.",
-    "DESCRIPTION": "Mengkonversi teks ke biner atau sebaliknya"
-}
