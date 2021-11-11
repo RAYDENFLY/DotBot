@@ -1,4 +1,4 @@
-FROM node:16.13.0
+FROM node:17.1.0
 # install python and make
 RUN apt-get update && \
     apt-get install -y python3 build-essential && \
