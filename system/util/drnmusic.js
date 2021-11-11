@@ -27,7 +27,7 @@ class drmusic {
                 },
             ],
             plugins: [
-                // plugin spotify you can disable it
+                // plugin spotify you can disable it.s
                 new Spotify({
                     clientID,
                     clientSecret,
