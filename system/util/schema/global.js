@@ -2,7 +2,7 @@ const mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     config = require("../../../config/configs.json")
 
-module.exports = mongoose.model("globall", new Schema({
+module.exports = mongoose.model("globalbot", new Schema({
     name: { "type": String, "default": config.bot.name },
     /* REQUIRED */
     guildcount: { type: String, default: 0 }, // Discord ID of the guild

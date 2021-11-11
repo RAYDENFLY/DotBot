@@ -47,24 +47,6 @@ module.exports = async (client, message) => {
         return plugin.run(client, message, input);
     }
 
-    if (message.attachments.size > 0) {
-
-        const AttachmentCollection = client.dataAttachment;
-        const attachment = Array.from(message.attachments)[0];
-        const image = attachment[1].url;
-        const toBuffer = await require('got')(image).buffer();
-
-        AttachmentCollection.set(message.id, { buffer: toBuffer, filename: image });
-        client.db.Collection.Collection("image").insertOne({
-            id: message.id,
-            image: image,
-            user: message.author.id,
-            guild: message.guild.id,
-            channel: message.channel.id,
-            time: Date.now()
-        })
-
-    }
 
     message.flags = []
     while (args[0] && args[0][0] === "-") {

@@ -64,14 +64,14 @@ module.exports = class system extends Client {
     async createnew() {
 
         if (this.dbcache.global.get(config.bot.name)) {
-            return this.dbcache.guilds.get(config.bot.name);
+            return this.dbcache.global.get(config.bot.name);
         } else {
             let globalData = await this.db.global.findOne({ name: config.bot.name });
             if (globalData) {
                 this.dbcache.global.set(config.bot.name, globalData);
                 return globalData;
             } else {
-                globalData = new this.db.guild({ name: config.bot.name });
+                globalData = new this.db.global({ name: config.bot.name });
                 await globalData.save();
                 this.dbcache.global.set(config.bot.name, globalData);
                 return globalData;
