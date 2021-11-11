@@ -11,12 +11,13 @@ module.exports = async client => {
             console.warn("Closing database...")
             setTimeout(() => {
                 console.warn("Closing client...")
+                client.destroy();
                 rl.close();
                 setTimeout(() => {
                     console.warn("Closing server...")
                     setTimeout(() => {
                         console.error("Closing...")
-                        process.exit(0);
+                        process.exit(1);
                     }, 1000);
                 }, 1000);
             }, 1000)
