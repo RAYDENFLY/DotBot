@@ -10,7 +10,6 @@ plugin-package.json
 
 #vscode
 .vscode/
-package-lock.json
 
 #lavalink
 Lavalink.jar
