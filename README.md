@@ -1,5 +1,6 @@
 # DrmPR
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDemuraAIdev%2FDotBot?ref=badge_shield)
+![CIRCLECI](https://img.shields.io/circleci/build/github/DemuraAIdev/DotBot/main?token=cbd5a7f2ea7519ca002178b3830781880caa613a)
 
 
 | Platform | Supported          | Version |
