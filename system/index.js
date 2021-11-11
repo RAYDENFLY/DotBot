@@ -7,6 +7,8 @@ const manager = new ShardingManager('./system/bot.js', {
     token: token.token,
     totalShards: "auto",
 });
+console.log('Starting shard')
+console.log('--------------')
 manager.on('shardCreate', shard => {
     console.info(`Launched shard ${shard.id}`)
     shard.on('message', message => {
@@ -14,7 +16,7 @@ manager.on('shardCreate', shard => {
     })
     shard.on('death', (process) => {
         if (process.exitCode === null) {
-            console.warn(`Shard ${shard.id} died with code null / restarting`);
+            console.warn(`Shard ${shard.id} died with code null / restart`);
             return console.warn(`Restarting all shard`);
         }
         if (process.exitCode > 0) {
