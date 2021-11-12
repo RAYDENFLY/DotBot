@@ -1,6 +1,5 @@
 const { MessageActionRow, MessageButton } = require('discord.js'), { post } = require("node-superfetch");
 const Discord = require('discord.js')
-const { joinVoiceChannel } = require('@discordjs/voice');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 let typeofs;

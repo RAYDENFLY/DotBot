@@ -5,8 +5,9 @@ RUN apt-get update && \
     apt-get purge -y --auto-remove && \
     apt-get install oracle-java17-installer
 WORKDIR /dotbot
+EXPOSE 3000-8080
+ENV DOCKER true
 COPY package.json /dotbot
 RUN npm install
 COPY . /dotbot
-CMD [“node”, index.js”]
-EXPOSE 3000-8080
+CMD ["npm", "run", "docker"]

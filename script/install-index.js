@@ -1,4 +1,5 @@
 const fs = require("fs")
+if (process.env.DOCKER === true) return console.log("Docker detected, pls running in docker mode")
 var config = {};
 if (fs.existsSync("./config/configs.json")) {
     //if token exists
