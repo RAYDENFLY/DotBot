@@ -94,11 +94,5 @@
             "required": false
         }
     },
-    "website": "dotbotwebsite.demuraaidev.repl.co/",
-    "formation": {
-        "worker": {
-            "quantity": 1,
-            "size": "free"
-        }
-    }
+    "website": "dotbotwebsite.demuraaidev.repl.co/"
 }
