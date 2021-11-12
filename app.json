@@ -83,6 +83,7 @@
         }
     },
     "scripts": {
-        "postdeploy": "npm run heroku"
+        "postdeploy": "npm test",
+        "pr-predestroy": "npm run heroku"
     }
 }
