@@ -21,26 +21,32 @@
         },
         "OWNER_ID": {
             "description": "Id Owner bot",
+            "value": "ID OWNER",
             "required": true
         },
         "OWNER_NAME": {
             "description": "Owner name / username for footer",
+            "value": "DemuraAI",
             "required": true
         },
         "PREFIX": {
             "description": "Prefix Bot",
+            "value": "d!",
             "required": true
         },
         "SLASH": {
             "description": "Use Slash commands? (Default true)",
-            "value": true
+            "value": true,
+            "required": true
         },
         "SPOTIFY_CLIENT_ID": {
             "description": "Spotify Client ID",
+            "value": "get at https://developer.spotify.com/",
             "required": true
         },
         "SPOTIFY_SECRET": {
             "description": "Spotify SECRET ID",
+            "value": "get at https://developer.spotify.com/",
             "required": true
         },
         "LAVALINK_HOST": {
@@ -65,10 +71,12 @@
         },
         "SENTRY": {
             "description": "SENTRY DNS key ? (default empty)",
+            "value": "empty",
             "required": false
         },
         "MONGODB_URI": {
             "description": "Mongodb url (Required with name database)",
+            "value": "if you dont have get at  https://www.mongodb.com/cloud/atlas/register",
             "required": true
         },
         "HEALTH_ENABLED": {
@@ -88,6 +96,7 @@
         },
         "OSU_API_KEY": {
             "description": "Osu api key (Not required)",
+            "value": "empty",
             "required": false
         }
     }
