@@ -58,8 +58,7 @@
             "value": "https://hastebin.com"
         },
         "SENTRY": {
-            "description": "SENTRY DNS key ? (default empty)",
-            "value": ""
+            "description": "SENTRY DNS key ? (default empty)"
         },
         "MONGODB_URI": {
             "description": "Mongodb url (Required with name database)",
@@ -78,8 +77,7 @@
             "value": "2000"
         },
         "OSU_API_KEY": {
-            "description": "Osu api key (Not required)",
-            "value": ""
+            "description": "Osu api key (Not required)"
         }
     },
     "scripts": {
