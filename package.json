@@ -10,7 +10,8 @@
         "test": "node test/test.js",
         "start": "node script/install-index.js",
         "setup": "node script/install.js",
-        "docker": "node script/docker.js"
+        "docker": "node script/docker.js",
+        "heroku": "node script/heroku.js"
     },
     "repository": {
         "type": "git",

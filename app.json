@@ -81,5 +81,8 @@
             "description": "Osu api key (Not required)",
             "value": ""
         }
+    },
+    "scripts": {
+        "postdeploy": "npm run heroku"
     }
 }
