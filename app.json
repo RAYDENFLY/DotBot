@@ -7,5 +7,79 @@
         "node",
         "dotbot",
         "discord"
-    ]
+    ],
+    "env": {
+        "TOKEN": {
+            "description": "Discord Bot Token.",
+            "required": true
+        },
+        "VERSION_BOT": {
+            "description": "Bot Version",
+            "value": "BETA-1.0.0"
+        },
+        "OWNER_ID": {
+            "description": "Id Owner bot",
+            "required": true
+        },
+        "OWNER_NAME": {
+            "description": "Owner name / username for footer",
+            "required": true
+        },
+        "PREFIX": {
+            "description": "Prefix Bot",
+            "required": true
+        },
+        "SLASH": {
+            "description": "Use Slash commands? (Default true)",
+            "value": true
+        },
+        "SPOTIFY_CLIENT_ID": {
+            "description": "Spotify Client ID",
+            "required": true
+        },
+        "SPOTIFY_SECRET": {
+            "description": "Spotify SECRET ID",
+            "required": true
+        },
+        "LAVALINK_HOST": {
+            "description": "Lavalink host? (Default server is lava.link not Recommend)",
+            "value": "lava.link"
+        },
+        "LAVALINK_PORT": {
+            "description": "Lavalink port?",
+            "value": 80
+        },
+        "LAVALINK_PASSWORD": {
+            "description": "Lavalink Passsword?",
+            "value": "youshallnotpass"
+        },
+        "HASTEBIN": {
+            "description": "Hastebin server? (Default is https://hastebin.com dont change if you dont know)",
+            "value": "https://hastebin.com"
+        },
+        "SENTRY": {
+            "description": "SENTRY DNS key ? (default empty)",
+            "value": ""
+        },
+        "MONGODB_URI": {
+            "description": "Mongodb url (Required with name database)",
+            "required": true
+        },
+        "HEALTH_ENABLED": {
+            "description": "healt feature is secure the ram usage and core file (Default is true)",
+            "value": true
+        },
+        "HEALTH_RAM": {
+            "description": "Ram usage protection",
+            "value": "150"
+        },
+        "HEALTH_INTERVAL": {
+            "description": "Interval check for healt (default is 2000 ms /2 seconds)",
+            "value": "2000"
+        },
+        "OSU_API_KEY": {
+            "description": "Osu api key (Not required)",
+            "value": ""
+        }
+    }
 }
