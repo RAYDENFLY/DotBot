@@ -1,0 +1,11 @@
+{
+    "name": "DotBot DIscord",
+    "description": "A powerfull bot",
+    "repository": "https://github.com/DemuraAIdev/DotBot",
+    "logo": "https://cdn.discordapp.com/avatars/898186273355874324/72e7f43469df9db0dcf6aaf88db45415.webp",
+    "keywords": [
+        "node",
+        "dotbot",
+        "discord"
+    ]
+}
