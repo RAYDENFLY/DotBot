@@ -47,7 +47,7 @@
         },
         "LAVALINK_PORT": {
             "description": "Lavalink port?",
-            "value": 80
+            "value": "80"
         },
         "LAVALINK_PASSWORD": {
             "description": "Lavalink Passsword?",
@@ -67,7 +67,7 @@
         },
         "HEALTH_ENABLED": {
             "description": "healt feature is secure the ram usage and core file (Default is true)",
-            "value": true
+            "value": "true"
         },
         "HEALTH_RAM": {
             "description": "Ram usage protection",
