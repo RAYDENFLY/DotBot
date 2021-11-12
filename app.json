@@ -3,12 +3,6 @@
     "description": "A powerfull bot",
     "repository": "https://github.com/DemuraAIdev/DotBot",
     "logo": "https://cdn.discordapp.com/avatars/898186273355874324/72e7f43469df9db0dcf6aaf88db45415.webp",
-    "keywords": [
-        "node",
-        "dotbot",
-        "discord"
-    ],
-    "image": "heroku/nodejs",
     "env": {
         "TOKEN": {
             "description": "Discord Bot Token.",
@@ -98,6 +92,13 @@
             "description": "Osu api key (Not required)",
             "value": "empty",
             "required": false
+        }
+    },
+    "website": "dotbotwebsite.demuraaidev.repl.co/",
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
         }
     }
 }
