@@ -1,5 +1,6 @@
 const fs = require("fs")
 if (process.env.DOCKER === true) return console.log("Docker detected, pls running in docker mode")
+if (process.env.TOKEN) return require("./heroku.js")
 var config = {};
 if (fs.existsSync("./config/configs.json")) {
     //if token exists

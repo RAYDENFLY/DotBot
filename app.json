@@ -8,6 +8,7 @@
         "dotbot",
         "discord"
     ],
+    "image": "heroku/nodejs",
     "env": {
         "TOKEN": {
             "description": "Discord Bot Token.",
@@ -15,7 +16,8 @@
         },
         "VERSION_BOT": {
             "description": "Bot Version",
-            "value": "BETA-1.0.0"
+            "value": "BETA-1.0.0",
+            "required": true
         },
         "OWNER_ID": {
             "description": "Id Owner bot",
@@ -43,19 +45,23 @@
         },
         "LAVALINK_HOST": {
             "description": "Lavalink host? (Default server is lava.link not Recommend)",
-            "value": "lava.link"
+            "value": "lava.link",
+            "required": true
         },
         "LAVALINK_PORT": {
             "description": "Lavalink port?",
-            "value": "80"
+            "value": "80",
+            "required": true
         },
         "LAVALINK_PASSWORD": {
             "description": "Lavalink Passsword?",
-            "value": "youshallnotpass"
+            "value": "youshallnotpass",
+            "required": true
         },
         "HASTEBIN": {
             "description": "Hastebin server? (Default is https://hastebin.com dont change if you dont know)",
-            "value": "https://hastebin.com"
+            "value": "https://hastebin.com",
+            "required": true
         },
         "SENTRY": {
             "description": "SENTRY DNS key ? (default empty)",
@@ -67,23 +73,22 @@
         },
         "HEALTH_ENABLED": {
             "description": "healt feature is secure the ram usage and core file (Default is true)",
-            "value": "true"
+            "value": "true",
+            "required": true
         },
         "HEALTH_RAM": {
             "description": "Ram usage protection",
-            "value": "150"
+            "value": "150",
+            "required": true
         },
         "HEALTH_INTERVAL": {
             "description": "Interval check for healt (default is 2000 ms /2 seconds)",
-            "value": "2000"
+            "value": "2000",
+            "required": true
         },
         "OSU_API_KEY": {
             "description": "Osu api key (Not required)",
             "required": false
         }
-    },
-    "scripts": {
-        "postdeploy": "npm test",
-        "pr-predestroy": "npm run heroku"
     }
 }
