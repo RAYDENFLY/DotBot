@@ -9,17 +9,7 @@ if (config.config.version < 2) {
     console.info("Config version up to date")
 }
 
-try {
-    require("discord.js")
-} catch (error) {
-    console.error("dependency not found")
-    console.error("Calling npm to install")
-    execSync("npm install")
-    console.info("npm installed")
-    console.info("restarting..")
 
-    process.exit(1)
-}
 
 //if health enabled
 if (config.health.enabled) {
