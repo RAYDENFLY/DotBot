@@ -58,7 +58,7 @@ module.exports = client => {
                             try {
                                 console.warn(`Started refreshing slash : ${prop.help.name}`);
                                 await rest.put(
-                                    Routes.applicationGuildCommands("898186273355874324", "897850095335268412"), { body: commandss },
+                                    Routes.applicationGuildCommands("898186273355874324", "863369643041488926"), { body: commandss },
                                 );
                                 console.info(`Successfully reloaded slash : ${prop.help.name}`);
                             } catch (error) {

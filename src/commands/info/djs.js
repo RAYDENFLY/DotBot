@@ -45,7 +45,7 @@ exports.slash = false
 
 exports.help = {
     name: "djs",
-    description: "Search DiscordJS docs",
+    description: "djs:DESC",
     usage: "djs <search>",
     example: "djs"
 }

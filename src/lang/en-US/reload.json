@@ -1,3 +1,8 @@
 {
-    "DESC": "Reload all commands"
+    "DESC": "Reload all commands",
+    "T1": "Reload Commands",
+    "D1": "This function will reload all commands, Reload?",
+    "T2": "Reload Commands success",
+    "D2": "Reload success!",
+    "CONFIRM": "Confirm Reload"
 }

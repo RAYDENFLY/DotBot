@@ -105,7 +105,7 @@ exports.run = async (client, message) => {
 
 exports.help = {
     name: "stats",
-    description: "Information of the bot",
+    description: "botinfo:DESC",
     usage: "stats",
     example: "stats"
 };

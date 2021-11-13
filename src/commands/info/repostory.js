@@ -43,6 +43,6 @@ exports.conf = {
 
 exports.help = {
     name: 'repo',
-    description: 'Get repo github',
+    description: 'repostory:DESC',
     usage: 'repo <name>'
 };

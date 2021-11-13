@@ -99,7 +99,7 @@ exports.slash = false
 
 exports.help = {
     name: "whois",
-    description: "get info about a user",
+    description: "whois:DESC",
     usage: "whois [@user]",
     example: "user <@529493423556919296>"
 }

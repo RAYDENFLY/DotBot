@@ -20,6 +20,6 @@ exports.slash = false
 
 exports.help = { //lets load commands 
     name: 'prefix', //commands name
-    description: 'change prefix this server :)', //commands discription
+    description: 'prefix:DESC', //commands discription
     usage: 'prefix <new prefix>' //how they work
 }

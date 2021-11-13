@@ -108,7 +108,7 @@ exports.slash = false
 
 exports.help = {
     name: "help",
-    description: "Show a command list.",
+    description: "help:DESC",
     usage: "help [command]",
     example: "help verify"
 }

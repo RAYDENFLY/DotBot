@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const process = require("child_process")
 exports.run = async (client, message, args, runs, plugin) => {
-    message.channel.send("Please wait...").then(m => m.delete({ timeout: 2000 }));
+    message.sendT("exec:WAIT").then(m => m.delete({ timeout: 2000 }));
 
     process.exec(args.join(" "), (error, stdout) => {
         let response = (error || stdout);

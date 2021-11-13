@@ -72,7 +72,7 @@ exports.slash = {
 
 exports.help = {
     name: "ping",
-    description: "Checkmate the `ms`",
+    description: "ping:DESC",
     usage: "ping",
     example: "ping"
 }

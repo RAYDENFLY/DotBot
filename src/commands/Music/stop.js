@@ -22,6 +22,6 @@ exports.conf = {
 
 exports.help = { //lets load commands 
     name: 'stop', //commands name
-    description: 'stop music :)', //commands discription
+    description: 'stop:DESC', //commands discription
     usage: 'stop' //how they work
 }

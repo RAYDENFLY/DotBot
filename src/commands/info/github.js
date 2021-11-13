@@ -48,6 +48,6 @@ exports.conf = {
 
 exports.help = {
     name: 'github',
-    description: 'Get User github',
+    description: 'github:DESC',
     usage: 'github <user>'
 };

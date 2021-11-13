@@ -10,23 +10,23 @@ const danger = new Discord.MessageEmbed()
 const com = new MessageActionRow()
     .addComponents(
         new MessageButton()
-        .setLabel('YES')
-        .setCustomId('banyes')
-        .setStyle('DANGER')
+            .setLabel('YES')
+            .setCustomId('banyes')
+            .setStyle('DANGER')
     )
     .addComponents(
         new MessageButton()
-        .setLabel('NO')
-        .setCustomId('banno')
-        .setStyle('SUCCESS')
+            .setLabel('NO')
+            .setCustomId('banno')
+            .setStyle('SUCCESS')
     )
 
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
     const members = message.author;
     if (message.mentions.users.first() === undefined) return message.reply("You didn't mention the user to ban!")
     const user = message.mentions.users.first().id;
     const reason = args.slice(1).join(" ") || "No reason"
-        // If we have a user mentioned
+    // If we have a user mentioned
     const success = new Discord.MessageEmbed()
         .setFooter(`Successfully banned`)
         .setTimestamp()
@@ -133,6 +133,6 @@ exports.conf = {
 
 exports.help = { //lets load commands 
     name: 'ban', //commands name
-    description: 'BAN USER :)', //commands discription
+    description: 'ban:DESC', //commands discription
     usage: 'ban <user> <reason>' //how they work
 }

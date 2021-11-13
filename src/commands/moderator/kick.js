@@ -9,23 +9,23 @@ const danger = new Discord.MessageEmbed()
 const com = new MessageActionRow()
     .addComponents(
         new MessageButton()
-        .setLabel('YES')
-        .setCustomId('kickyes')
-        .setStyle('DANGER')
+            .setLabel('YES')
+            .setCustomId('kickyes')
+            .setStyle('DANGER')
     )
     .addComponents(
         new MessageButton()
-        .setLabel('NO')
-        .setCustomId('kickno')
-        .setStyle('SUCCESS')
+            .setLabel('NO')
+            .setCustomId('kickno')
+            .setStyle('SUCCESS')
     )
 
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
     const members = message.author;
     if (message.mentions.users.first() === undefined) return message.reply("You didn't mention the user to Kick!")
     const user = message.mentions.users.first().id;
     const reason = args.slice(1).join(" ") || "No reason"
-        // If we have a user mentioned
+    // If we have a user mentioned
     const success = new Discord.MessageEmbed()
         .setFooter(`Successfully kick`)
         .setTimestamp()
@@ -132,6 +132,6 @@ exports.conf = {
 
 exports.help = { //lets load commands 
     name: 'kick', //commands name
-    description: 'KICK USER :)', //commands discription
+    description: 'kick:DESC', //commands discription
     usage: 'kick <user> <reason>' //how they work
 }

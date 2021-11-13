@@ -3,16 +3,21 @@ let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 const { MessageActionRow, MessageButton } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+let reload1 = message.translate("reload:T1"),
+    desc1 = message.translate("reload:D1")
+let reload2 = message.translate("reload:T2"),
+    desc2 = message.translate("reload:D2"),
+    confirm = message.translate("reload:CONFIRM"),
 const danger = new Discord.MessageEmbed()
-    .setFooter(`Reload Commands`)
+    .setFooter(reload1)
     .setTimestamp()
     .setColor('RED')
-    .setDescription("**This function will reload all commands, Reload?**")
+    .setDescription("**" + desc1 + "**")
 const success = new Discord.MessageEmbed()
-    .setFooter(`Reload Commands success`)
+    .setFooter(reload2)
     .setTimestamp()
     .setColor('GREEN')
-    .setDescription("**Reload success!**")
+    .setDescription("**" + desc2 + "**")
 const invite = new MessageActionRow()
     .addComponents(
         new MessageButton()
@@ -28,7 +33,7 @@ const invite = new MessageActionRow()
     )
 exports.run = async (client, message, args) => {
 
-    message.channel.send({ content: `Confirm Reload`, embeds: [danger], components: [invite] });
+    message.channel.send({ content: confirm, embeds: [danger], components: [invite] });
     const filter = i => client.config.bot.owner.includes(i.user.id)
     const collector = message.channel.createMessageComponentCollector({ filter, max: 1 });
     collector.on('collect', async i => {

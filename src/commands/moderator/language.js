@@ -25,6 +25,6 @@ exports.slash = false
 
 exports.help = { //lets load commands 
     name: 'language', //commands name
-    description: 'change language this server :)', //commands discription
+    description: 'lang:DESC', //commands discription
     usage: 'prefix <language en-US id-ID>' //how they work
 }

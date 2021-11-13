@@ -1,4 +1,5 @@
 {
     "NOTFOUND": "Please enter a valid language between theses: {{list}}",
-    "SUCCESS": "Success to change language guild to english"
+    "SUCCESS": "Success to change language guild to english",
+    "DESC": "change language this server :)"
 }

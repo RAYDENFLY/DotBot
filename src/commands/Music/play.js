@@ -59,6 +59,6 @@ exports.conf = {
 
 exports.help = { //lets load commands 
     name: 'play', //commands name
-    description: 'Play music for free :)', //commands discription
+    description: 'play:DESC', //commands discription
     usage: 'play <url/name>' //how they work
 }
