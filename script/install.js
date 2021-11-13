@@ -15,6 +15,10 @@ var config = {
     osu: {},
     config: {},
 };
+console.log("Running Test for first time pls wait")
+execSync("npm test")
+console.log("Test success")
+console.log("Run setup..")
 
 if (fs.existsSync("./config/configs.json")) {
     //if token exists
@@ -232,21 +236,50 @@ function bios() {
         ])
         .then((answers) => {
             if (answers.menu == "Reset config") {
-                fs.unlink("./config/configs.json", function (err) {
-                    if (err) {
-                        return console.log(err);
+                const questions = [
+                    {
+                        type: 'confirm',
+                        name: 'resetconfig',
+                        message: "Reset config?",
+                        default: true,
                     }
-                    console.log("Config file deleted!");
-                    bios();
-                });
+                ];
+                inquirer.prompt(questions).then((answers) => {
+                    if (answers.resetconfig) {
+
+                        fs.unlink("./config/configs.json", function (err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                            console.log("Config file deleted!");
+                            bios();
+                        });
+                    } else {
+                        return bios();
+                    }
+                })
             } else if (answers.menu == "Reset token") {
-                fs.unlink("./config/token.json", function (err) {
-                    if (err) {
-                        return console.log(err);
+                const questions = [
+                    {
+                        type: 'confirm',
+                        name: 'resettoken',
+                        message: "Reset token?",
+                        default: true,
                     }
-                    console.log("Token file deleted!");
-                    bios();
-                });
+                ];
+                inquirer.prompt(questions).then((answers) => {
+                    if (answers.resettoken) {
+                        fs.unlink("./config/token.json", function (err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                            console.log("Token file deleted!");
+                            bios();
+                        });
+                    } else {
+                        return bios();
+                    }
+                })
             } else if (answers.menu == "Debug Mode") {
                 const questions = [
                     {
@@ -290,19 +323,34 @@ function bios() {
             } else if (answers.menu == "exit and start bot") {
                 return require("../index");
             } else if (answers.menu == "Reset both") {
-                fs.unlink("./config/configs.json", function (err) {
-                    if (err) {
-                        return console.log(err);
+                const questions = [
+                    {
+                        type: 'confirm',
+                        name: 'resetboth',
+                        message: "Reset token and config?",
+                        default: true,
                     }
-                    console.log("Config file deleted!");
-                    fs.unlink("./config/token.json", function (err) {
-                        if (err) {
-                            return console.log(err);
-                        }
-                        console.log("Token file deleted!");
-                        bios();
-                    });
-                });
+                ];
+                inquirer.prompt(questions).then((answers) => {
+                    if (answers.resetboth) {
+                        fs.unlink("./config/configs.json", function (err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                            console.log("Config file deleted!");
+                            fs.unlink("./config/token.json", function (err) {
+                                if (err) {
+                                    return console.log(err);
+                                }
+                                console.log("Token file deleted!");
+                                bios();
+                            });
+                        });
+                    } else {
+                        return bios();
+                    }
+                })
+
             }
         });
 }

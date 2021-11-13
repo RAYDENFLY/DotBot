@@ -4,6 +4,25 @@ require('../src/lib/console.error');
 require(`../src/lib/console.tips`)
 require(`../src/lib/console.debug`)
 require("../src/lib/extenders")
+//ping if 12ms run 
+const exec = require('child_process').exec;
+const ping = async () => {
+    try {
+        const start = Date.now();
+        const { stdout, stderr } = await exec('ping -c 1 -W 1 google.com')
+        const end = Date.now();
+        const time = end - start;
+        if (time > 1000) {
+            console.warn(`Warning high ping :${time}ms ping`);
+        } else {
+            console.info(`${time}ms ping`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 
 const config = require("../config/configs.json")
 const Sentry = require("@sentry/node")
@@ -120,6 +139,7 @@ const init = async () => {
     setTimeout(() => {
         console.tips("if you like this project give star to my github");
     }, 1000);
+    ping();
 }
 
 init()
@@ -137,6 +157,9 @@ process.on("uncaughtException", err => {
     if (err.code == "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR") {
         console.error("true");
     }
+});
+process.on("warning", (warning) => {
+    console.warn(warning.stack);
 });
 
 //login

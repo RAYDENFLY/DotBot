@@ -47,15 +47,6 @@ class Util {
     msToSec(ms) {
         return ms / 1000;
     }
-    base64toArrayBuffer(base64) {
-        var binary_string = window.atob(base64);
-        var len = binary_string.length;
-        var bytes = new Uint8Array(len);
-        for (var i = 0; i < len; i++) {
-            bytes[i] = binary_string.charCodeAt(i);
-        }
-        return bytes.buffer;
-    }
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = new Uint8Array(buffer);
@@ -77,6 +68,15 @@ class Util {
             return `${minutes} minutes, ${sec} seconds`;
         }
         return `${sec} seconds`;
+    }
+    randompassword(length) {
+        var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        var pass = "";
+        for (var x = 0; x < length; x++) {
+            var i = Math.floor(Math.random() * chars.length);
+            pass += chars.charAt(i);
+        }
+        return pass;
     }
 }
 
