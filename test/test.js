@@ -13,19 +13,22 @@ try {
 } catch (e) {
     console.error("Test 1 error", e)
     console.log("Test 1 catch")
-    process.exit(0)
+    process.exit(1)
 }
-console.log("Test 1 end")
-console.log("Test 2 run")
+console.info("Test 1 end")
+console.info("Test 2 run util")
 try {
     const Util = require("../system/kernel/Util")
     const util = new Util()
-    console.log("TEST2 :" + util.msToSec("1000"))
-    console.log("TEST2 :" + util.bytesToSize("10000", true))
+    console.info("1# :" + util.msToSec("10000000"))
+    console.info("2# :" + util.bytesToSize("10000000", true))
+    console.info("3# :" + util.MbToBytes("1000"))
+    console.info("4# :" + util.msToTime("10000000000"))
+    console.info("4# :" + util.randompassword(1000))
 } catch (e) {
     console.error("Test 2 error", e)
-    console.log("Test 2 catch")
-    process.exit(0)
+    console.warn("Test 2 catch")
+    process.exit(1)
 }
-console.log("Test 2 end")
+console.info("Test 2 end")
 
