@@ -1,7 +1,6 @@
 const snek = require("node-superfetch");
 const request = require("node-superfetch"), { post } = require("node-superfetch");
 const discord = require('discord.js')
-const hastebinurl = require("../../config/configs.json").util.hastebin
 
 class Util {
     constructor() {
@@ -31,6 +30,7 @@ class Util {
             return temp;
         };
         this.hastebin = async function hastebin(code) {
+            const hastebinurl = require("../../config/configs.json").util.hastebin
             const { body } = await post(hastebinurl + "/documents").send(code);
             return hastebinurl + `/${body.key}.js`;
         }
