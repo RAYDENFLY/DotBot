@@ -1,8 +1,6 @@
-const config = require("../../config/configs.json")
 let jsoning = require("jsoning");
 let db = new jsoning("database/global.json");
 const Discord = require("discord.js")
-let dbb = new jsoning("database/blacklist.json");
 module.exports = async (client, interaction) => {
     const prefix = await db.get("prefix")
     if (!interaction.isCommand()) return;

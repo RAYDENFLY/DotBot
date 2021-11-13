@@ -17,14 +17,14 @@ module.exports = async (client, message) => {
     } else {
         prefix = client.config.bot.prefix;
     }
-    require("../../src/addons/master")(client, message)
-    require("../../src/addons/afk")(client, message)
+    require("../../../src/addons/master")(client, message)
+    require("../../../src/addons/afk")(client, message)
 
     if (!message.content.startsWith(prefix)) return;
     let args = message.content.slice(prefix.length || prefguild.length).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
     let sender = message.author;
-    let blacklist = require("../../database/blacklist.json").blacklist
+    let blacklist = require("../../../database/blacklist.json").blacklist
     //let i = await db.get("bios")
     //if(i === "true") {
 
@@ -119,6 +119,6 @@ module.exports = async (client, message) => {
 
     } finally {
         //check current shard
-        console.info(`[${client.shard.ids[0]}]: ${sender.tag} ran a command: ${cmd}`);
+        console.info(`[${message.guild.shard.id}]: ${sender.tag} ran a command: ${cmd}`);
     }
 }
