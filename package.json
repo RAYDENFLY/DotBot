@@ -3,12 +3,9 @@
     "version": "1.0.0",
     "description": "BETA-DotProject",
     "main": "index.js",
-    "devDependencies": {
-        "eslint": "8.2.0"
-    },
     "scripts": {
         "test": "node test/test.js",
-        "start": "node script/install-index.js",
+        "start": "node index.js",
         "setup": "node script/install.js",
         "docker": "node script/docker.js",
         "heroku": "node script/heroku.js"
