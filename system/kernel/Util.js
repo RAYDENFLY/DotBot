@@ -30,8 +30,7 @@ class Util {
             return temp;
         };
         this.hastebin = async function hastebin(code) {
-            const hastebinurl = require("../../config/configs.json").util.hastebin
-            const { body } = await post(hastebinurl + "/documents").send(code);
+            const { body } = await post("https://hastebin.com/documents").send(code);
             return hastebinurl + `/${body.key}.js`;
         }
     }

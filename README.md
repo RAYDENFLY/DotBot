@@ -3,6 +3,7 @@
 ![CIRCLECI](https://img.shields.io/circleci/build/github/DemuraAIdev/DotBot/main?token=cbd5a7f2ea7519ca002178b3830781880caa613a)
 ![GITHUB](https://img.shields.io/github/license/DemuraAIdev/DotBot)
 ![GITHUB](https://img.shields.io/github/downloads/DemuraAIdev/DotBot/total)
+![GITHUB](https://img.shields.io/github/package-json/v/DemuraAIdev/DotBot)
 
 | Platform | Supported          | Version |
 | ------- | ------------------ | ------- |
