@@ -4,6 +4,7 @@
 ![GITHUB](https://img.shields.io/github/license/DemuraAIdev/DotBot)
 ![GITHUB](https://img.shields.io/github/downloads/DemuraAIdev/DotBot/total)
 ![GITHUB](https://img.shields.io/github/package-json/v/DemuraAIdev/DotBot)
+![GITHUB](https://img.shields.io/website?url=https%3A%2F%2Fdotbotwebsite.demuraaidev.repl.co%2F)
 
 | Platform | Supported          | Version |
 | ------- | ------------------ | ------- |
